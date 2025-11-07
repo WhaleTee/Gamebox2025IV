@@ -7,6 +7,7 @@ namespace DI
     public class ProjectInstaller : MonoBehaviour, IInstaller
     {
         private const string ROOT_CONTAINER_NAME = "Root Container";
+        [SerializeField] private static UserInput m_userInput;
 
         private Container rootContainer;
 
@@ -16,7 +17,7 @@ namespace DI
 
         private static void InstallServices(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton(typeof(UserInput));
+            containerBuilder.AddSingleton(m_userInput);
         }
 
         public void InstallBindings(ContainerBuilder containerBuilder)
