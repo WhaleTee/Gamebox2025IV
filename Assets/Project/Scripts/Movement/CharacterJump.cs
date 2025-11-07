@@ -1,3 +1,4 @@
+using System;
 using Project.Scripts.Input;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Project.Scripts.Movement
     {
         [SerializeField, Range(0f, 5f)] [Tooltip("Gravity multiplier to apply when going up")]
         private float upwardMovementMultiplier = 1f;
-        
+
         [SerializeField] [Tooltip("The fastest speed the character can fall")]
         private float speedLimit;
 
@@ -23,7 +24,7 @@ namespace Project.Scripts.Movement
         private float jumpCutOff;
         private int maxAirJumps;
         private bool variableJumpHeight;
-        
+
         private float jumpSpeed;
         private float defaultGravityScale;
         private float gravMultiplier;
@@ -47,9 +48,14 @@ namespace Project.Scripts.Movement
             defaultGravityScale = 1f;
         }
 
+        private void Start()
+        {
+            UserInput.Instance.SubscribeJumpPerformed(OnJumpPerformed);
+            UserInput.Instance.SubscribeJumpCanceled(OnJumpCanceled);
+        }
+
         private void Update()
         {
-            CheckJump();
             ApplyPhysics();
 
             onGround = ground.GetOnGround();
@@ -86,11 +92,13 @@ namespace Project.Scripts.Movement
             CalculateGravity();
         }
 
-        private void CheckJump()
+        private void OnJumpPerformed()
         {
-            desiredJump = UserInput.Instance.JumpPerformed;
-            pressingJump = UserInput.Instance.JumpPressed;
+            desiredJump = true;
+            pressingJump = true;
         }
+
+        private void OnJumpCanceled() => pressingJump = false;
 
         private void ApplyPhysics()
         {

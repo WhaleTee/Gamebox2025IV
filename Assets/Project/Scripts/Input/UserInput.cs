@@ -1,4 +1,5 @@
-﻿using Project.Scripts.Misc;
+﻿using System;
+using Project.Scripts.Misc;
 using UnityEngine;
 
 namespace Project.Scripts.Input
@@ -8,16 +9,16 @@ namespace Project.Scripts.Input
         private InputActions inputActions;
 
         public Vector2 Movement => inputActions.Player.Move.ReadValue<Vector2>();
-        public bool JumpPerformed => inputActions.Player.Jump.IsPressed() && inputActions.Player.Jump.WasPressedThisFrame();
+        public bool JumpPerformed => JumpPressed && inputActions.Player.Jump.WasPressedThisDynamicUpdate();
         public bool JumpPressed => inputActions.Player.Jump.IsPressed();
-        public bool AttackPerformed => inputActions.Player.Attack.IsPressed() && inputActions.Player.Attack.WasPressedThisFrame();
+        public bool AttackPerformed => AttackPressed && inputActions.Player.Attack.WasPressedThisDynamicUpdate();
         public bool AttackPressed => inputActions.Player.Attack.IsPressed();
 
         private void OnEnable() => ActivateInputActions();
 
-        private void Start()
+        protected override void Awake()
         {
-            DeactivateInputActions();
+            base.Awake();
             ActivateInputActions();
         }
 
@@ -25,7 +26,7 @@ namespace Project.Scripts.Input
 
         private void ActivateInputActions()
         {
-            inputActions = new InputActions();
+            inputActions ??= new InputActions();
             inputActions.Enable();
         }
 
@@ -34,7 +35,9 @@ namespace Project.Scripts.Input
             inputActions?.Player.Disable();
             inputActions?.UI.Disable();
             inputActions?.Disable();
-            inputActions?.Dispose();
         }
+        
+        public void SubscribeJumpPerformed(Action callback) => inputActions.Player.Jump.performed +=  _ => callback();
+        public void SubscribeJumpCanceled(Action callback) => inputActions.Player.Jump.canceled +=  _ => callback();
     }
 }
