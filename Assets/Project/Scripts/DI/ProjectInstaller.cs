@@ -24,6 +24,7 @@ namespace DI
             containerBuilder.SetName(ROOT_CONTAINER_NAME);
             InstallMessagePipe(containerBuilder);
             InstallServices(containerBuilder);
+            rootContainer = containerBuilder.Build();
         }
     }
 }
