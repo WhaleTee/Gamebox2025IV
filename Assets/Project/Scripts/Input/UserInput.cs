@@ -24,6 +24,8 @@ namespace Project.Scripts.Input
 
         private void OnDisable() => DeactivateInputActions();
 
+        private void OnDestroy() => DeactivateInputActions();
+
         private void ActivateInputActions()
         {
             inputActions ??= new InputActions();
