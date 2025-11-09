@@ -1,42 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Project.Scripts.Misc;
 
-public class SceneLoader : MonoBehaviour
+public class SceneController : Singleton<SceneController>
 {
-    private static SceneLoader _instance;
-
     private bool _isLoading;
-    public static SceneLoader Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                GameObject go = new GameObject("SceneLoader");
-                _instance = go.AddComponent<SceneLoader>();
-                DontDestroyOnLoad(go);
-            }
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        if (!gameObject.activeSelf)
-            gameObject.SetActive(true);
-    }
 
     /// <summary>
     /// Открывает сцену по имени.
@@ -47,7 +16,7 @@ public class SceneLoader : MonoBehaviour
 
         if (SceneExists(sceneName))
         {
-            Instance.StartCoroutine(Instance.LoadSceneAsync(sceneName));
+            StartCoroutine(LoadSceneAsync(sceneName));
         }
         else
         {
@@ -64,11 +33,13 @@ public class SceneLoader : MonoBehaviour
         OpenScene(currentScene);
     }
 
+    /// <summary>
+    /// Выход из игры.
+    /// </summary>
     public void ExitGame()
     {
         Application.Quit();
 
-        // Чтобы выход работал в редакторе Unity
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
