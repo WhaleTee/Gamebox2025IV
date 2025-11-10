@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Input;
 using Misc;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : Singleton<SceneController>
 {
@@ -13,6 +14,9 @@ public class SceneController : Singleton<SceneController>
 
     public void OpenScene(string sceneName)
     {
+        if (UserInput.Instance != null)
+            UserInput.Instance.enabled = true;
+
         Time.timeScale = 1f;
 
         if (!SceneExists(sceneName))
