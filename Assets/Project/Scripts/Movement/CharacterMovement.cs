@@ -1,7 +1,7 @@
-﻿using Project.Scripts.Input;
+﻿using Input;
 using UnityEngine;
 
-namespace Project.Scripts.Movement
+namespace Movement
 {
     public class CharacterMovement : MonoBehaviour
     {

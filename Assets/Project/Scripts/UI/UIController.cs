@@ -1,40 +1,43 @@
 using UnityEngine;
 
-/// <summary>
-/// Универсальный контроллер UI, позволяющий вызывать методы SceneLoader из кнопок.
-/// </summary>
-public class UIController : MonoBehaviour
+namespace UI
 {
     /// <summary>
-    /// Загружает сцену по имени.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ UI, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ SceneLoader пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
-    /// <param name="sceneName">Имя сцены, указанное в Build Settings.</param>
-    public void LoadScene(string sceneName)
+    public class UIController : MonoBehaviour
     {
-        SceneController.Instance.OpenScene(sceneName);
-    }
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+        /// </summary>
+        /// <param name="sceneName">пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Build Settings.</param>
+        public void LoadScene(string sceneName)
+        {
+            SceneController.Instance.OpenScene(sceneName);
+        }
 
-    /// <summary>
-    /// Перезапускает текущую сцену.
-    /// </summary>
-    public void RestartCurrentScene()
-    {
-        SceneController.Instance.RestartScene();
-    }
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+        /// </summary>
+        public void RestartCurrentScene()
+        {
+            SceneController.Instance.RestartScene();
+        }
 
-    /// <summary>
-    /// Выходит в главное меню.
-    /// </summary>
-    public void ExitToMainMenu()
-    {
-        SceneController.Instance.OpenScene("MainMenu");
-    }
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+        /// </summary>
+        public void ExitToMainMenu()
+        {
+            SceneController.Instance.OpenScene("MainMenu");
+        }
 
-    /// <summary>
-    /// Полностью завершает игру (работает и в билде, и в редакторе).
-    /// </summary>
-    public void QuitGame()
-    {
-        SceneController.Instance.ExitGame();
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
+        /// </summary>
+        public void QuitGame()
+        {
+            SceneController.Instance.ExitGame();
+        }
     }
 }

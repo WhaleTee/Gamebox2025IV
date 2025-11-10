@@ -1,71 +1,74 @@
 using UnityEngine;
 
-public sealed class StateMachine : MonoBehaviour
+namespace UI
 {
-    [Header("Начальный экран")]
-    [Tooltip("Экран, который будет активирован при запуске.")]
-    [SerializeField] private GameObject _firstScreen;
-
-    /// <summary> Текущий активный экран. </summary>
-    private GameObject _currentScreen;
-
-    /// <summary> Блокировка повторной инициализации. </summary>
-    private bool _initialized;
-
-    private void Awake()
+    public sealed class StateMachine : MonoBehaviour
     {
-        // Проверка корректности назначения.
-        if (_firstScreen == null)
+        [Header("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")] [Tooltip("пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.")] [SerializeField]
+        private GameObject _firstScreen;
+
+        /// <summary> пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. </summary>
+        private GameObject _currentScreen;
+
+        /// <summary> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. </summary>
+        private bool _initialized;
+
+        private void Awake()
         {
-            Debug.LogError($"[{nameof(StateMachine)}] Начальный экран не назначен в {gameObject.name}.", this);
-            enabled = false;
-            return;
-        }
-    }
-
-    private void Start()
-    {
-        Initialize();
-    }
-
-    /// <summary>
-    /// Инициализирует стейт-машину и активирует первый экран.
-    /// </summary>
-    private void Initialize()
-    {
-        if (_initialized)
-            return;
-
-        ChangeState(_firstScreen);
-        _initialized = true;
-    }
-
-    /// <summary>
-    /// Меняет активное состояние на указанное.
-    /// </summary>
-    /// <param name="nextScreen">Экран, который станет активным.</param>
-    public void ChangeState(GameObject nextScreen)
-    {
-        if (nextScreen == null)
-        {
-            Debug.LogWarning($"[{nameof(StateMachine)}] Попытка сменить состояние на null в {gameObject.name}.", this);
-            return;
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+            if (_firstScreen == null)
+            {
+                Debug.LogError($"[{nameof(StateMachine)}] пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ {gameObject.name}.", this);
+                enabled = false;
+                return;
+            }
         }
 
-        if (_currentScreen == nextScreen)
-            return; // Никаких лишних операций, если экран тот же.
+        private void Start()
+        {
+            Initialize();
+        }
 
-        // Деактивируем предыдущий экран
-        if (_currentScreen != null && _currentScreen.activeSelf)
-            _currentScreen.SetActive(false);
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+        /// </summary>
+        private void Initialize()
+        {
+            if (_initialized)
+                return;
 
-        // Активируем новый
-        nextScreen.SetActive(true);
-        _currentScreen = nextScreen;
+            ChangeState(_firstScreen);
+            _initialized = true;
+        }
+
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+        /// </summary>
+        /// <param name="nextScreen">пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</param>
+        public void ChangeState(GameObject nextScreen)
+        {
+            if (nextScreen == null)
+            {
+                Debug.LogWarning($"[{nameof(StateMachine)}] пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ null пїЅ {gameObject.name}.",
+                    this);
+                return;
+            }
+
+            if (_currentScreen == nextScreen)
+                return; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ.
+
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+            if (_currentScreen != null && _currentScreen.activeSelf)
+                _currentScreen.SetActive(false);
+
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+            nextScreen.SetActive(true);
+            _currentScreen = nextScreen;
+        }
+
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+        /// </summary>
+        public bool IsCurrent(GameObject screen) => _currentScreen == screen;
     }
-
-    /// <summary>
-    /// Проверяет, является ли указанный экран текущим.
-    /// </summary>
-    public bool IsCurrent(GameObject screen) => _currentScreen == screen;
 }

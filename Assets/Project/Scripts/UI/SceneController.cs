@@ -1,81 +1,79 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Project.Scripts.Misc;
+using Cysharp.Threading.Tasks;
+using Misc;
 
-public class SceneController : Singleton<SceneController>
+namespace UI
 {
-    private bool _isLoading;
-
-    /// <summary>
-    /// Открывает сцену по имени.
-    /// </summary>
-    public void OpenScene(string sceneName)
+    public class SceneController : Singleton<SceneController>
     {
-        Time.timeScale = 1f;
+        private bool _isLoading;
 
-        if (SceneExists(sceneName))
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+        /// </summary>
+        public void OpenScene(string sceneName)
         {
-            StartCoroutine(LoadSceneAsync(sceneName));
+            Time.timeScale = 1f;
+
+            if (SceneExists(sceneName))
+            {
+                UniTask.Void(() => LoadSceneAsync(sceneName));
+            }
+            else
+            {
+                Debug.LogError($"пїЅпїЅпїЅпїЅпїЅ '{sceneName}' пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Build Settings!");
+            }
         }
-        else
+
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+        /// </summary>
+        public void RestartScene()
         {
-            Debug.LogError($"Сцена '{sceneName}' не найдена в Build Settings!");
+            string currentScene = SceneManager.GetActiveScene().name;
+            OpenScene(currentScene);
         }
-    }
 
-    /// <summary>
-    /// Перезапускает текущую сцену.
-    /// </summary>
-    public void RestartScene()
-    {
-        string currentScene = SceneManager.GetActiveScene().name;
-        OpenScene(currentScene);
-    }
-
-    /// <summary>
-    /// Выход из игры.
-    /// </summary>
-    public void ExitGame()
-    {
-        Application.Quit();
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ.
+        /// </summary>
+        public void ExitGame()
+        {
+            Application.Quit();
 
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #endif
-    }
-
-    /// <summary>
-    /// Проверяет, существует ли сцена в Build Settings.
-    /// </summary>
-    private bool SceneExists(string sceneName)
-    {
-        int sceneCount = SceneManager.sceneCountInBuildSettings;
-
-        for (int i = 0; i < sceneCount; i++)
-        {
-            string path = SceneUtility.GetScenePathByBuildIndex(i);
-            string name = System.IO.Path.GetFileNameWithoutExtension(path);
-
-            if (name == sceneName)
-                return true;
         }
 
-        return false;
-    }
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ Build Settings.
+        /// </summary>
+        private bool SceneExists(string sceneName)
+        {
+            int sceneCount = SceneManager.sceneCountInBuildSettings;
 
-    /// <summary>
-    /// Асинхронная загрузка сцены.
-    /// </summary>
-    private IEnumerator LoadSceneAsync(string sceneName)
-    {
-        if (_isLoading) yield break;
-        _isLoading = true;
+            for (int i = 0; i < sceneCount; i++)
+            {
+                string path = SceneUtility.GetScenePathByBuildIndex(i);
+                string name = System.IO.Path.GetFileNameWithoutExtension(path);
 
-        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
-        while (!async.isDone)
-            yield return null;
+                if (name == sceneName)
+                    return true;
+            }
 
-        _isLoading = false;
+            return false;
+        }
+
+        /// <summary>
+        /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+        /// </summary>
+        private async UniTaskVoid LoadSceneAsync(string sceneName)
+        {
+            AsyncOperation load = SceneManager.LoadSceneAsync(sceneName);
+            await UniTask.WaitUntil(() => load.isDone);
+        }
     }
 }

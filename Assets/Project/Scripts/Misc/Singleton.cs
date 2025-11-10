@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Scripts.Misc
+namespace Misc
 {
     public class Singleton<T> : MonoBehaviour where T : Component
     {

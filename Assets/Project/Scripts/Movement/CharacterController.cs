@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Scripts.Movement
+namespace Movement
 {
     [RequireComponent(typeof(CharacterMovement))]
     [RequireComponent(typeof(CharacterJump))]

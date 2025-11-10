@@ -23,6 +23,6 @@ MonoBehaviour:
   <AirControl>k__BackingField: 80
   <AirControlActual>k__BackingField: 80
   <AirBrake>k__BackingField: 80
-  <VariableJumpHeight>k__BackingField: 1
+  <VariableJumpHeight>k__BackingField: 0
   <JumpCutoff>k__BackingField: 5.23
-  <AirJumps>k__BackingField: 0
+  <AirJumps>k__BackingField: 1

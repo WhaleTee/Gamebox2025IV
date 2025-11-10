@@ -1,6 +1,8 @@
+using Factory;
+using Pooling;
 using UnityEngine;
 using Reflex.Core;
-using Project.Scripts.Input;
+using Input;
 
 namespace DI
 {
@@ -17,6 +19,8 @@ namespace DI
         private static void InstallServices(ContainerBuilder containerBuilder)
         {
             containerBuilder.AddSingleton(typeof(UserInput));
+            containerBuilder.AddSingleton(typeof(GameObjectFactory), typeof(DeactivatedGameObjectFactory));
+            containerBuilder.AddSingleton(typeof(ObjectPoolManager));
         }
 
         public void InstallBindings(ContainerBuilder containerBuilder)
