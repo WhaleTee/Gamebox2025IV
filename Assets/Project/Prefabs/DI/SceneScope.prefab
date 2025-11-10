@@ -58,3 +58,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerName: Game Scene Container
+  m_playerStart: {fileID: 0}
+  m_playerCharacter: {fileID: 1764033581468479020, guid: c51d89da6c7d0a845b50cea50ff78db3, type: 3}

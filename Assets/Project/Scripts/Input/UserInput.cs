@@ -1,8 +1,8 @@
 ﻿using System;
-using Project.Scripts.Misc;
+using Misc;
 using UnityEngine;
 
-namespace Project.Scripts.Input
+namespace Input
 {
     public class UserInput : Singleton<UserInput>
     {
@@ -23,6 +23,8 @@ namespace Project.Scripts.Input
         }
 
         private void OnDisable() => DeactivateInputActions();
+
+        private void OnDestroy() => DeactivateInputActions();
 
         private void ActivateInputActions()
         {

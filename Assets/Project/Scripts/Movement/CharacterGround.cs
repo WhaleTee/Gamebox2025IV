@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace Project.Scripts.Movement
+namespace Movement
 {
     public class CharacterGround : MonoBehaviour
     {

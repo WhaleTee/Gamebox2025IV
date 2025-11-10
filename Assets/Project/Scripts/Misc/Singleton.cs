@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Scripts.Misc
+namespace Misc
 {
     public class Singleton<T> : MonoBehaviour where T : Component
     {
@@ -33,13 +33,7 @@ namespace Project.Scripts.Misc
                 instance = this as T;
                 DontDestroyOnLoad(gameObject);
             }
-            else
-            {
-                if (instance != this)
-                {
-                    Destroy(gameObject);
-                }
-            }
+            else if (instance != this) Destroy(gameObject);
         }
     }
 }

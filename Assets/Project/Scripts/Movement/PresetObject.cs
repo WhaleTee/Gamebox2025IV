@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Project.Scripts.Movement
+namespace Movement
 {
     [CreateAssetMenu(menuName = "Character/Movement Preset", fileName = " - Character Movement Preset")]
     public class PresetObject : ScriptableObject
