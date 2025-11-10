@@ -1,74 +1,45 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace UI
+/// <summary>
+/// Класс для управления экранами в игре.
+/// </summary>
+public class StateMachine : MonoBehaviour
 {
-    public sealed class StateMachine : MonoBehaviour
+    [Header("Начальный экран")]
+    [Tooltip("Экран, который будет активирован при запуске.")]
+    [SerializeField] private GameObject _firstScreen;
+
+    private GameObject _currentScreen;
+
+    private void Start()
     {
-        [Header("��������� �����")] [Tooltip("�����, ������� ����� ����������� ��� �������.")] [SerializeField]
-        private GameObject _firstScreen;
-
-        /// <summary> ������� �������� �����. </summary>
-        private GameObject _currentScreen;
-
-        /// <summary> ���������� ��������� �������������. </summary>
-        private bool _initialized;
-
-        private void Awake()
+        if (_firstScreen == null)
         {
-            // �������� ������������ ����������.
-            if (_firstScreen == null)
-            {
-                Debug.LogError($"[{nameof(StateMachine)}] ��������� ����� �� �������� � {gameObject.name}.", this);
-                enabled = false;
-                return;
-            }
+            Debug.LogError("Начальный экран не назначен.", this);
+            return;
         }
 
-        private void Start()
+        ChangeState(_firstScreen);
+    }
+
+    /// <summary>
+    /// Меняет активное состояние на указанное.
+    /// </summary>
+    /// <param name="nextScreen">Экран, который станет активным.</param>
+    public void ChangeState(GameObject nextScreen)
+    {
+        if (nextScreen == null)
         {
-            Initialize();
+            Debug.LogWarning("Попытка сменить состояние на null.", this);
+            return;
         }
 
-        /// <summary>
-        /// �������������� �����-������ � ���������� ������ �����.
-        /// </summary>
-        private void Initialize()
+        if (_currentScreen != null)
         {
-            if (_initialized)
-                return;
-
-            ChangeState(_firstScreen);
-            _initialized = true;
+            _currentScreen.SetActive(false);
         }
 
-        /// <summary>
-        /// ������ �������� ��������� �� ���������.
-        /// </summary>
-        /// <param name="nextScreen">�����, ������� ������ ��������.</param>
-        public void ChangeState(GameObject nextScreen)
-        {
-            if (nextScreen == null)
-            {
-                Debug.LogWarning($"[{nameof(StateMachine)}] ������� ������� ��������� �� null � {gameObject.name}.",
-                    this);
-                return;
-            }
-
-            if (_currentScreen == nextScreen)
-                return; // ������� ������ ��������, ���� ����� ��� ��.
-
-            // ������������ ���������� �����
-            if (_currentScreen != null && _currentScreen.activeSelf)
-                _currentScreen.SetActive(false);
-
-            // ���������� �����
-            nextScreen.SetActive(true);
-            _currentScreen = nextScreen;
-        }
-
-        /// <summary>
-        /// ���������, �������� �� ��������� ����� �������.
-        /// </summary>
-        public bool IsCurrent(GameObject screen) => _currentScreen == screen;
+        nextScreen.SetActive(true);
+        _currentScreen = nextScreen;
     }
 }

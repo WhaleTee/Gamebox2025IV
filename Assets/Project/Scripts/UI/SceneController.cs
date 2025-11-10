@@ -1,79 +1,82 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using Cysharp.Threading.Tasks;
 using Misc;
 
-namespace UI
+public class SceneController : Singleton<SceneController>
 {
-    public class SceneController : Singleton<SceneController>
+    private bool _isLoading;
+
+    /// <summary>
+    /// Открывает сцену по имени.
+    /// </summary>
+    public void OpenScene(string sceneName)
     {
-        private bool _isLoading;
+        Time.timeScale = 1f;
 
-        /// <summary>
-        /// ��������� ����� �� �����.
-        /// </summary>
-        public void OpenScene(string sceneName)
+        if (SceneExists(sceneName))
         {
-            Time.timeScale = 1f;
-
-            if (SceneExists(sceneName))
-            {
-                UniTask.Void(() => LoadSceneAsync(sceneName));
-            }
-            else
-            {
-                Debug.LogError($"����� '{sceneName}' �� ������� � Build Settings!");
-            }
+            _ = LoadSceneAsync(sceneName);
         }
-
-        /// <summary>
-        /// ������������� ������� �����.
-        /// </summary>
-        public void RestartScene()
+        else
         {
-            string currentScene = SceneManager.GetActiveScene().name;
-            OpenScene(currentScene);
+            Debug.LogError($"Сцена '{sceneName}' не найдена в Build Settings!");
         }
+    }
 
-        /// <summary>
-        /// ����� �� ����.
-        /// </summary>
-        public void ExitGame()
-        {
-            Application.Quit();
+    /// <summary>
+    /// Перезапускает текущую сцену.
+    /// </summary>
+    public void RestartScene()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        OpenScene(currentScene);
+    }
+
+    /// <summary>
+    /// Выход из игры.
+    /// </summary>
+    public void ExitGame()
+    {
+        Application.Quit();
 
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #endif
-        }
+    }
 
-        /// <summary>
-        /// ���������, ���������� �� ����� � Build Settings.
-        /// </summary>
-        private bool SceneExists(string sceneName)
+    /// <summary>
+    /// Проверяет, существует ли сцена в Build Settings.
+    /// </summary>
+    private bool SceneExists(string sceneName)
+    {
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+
+        for (int i = 0; i < sceneCount; i++)
         {
-            int sceneCount = SceneManager.sceneCountInBuildSettings;
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
 
-            for (int i = 0; i < sceneCount; i++)
-            {
-                string path = SceneUtility.GetScenePathByBuildIndex(i);
-                string name = System.IO.Path.GetFileNameWithoutExtension(path);
-
-                if (name == sceneName)
-                    return true;
-            }
-
-            return false;
+            if (name == sceneName)
+                return true;
         }
 
-        /// <summary>
-        /// ����������� �������� �����.
-        /// </summary>
-        private async UniTaskVoid LoadSceneAsync(string sceneName)
-        {
-            AsyncOperation load = SceneManager.LoadSceneAsync(sceneName);
-            await UniTask.WaitUntil(() => load.isDone);
-        }
+        return false;
+    }
+
+    /// <summary>
+    /// Асинхронная загрузка сцены.
+    /// </summary>
+    private async UniTaskVoid LoadSceneAsync(string sceneName)
+    {
+        if (_isLoading)
+            return;
+
+        _isLoading = true;
+
+        AsyncOperation load = SceneManager.LoadSceneAsync(sceneName);
+        await load.ToUniTask();
+
+        _isLoading = false;
     }
 }
