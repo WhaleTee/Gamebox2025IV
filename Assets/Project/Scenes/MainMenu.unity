@@ -2752,6 +2752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411d751cffa60d343b97477b36c6e801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingScreenPrefab: {fileID: 7354975945835785687, guid: 9b5ff1b717646254fa693a3268b39570, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

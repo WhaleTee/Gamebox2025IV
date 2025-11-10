@@ -5,78 +5,124 @@ using Misc;
 
 public class SceneController : Singleton<SceneController>
 {
+    [Header("UI Загрузки")]
+    [SerializeField] private LoadingScreen loadingScreenPrefab;
+
+    private LoadingScreen _loadingScreenInstance;
     private bool _isLoading;
 
-    /// <summary>
-    /// Открывает сцену по имени.
-    /// </summary>
     public void OpenScene(string sceneName)
     {
         Time.timeScale = 1f;
 
-        if (SceneExists(sceneName))
-        {
-            _ = LoadSceneAsync(sceneName);
-        }
-        else
+        if (!SceneExists(sceneName))
         {
             Debug.LogError($"Сцена '{sceneName}' не найдена в Build Settings!");
+            return;
         }
+
+        _ = LoadSceneWithScreenAsync(sceneName);
     }
 
-    /// <summary>
-    /// Перезапускает текущую сцену.
-    /// </summary>
-    public void RestartScene()
-    {
-        string currentScene = SceneManager.GetActiveScene().name;
-        OpenScene(currentScene);
-    }
+    public void RestartScene() => OpenScene(SceneManager.GetActiveScene().name);
 
-    /// <summary>
-    /// Выход из игры.
-    /// </summary>
     public void ExitGame()
     {
         Application.Quit();
-
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
 
-    /// <summary>
-    /// Проверяет, существует ли сцена в Build Settings.
-    /// </summary>
     private bool SceneExists(string sceneName)
     {
-        int sceneCount = SceneManager.sceneCountInBuildSettings;
-
-        for (int i = 0; i < sceneCount; i++)
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            string path = SceneUtility.GetScenePathByBuildIndex(i);
-            string name = System.IO.Path.GetFileNameWithoutExtension(path);
-
-            if (name == sceneName)
+            if (System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)) == sceneName)
                 return true;
         }
-
         return false;
     }
 
-    /// <summary>
-    /// Асинхронная загрузка сцены.
-    /// </summary>
-    private async UniTaskVoid LoadSceneAsync(string sceneName)
+    private async UniTask LoadSceneWithScreenAsync(string sceneName)
     {
-        if (_isLoading)
-            return;
-
+        if (_isLoading) return;
         _isLoading = true;
 
-        AsyncOperation load = SceneManager.LoadSceneAsync(sceneName);
-        await load.ToUniTask();
+        if (_loadingScreenInstance == null)
+        {
+            _loadingScreenInstance = Instantiate(loadingScreenPrefab);
+            DontDestroyOnLoad(_loadingScreenInstance.gameObject);
+        }
 
+        await _loadingScreenInstance.FadeInAsync();
+
+        var loadOperation = SceneManager.LoadSceneAsync(sceneName);
+        loadOperation.allowSceneActivation = false;
+
+        while (loadOperation.progress < 0.9f)
+        {
+            _loadingScreenInstance.SetProgress(loadOperation.progress / 0.9f);
+            await UniTask.Yield();
+        }
+
+        _loadingScreenInstance.SetProgress(1f);
+        await UniTask.Delay(300);
+
+        loadOperation.allowSceneActivation = true;
+        await UniTask.WaitUntil(() => loadOperation.isDone);
+
+        await _loadingScreenInstance.FadeOutAsync();
         _isLoading = false;
     }
+
+    /// <summary>
+    /// Метод для имитации загрузки сцены с задержкой.
+    /// </summary>
+
+    //private async UniTask LoadSceneWithScreenAsync(string sceneName)
+    //{
+    //    if (_isLoading)
+    //        return;
+
+    //    _isLoading = true;
+
+    //    // Создаем или находим экран загрузки
+    //    if (_loadingScreenInstance == null)
+    //    {
+    //        _loadingScreenInstance = Instantiate(loadingScreenPrefab);
+    //        DontDestroyOnLoad(_loadingScreenInstance.gameObject);
+    //    }
+
+    //    await _loadingScreenInstance.FadeInAsync();
+
+    //    AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName);
+    //    loadOperation.allowSceneActivation = false;
+
+    //    float fakeProgress = 0f;              // искусственный прогресс
+    //    float duration = 5f;                  // длительность загрузки в секундах
+    //    float timer = 0f;
+
+    //    // Цикл искусственной загрузки
+    //    while (fakeProgress < 1f)
+    //    {
+    //        timer += Time.deltaTime;
+    //        fakeProgress = Mathf.Clamp01(timer / duration);
+
+    //        _loadingScreenInstance.SetProgress(fakeProgress);
+
+
+    //        await UniTask.Yield();
+    //    }
+
+    //    // Завершаем загрузку
+    //    await UniTask.Delay(300);
+    //    loadOperation.allowSceneActivation = true;
+    //    await UniTask.WaitUntil(() => loadOperation.isDone);
+
+    //    await _loadingScreenInstance.FadeOutAsync();
+
+    //    _isLoading = false;
+    //}
+
 }
