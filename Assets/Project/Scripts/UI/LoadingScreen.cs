@@ -15,7 +15,7 @@ public class LoadingScreen : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private float pulseDuration = 1.2f;
 
-    private Tween pulseTween;
+    private Tween _pulseTween;
 
     public async UniTask FadeInAsync()
     {
@@ -54,17 +54,17 @@ public class LoadingScreen : MonoBehaviour
     {
         if (!progressText) return;
 
-        pulseTween?.Kill();
-        pulseTween = progressText.DOFade(0.3f, pulseDuration)
+        _pulseTween?.Kill();
+        _pulseTween = progressText.DOFade(0.3f, pulseDuration)
                                 .SetEase(Ease.InOutSine)
                                 .SetLoops(-1, LoopType.Yoyo);
     }
 
     private void StopPulseEffect()
     {
-        if (pulseTween?.IsActive() == true)
+        if (_pulseTween?.IsActive() == true)
         {
-            pulseTween.Kill();
+            _pulseTween.Kill();
             progressText.alpha = 1f;
         }
     }

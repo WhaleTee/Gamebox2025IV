@@ -1,7 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Input;
 using Misc;
+using Reflex.Attributes;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneController : Singleton<SceneController>
 {
@@ -11,8 +13,13 @@ public class SceneController : Singleton<SceneController>
     private LoadingScreen _loadingScreenInstance;
     private bool _isLoading;
 
+    [Inject] private UserInput userInput;
+
     public void OpenScene(string sceneName)
     {
+        if (userInput != null)
+            userInput.Enabled = true;
+
         Time.timeScale = 1f;
 
         if (!SceneExists(sceneName))

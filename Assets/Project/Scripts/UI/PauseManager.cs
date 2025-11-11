@@ -1,26 +1,43 @@
 ﻿using UnityEngine;
+using Input;
+using Reflex.Attributes;
 
+/// <summary>
+/// Управляет постановкой и снятием паузы в игре.
+/// </summary>
 public class PauseManager : MonoBehaviour
 {
-    [Header("UI Паузы")]
-    [SerializeField] private GameObject pauseMenu;
+    [Inject] private UserInput userInput;
+    private bool _isPaused;
+    public bool IsPaused => _isPaused;
 
-    private bool isPaused = false;
-
+    /// <summary>
+    /// Ставит игру на паузу.
+    /// </summary>
     public void PauseGame()
     {
-        if (isPaused) return;
+        if (_isPaused) return;
 
-        isPaused = true;
+        _isPaused = true;
         Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
+
+        // Отключаем управление игроком
+        if (userInput != null)
+            userInput.Enabled = false;
     }
+
+    /// <summary>
+    /// Возобновляет игру после паузы.
+    /// </summary>
     public void ResumeGame()
     {
-        if (!isPaused) return;
+        if (!_isPaused) return;
 
-        isPaused = false;
+        _isPaused = false;
         Time.timeScale = 1f;
-        pauseMenu.SetActive(false);
+
+        // Включаем управление игроком
+        if (userInput != null)
+            userInput.Enabled = true;
     }
 }

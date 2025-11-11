@@ -10,7 +10,6 @@ namespace Input
     [Serializable]
     public class UserInput
     {
-        private SceneLifeCycle lifeCycle;
         private InputActions inputActions;
 
         public bool Enabled { get => enabled; set { enabled = value; OnEnabledChanged(value); } }
