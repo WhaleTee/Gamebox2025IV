@@ -61,7 +61,6 @@ namespace Misc.Dummy
 
         private void SetInputEnabled(bool value)
         {
-            userInput ??= SceneContainer.Resolve<UserInput>();
             userInput.Enabled = value;
         }
 

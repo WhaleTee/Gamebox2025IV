@@ -23,8 +23,7 @@ namespace Input
         private void OnEnabledChanged(bool state) { if(state) Enable(); else Disable(); }
         private void Enable() => ActivateInputActions();
         private void Disable() => DeactivateInputActions();
-
-        public UserInput(SceneLifeCycle lifeCycle) => lifeCycle.OnAwake += Enable;
+        
         ~UserInput() => Enabled = false;
 
         private void ActivateInputActions()

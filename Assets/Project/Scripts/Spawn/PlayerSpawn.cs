@@ -1,6 +1,7 @@
 ﻿using Characters;
 using Reflex.Attributes;
 using UnityEngine;
+using WhaleTee.Reflex.Extensions;
 
 namespace Spawn
 {
@@ -11,7 +12,7 @@ namespace Spawn
         private void Start()
         {
             playerData.PlayerStart.GetComponent<SpriteRenderer>().enabled = false;
-            var playerCharacter = GameObject.Instantiate(playerData.Prefab);
+            var playerCharacter = GameObject.Instantiate(playerData.Prefab).InjectGameObject();
             playerCharacter.transform.SetPositionAndRotation(playerData.PlayerStart.position, playerData.PlayerStart.rotation);
         }
 

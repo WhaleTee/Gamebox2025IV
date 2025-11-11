@@ -1,9 +1,5 @@
-using UnityEngine;
 using Reflex.Core;
-using Spawn;
-using GamePlay;
-using Characters;
-using Misc;
+using UnityEngine;
 
 namespace DI
 {
@@ -11,7 +7,6 @@ namespace DI
     {
         private string containerName = "GamePlay Scene Container";
         private GamePlaySceneDependencies dependencies;
-        private Container container;
 
         private void InstallMessagePipe(ContainerBuilder containerBuilder)
         {
@@ -28,7 +23,7 @@ namespace DI
             containerBuilder.SetName(containerName);
 
             dependencies ??= GetComponent<GamePlaySceneDependencies>();
-            dependencies ??= GameObject.FindFirstObjectByType<GamePlaySceneDependencies>(FindObjectsInactive.Include);
+            dependencies ??= FindFirstObjectByType<GamePlaySceneDependencies>(FindObjectsInactive.Include);
 
             if (dependencies == null)
             {
@@ -38,23 +33,6 @@ namespace DI
 
             InstallMessagePipe(containerBuilder);
             InstallDependencies(containerBuilder);
-
-            containerBuilder.OnContainerBuilt += SetContainer;
-        }
-
-        public void SetContainer(Container container)
-        {
-            this.container = container;
-        }
-
-        private void Awake()
-        {
-            container.Resolve<SceneLifeCycle>().Awake();
-        }
-
-        private void Start()
-        {
-            container.Resolve<SceneLifeCycle>().Start();
         }
     }
 }

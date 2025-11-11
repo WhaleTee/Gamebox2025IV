@@ -1,7 +1,5 @@
-using System;
 using Input;
 using Reflex.Attributes;
-using Reflex.Core;
 using UnityEngine;
 
 namespace Movement
@@ -32,7 +30,7 @@ namespace Movement
         private float gravMultiplier;
         private bool canJumpAgain;
 
-        private UserInput userInput;
+        [Inject] private UserInput userInput;
         private Rigidbody2D body;
         private CharacterGround ground;
         private Vector2 velocity;
@@ -46,7 +44,6 @@ namespace Movement
 
         private void Awake()
         {
-            userInput = Container.ProjectContainer.Resolve<UserInput>();
             body = GetComponent<Rigidbody2D>();
             ground = GetComponent<CharacterGround>();
             defaultGravityScale = 1f;

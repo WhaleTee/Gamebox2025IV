@@ -1,6 +1,5 @@
 ﻿using Input;
 using Reflex.Attributes;
-using Reflex.Core;
 using UnityEngine;
 
 namespace Movement
@@ -25,7 +24,7 @@ namespace Movement
         
         private Rigidbody2D body;
         private CharacterGround ground;
-        private UserInput userInput;
+        [Inject] private UserInput userInput;
 
         private float directionX;
         private Vector2 desiredVelocity;
@@ -40,7 +39,6 @@ namespace Movement
 
         private void Awake()
         {
-            userInput = Container.ProjectContainer.Resolve<UserInput>();
             body = GetComponent<Rigidbody2D>();
             ground = GetComponent<CharacterGround>();
         }
@@ -72,7 +70,7 @@ namespace Movement
             }
         }
 
-        private void CheckMovement() => directionX = userInput.Movement.x;
+        private void CheckMovement() => directionX = userInput.Enabled ? userInput.Movement.x : 0;
 
         private void MoveWithAcceleration()
         {

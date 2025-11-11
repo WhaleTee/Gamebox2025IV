@@ -1,9 +1,9 @@
 using Factory;
-using Pooling;
-using UnityEngine;
-using Reflex.Core;
 using Input;
-using Misc;
+using Misc.Dummy;
+using Pooling;
+using Reflex.Core;
+using UnityEngine;
 
 namespace DI
 {
@@ -11,17 +11,14 @@ namespace DI
     {
         private const string ROOT_CONTAINER_NAME = "Root Container";
 
-        [field: SerializeField] public Container RootContainer { get; private set; }
-
         private static void InstallMessagePipe(ContainerBuilder rootContainerBuilder)
         {
         }
 
         private void InstallServices(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton(typeof(SceneLifeCycle));
             containerBuilder.AddSingleton(typeof(UserInput));
-            containerBuilder.AddSingleton(typeof(Misc.Dummy.SceneService));
+            containerBuilder.AddSingleton(typeof(SceneService));
             containerBuilder.AddSingleton(typeof(GameObjectFactory), typeof(DeactivatedGameObjectFactory));
             containerBuilder.AddSingleton(typeof(ObjectPoolManager));
         }
