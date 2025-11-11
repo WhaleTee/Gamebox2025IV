@@ -1,8 +1,10 @@
 using System;
-using Project.Scripts.Input;
+using Input;
+using Reflex.Attributes;
+using Reflex.Core;
 using UnityEngine;
 
-namespace Project.Scripts.Movement
+namespace Movement
 {
     public class CharacterJump : MonoBehaviour
     {
@@ -30,6 +32,7 @@ namespace Project.Scripts.Movement
         private float gravMultiplier;
         private bool canJumpAgain;
 
+        private UserInput userInput;
         private Rigidbody2D body;
         private CharacterGround ground;
         private Vector2 velocity;
@@ -43,6 +46,7 @@ namespace Project.Scripts.Movement
 
         private void Awake()
         {
+            userInput = Container.ProjectContainer.Resolve<UserInput>();
             body = GetComponent<Rigidbody2D>();
             ground = GetComponent<CharacterGround>();
             defaultGravityScale = 1f;
@@ -50,8 +54,8 @@ namespace Project.Scripts.Movement
 
         private void Start()
         {
-            UserInput.Instance.SubscribeJumpPerformed(OnJumpPerformed);
-            UserInput.Instance.SubscribeJumpCanceled(OnJumpCanceled);
+            userInput.SubscribeJumpPerformed(OnJumpPerformed);
+            userInput.SubscribeJumpCanceled(OnJumpCanceled);
         }
 
         private void Update()

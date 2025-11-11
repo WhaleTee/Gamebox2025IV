@@ -1,24 +1,30 @@
-﻿using DG.Tweening;
-using Project.Scripts.Input;
-using Reflex.Attributes;
+﻿using UnityEngine;
+using DG.Tweening;
+using Input;
 using Reflex.Extensions;
-using UnityEngine;
+using Reflex.Core;
 using USM = UnityEngine.SceneManagement;
 using static UnityEngine.SceneManagement.SceneManager;
-using Reflex.Core;
+using Reflex.Attributes;
 
 namespace Misc.Dummy
 {
     public class SceneService
     {
         [Inject] private UserInput userInput;
+        private Container sceneContainer;
+        public Container SceneContainer
+        {
+            get { sceneContainer ??= CurrentScene.GetSceneContainer(); return sceneContainer; }
+            set => sceneContainer = value;
+        }
         private float slowTimeDuration = 1.1f;
         private Tween SlowTime
         {
             get
             {
                 slowTime ??= DOVirtual.Float(Time.timeScale, 0, slowTimeDuration, t => Time.timeScale = t)
-                    .SetUpdate(true).SetAutoKill(false).SetId(tweenID);
+                    .Pause().SetUpdate(true).SetAutoKill(false).SetId(tweenID);
                 return slowTime;
             }
         }
@@ -56,15 +62,8 @@ namespace Misc.Dummy
         private void SetInputEnabled(bool value)
         {
             userInput ??= SceneContainer.Resolve<UserInput>();
-            userInput.enabled = value;
+            userInput.Enabled = value;
         }
-
-        public Container SceneContainer
-        {
-            get { sceneContainer ??= CurrentScene.GetSceneContainer(); return sceneContainer; }
-            set => sceneContainer = value;
-        }
-        [Inject] private Container sceneContainer;
 
         public void LoadScene(int index) => USM.SceneManager.LoadScene(index);
 

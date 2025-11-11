@@ -1,6 +1,9 @@
+using Factory;
+using Pooling;
 using UnityEngine;
 using Reflex.Core;
-using Project.Scripts.Input;
+using Input;
+using Misc;
 
 namespace DI
 {
@@ -8,15 +11,19 @@ namespace DI
     {
         private const string ROOT_CONTAINER_NAME = "Root Container";
 
-        private Container rootContainer;
+        [field: SerializeField] public Container RootContainer { get; private set; }
 
         private static void InstallMessagePipe(ContainerBuilder rootContainerBuilder)
         {
         }
 
-        private static void InstallServices(ContainerBuilder containerBuilder)
+        private void InstallServices(ContainerBuilder containerBuilder)
         {
+            containerBuilder.AddSingleton(typeof(SceneLifeCycle));
             containerBuilder.AddSingleton(typeof(UserInput));
+            containerBuilder.AddSingleton(typeof(Misc.Dummy.SceneService));
+            containerBuilder.AddSingleton(typeof(GameObjectFactory), typeof(DeactivatedGameObjectFactory));
+            containerBuilder.AddSingleton(typeof(ObjectPoolManager));
         }
 
         public void InstallBindings(ContainerBuilder containerBuilder)
@@ -24,7 +31,6 @@ namespace DI
             containerBuilder.SetName(ROOT_CONTAINER_NAME);
             InstallMessagePipe(containerBuilder);
             InstallServices(containerBuilder);
-            rootContainer = containerBuilder.Build();
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Project.Scripts.Input;
+﻿using Input;
+using Reflex.Attributes;
+using Reflex.Core;
 using UnityEngine;
 
-namespace Project.Scripts.Movement
+namespace Movement
 {
     public class CharacterMovement : MonoBehaviour
     {
@@ -23,7 +25,7 @@ namespace Project.Scripts.Movement
         
         private Rigidbody2D body;
         private CharacterGround ground;
-
+        private UserInput userInput;
 
         private float directionX;
         private Vector2 desiredVelocity;
@@ -38,6 +40,7 @@ namespace Project.Scripts.Movement
 
         private void Awake()
         {
+            userInput = Container.ProjectContainer.Resolve<UserInput>();
             body = GetComponent<Rigidbody2D>();
             ground = GetComponent<CharacterGround>();
         }
@@ -69,7 +72,7 @@ namespace Project.Scripts.Movement
             }
         }
 
-        private void CheckMovement() => directionX = UserInput.Instance.Movement.x;
+        private void CheckMovement() => directionX = userInput.Movement.x;
 
         private void MoveWithAcceleration()
         {

@@ -1,21 +1,16 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Reflex.Core;
-using Misc;
+using Spawn;
 using GamePlay;
-using Project.Scripts.Input;
+using Characters;
+using Misc;
 
 namespace DI
 {
     public class GamePlaySceneInstaller : MonoBehaviour, IInstaller
     {
-        [SerializeField] private string m_containerName = "GamePlay Scene Container";
-        [SerializeField] private UserInput m_userInput;
-        [Header("Victory Presenter")]
-        [SerializeField] private ObservableTrigger m_victoryTrigger;
-        [SerializeField] private RectTransform m_victoryDialog;
-        [SerializeField] private Button m_victoryCloseButton;
-
+        private string containerName = "GamePlay Scene Container";
+        private GamePlaySceneDependencies dependencies;
         private Container container;
 
         private void InstallMessagePipe(ContainerBuilder containerBuilder)
@@ -24,27 +19,42 @@ namespace DI
 
         private void InstallDependencies(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton(_ => container);
-            containerBuilder.AddSingleton(_ => m_userInput);
-            containerBuilder.AddSingleton(typeof(Misc.Dummy.SceneService));
-            containerBuilder.AddScoped(_ => m_victoryTrigger as ITrigger);
-            containerBuilder.AddScoped(_ => m_victoryDialog);
-            containerBuilder.AddScoped(_ => m_victoryCloseButton);
-        }
-
-        private void Construct()
-        {
-            var victoryPresenter = container.Construct<ResultPresenter>();
+            containerBuilder.AddSingleton(dependencies.PlayerData);
+            containerBuilder.AddSingleton(dependencies.VictoryData);
         }
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
-            containerBuilder.SetName(m_containerName);
+            containerBuilder.SetName(containerName);
+
+            dependencies ??= GetComponent<GamePlaySceneDependencies>();
+            dependencies ??= GameObject.FindFirstObjectByType<GamePlaySceneDependencies>(FindObjectsInactive.Include);
+
+            if (dependencies == null)
+            {
+                Debug.LogError($"Scene dependencies were not found");
+                return;
+            }
+
             InstallMessagePipe(containerBuilder);
             InstallDependencies(containerBuilder);
-            container = containerBuilder.Build();
-                
-            Construct();
+
+            containerBuilder.OnContainerBuilt += SetContainer;
+        }
+
+        public void SetContainer(Container container)
+        {
+            this.container = container;
+        }
+
+        private void Awake()
+        {
+            container.Resolve<SceneLifeCycle>().Awake();
+        }
+
+        private void Start()
+        {
+            container.Resolve<SceneLifeCycle>().Start();
         }
     }
 }
