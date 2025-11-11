@@ -1,13 +1,8 @@
-﻿using Cysharp.Threading.Tasks;
-using Misc;
-using Reflex.Attributes;
-using System;
-using System.Threading.Tasks;
+﻿using System;
 using UnityEngine;
 
 namespace Input
 {
-    [Serializable]
     public class UserInput
     {
         private InputActions inputActions;
@@ -23,6 +18,8 @@ namespace Input
         private void OnEnabledChanged(bool state) { if(state) Enable(); else Disable(); }
         private void Enable() => ActivateInputActions();
         private void Disable() => DeactivateInputActions();
+
+        public UserInput() => Enabled = true;
         
         ~UserInput() => Enabled = false;
 
