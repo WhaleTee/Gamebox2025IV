@@ -1,4 +1,5 @@
 ﻿using Input;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Movement
@@ -23,7 +24,7 @@ namespace Movement
         
         private Rigidbody2D body;
         private CharacterGround ground;
-
+        [Inject] private UserInput userInput;
 
         private float directionX;
         private Vector2 desiredVelocity;
@@ -69,7 +70,7 @@ namespace Movement
             }
         }
 
-        private void CheckMovement() => directionX = UserInput.Instance.Movement.x;
+        private void CheckMovement() => directionX = userInput.Enabled ? userInput.Movement.x : 0;
 
         private void MoveWithAcceleration()
         {

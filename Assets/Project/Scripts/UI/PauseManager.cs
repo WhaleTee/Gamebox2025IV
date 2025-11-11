@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using Input;
+using Reflex.Attributes;
 
 /// <summary>
 /// Управляет постановкой и снятием паузы в игре.
 /// </summary>
 public class PauseManager : MonoBehaviour
 {
+    [Inject] private UserInput userInput;
     private bool _isPaused;
     public bool IsPaused => _isPaused;
 
@@ -20,8 +22,8 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
 
         // Отключаем управление игроком
-        if (UserInput.Instance != null)
-            UserInput.Instance.enabled = false;
+        if (userInput != null)
+            userInput.Enabled = false;
     }
 
     /// <summary>
@@ -35,7 +37,7 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
 
         // Включаем управление игроком
-        if (UserInput.Instance != null)
-            UserInput.Instance.enabled = true;
+        if (userInput != null)
+            userInput.Enabled = true;
     }
 }

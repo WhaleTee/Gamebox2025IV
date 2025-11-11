@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 2488968410783087737}
   - component: {fileID: -811443084208068029}
   - component: {fileID: 7083719853160101250}
+  - component: {fileID: 284984983890855430}
+  - component: {fileID: 3594774863720650785}
+  - component: {fileID: 7103766040602916919}
   m_Layer: 0
   m_Name: SceneScope
   m_TagString: Untagged
@@ -57,4 +60,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32115cc79ab588b4eadff5d9154cf4e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  containerName: Game Scene Container
+--- !u!114 &284984983890855430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857444815289455497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305c7165389960646abd9be300adcac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PlayerData>k__BackingField:
+    <PlayerStart>k__BackingField: {fileID: 0}
+    <Prefab>k__BackingField: {fileID: 1764033581468479020, guid: c51d89da6c7d0a845b50cea50ff78db3, type: 3}
+  <VictoryData>k__BackingField:
+    <Trigger>k__BackingField: {fileID: 0}
+    <Dialog>k__BackingField: {fileID: 0}
+    <ButtonNext>k__BackingField: {fileID: 0}
+--- !u!114 &3594774863720650785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857444815289455497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a046c40bb4a554fbd23f191b5e9095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerTag: Player
+--- !u!114 &7103766040602916919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857444815289455497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d938d91a1e47c604f8d0ac90d5c7b8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -33,7 +33,13 @@ namespace Misc
                 instance = this as T;
                 DontDestroyOnLoad(gameObject);
             }
-            else if (instance != this) Destroy(gameObject);
+            else
+            {
+                if (instance != this)
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }

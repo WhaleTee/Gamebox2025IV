@@ -1,34 +1,31 @@
 ﻿using System;
-using Misc;
 using UnityEngine;
 
 namespace Input
 {
-    public class UserInput : Singleton<UserInput>
+    public class UserInput
     {
         private InputActions inputActions;
 
+        public bool Enabled { get => enabled; set { enabled = value; OnEnabledChanged(value); } }
         public Vector2 Movement => inputActions.Player.Move.ReadValue<Vector2>();
         public bool JumpPerformed => JumpPressed && inputActions.Player.Jump.WasPressedThisDynamicUpdate();
         public bool JumpPressed => inputActions.Player.Jump.IsPressed();
         public bool AttackPerformed => AttackPressed && inputActions.Player.Attack.WasPressedThisDynamicUpdate();
         public bool AttackPressed => inputActions.Player.Attack.IsPressed();
+        private bool enabled;
 
-        private void OnEnable() => ActivateInputActions();
+        private void OnEnabledChanged(bool state) { if(state) Enable(); else Disable(); }
+        private void Enable() => ActivateInputActions();
+        private void Disable() => DeactivateInputActions();
 
-        protected override void Awake()
-        {
-            base.Awake();
-            ActivateInputActions();
-        }
-
-        private void OnDisable() => DeactivateInputActions();
-
-        private void OnDestroy() => DeactivateInputActions();
+        public UserInput() => Enabled = true;
+        
+        ~UserInput() => Enabled = false;
 
         private void ActivateInputActions()
         {
-            inputActions ??= new InputActions();
+            inputActions ??= new();
             inputActions.Enable();
         }
 

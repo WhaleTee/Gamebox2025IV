@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Input;
 using Misc;
+using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,10 +13,12 @@ public class SceneController : Singleton<SceneController>
     private LoadingScreen _loadingScreenInstance;
     private bool _isLoading;
 
+    [Inject] private UserInput userInput;
+
     public void OpenScene(string sceneName)
     {
-        if (UserInput.Instance != null)
-            UserInput.Instance.enabled = true;
+        if (userInput != null)
+            userInput.Enabled = true;
 
         Time.timeScale = 1f;
 

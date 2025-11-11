@@ -1,5 +1,5 @@
-using System;
 using Input;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Movement
@@ -30,6 +30,7 @@ namespace Movement
         private float gravMultiplier;
         private bool canJumpAgain;
 
+        [Inject] private UserInput userInput;
         private Rigidbody2D body;
         private CharacterGround ground;
         private Vector2 velocity;
@@ -50,8 +51,8 @@ namespace Movement
 
         private void Start()
         {
-            UserInput.Instance.SubscribeJumpPerformed(OnJumpPerformed);
-            UserInput.Instance.SubscribeJumpCanceled(OnJumpCanceled);
+            userInput.SubscribeJumpPerformed(OnJumpPerformed);
+            userInput.SubscribeJumpCanceled(OnJumpCanceled);
         }
 
         private void Update()
