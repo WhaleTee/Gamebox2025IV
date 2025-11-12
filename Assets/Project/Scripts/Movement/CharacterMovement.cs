@@ -7,6 +7,7 @@ namespace Movement
 {
     public class CharacterMovement : MonoBehaviour
     {
+        private const float SLOPE_GRAVITY_MULTIPLIER = 0;
         private const float DEFAULT_GRAVITY_MULTIPLIER = 1;
         [SerializeField] private PresetObject preset;
         [Inject] private UserInput userInput;
@@ -59,6 +60,7 @@ namespace Movement
 
         private void FixedUpdate()
         {
+            Debug.Log(body.linearVelocity);
             UpdateState();
             UpdateMovement();
             ApplyVelocity();
@@ -154,12 +156,10 @@ namespace Movement
                 ? preset.GroundMovementSettings.maxTurnSpeed
                 : preset.AirMovementSettings.maxTurnSpeed;
 
-            if (inputX != 0)
-            {
-                if (Mathf.Sign(inputX) != Mathf.Sign(velocity.x)) speed = turnSpeed * Time.deltaTime;
-                else speed = acceleration * Time.deltaTime;
-            }
-            else speed = deceleration * Time.deltaTime;
+            if (inputX != 0) speed = Mathf.Sign(inputX) != Mathf.Sign(velocity.x) ? turnSpeed : acceleration;
+            else speed = deceleration;
+
+            speed *= Time.deltaTime;
 
             if (onSlope) velocity = Vector2.MoveTowards(velocity, desiredVelocity, speed);
             else velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, speed);
@@ -208,6 +208,7 @@ namespace Movement
                 && !onGround
                 && (!pressingJump || !currentJump)
             ) multiplier = preset.AirMovementSettings.jumpCutOff;
+            else if (onSlope && !desiredJump) multiplier = SLOPE_GRAVITY_MULTIPLIER;
             else if (onGround) multiplier = DEFAULT_GRAVITY_MULTIPLIER;
             else multiplier = velocity.y < 0 && !desiredJump ? preset.AirMovementSettings.downwardGravityMultiplier : preset.AirMovementSettings.upwardGravityMultiplier;
             return GetJumpGravity() / Physics2D.gravity.y * multiplier;
