@@ -37,6 +37,7 @@ namespace Movement
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();
+            body.interpolation = RigidbodyInterpolation2D.Extrapolate;
             groundChecker = GetComponent<GroundChecker>();
         }
 
@@ -60,7 +61,6 @@ namespace Movement
 
         private void FixedUpdate()
         {
-            Debug.Log(body.linearVelocity);
             UpdateState();
             UpdateMovement();
             ApplyVelocity();
@@ -86,8 +86,10 @@ namespace Movement
                 ? preset.GroundMovementSettings.maxSpeed
                 : preset.AirMovementSettings.maxSpeed;
             var friction = onGround ? preset.GroundMovementSettings.friction : 0;
+            var groundVelocity = groundChecker.GetGroundVelocity();
             desiredVelocity = onSlope ? groundChecker.SlopePerpendicular * -inputX : new Vector2(inputX, 0f);
             desiredVelocity *= Mathf.Max(maxSpeed - friction, 0f);
+            if (desiredVelocity.magnitude < groundVelocity.magnitude) desiredVelocity = groundVelocity;
         }
 
         private void UpdateJumpBuffer()

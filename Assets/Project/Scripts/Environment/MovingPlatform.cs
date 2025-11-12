@@ -27,6 +27,8 @@ public class MovingPlatform : MonoBehaviour
     private float waitTimer;
     private Vector2 previousPosition;
 
+    public Vector2 Velocity { get; private set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,6 +42,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Velocity = Vector2.zero;
         if (waitTimer > 0f)
         {
             waitTimer -= Time.fixedDeltaTime;
@@ -55,6 +58,7 @@ public class MovingPlatform : MonoBehaviour
         // Перемещаем платформу
         rb.MovePosition(currentPosition);
 
+        Velocity = (currentPosition - previousPosition) / Time.fixedDeltaTime;
         previousPosition = currentPosition;
         timer += Time.fixedDeltaTime;
 
