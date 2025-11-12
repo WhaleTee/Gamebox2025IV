@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Input
 {
@@ -36,7 +37,9 @@ namespace Input
             inputActions?.Disable();
         }
         
-        public void SubscribeJumpPerformed(Action callback) => inputActions.Player.Jump.performed +=  _ => callback();
-        public void SubscribeJumpCanceled(Action callback) => inputActions.Player.Jump.canceled +=  _ => callback();
+        public void SubscribeJumpPerformed(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.performed += callback;
+        public void UnsubscribeJumpPerformed(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.performed -= callback;
+        public void SubscribeJumpCanceled(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.canceled += callback;
+        public void UnsubscribeJumpCanceled(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.canceled -= callback;
     }
 }
