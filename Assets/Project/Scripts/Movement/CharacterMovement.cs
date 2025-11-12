@@ -175,8 +175,7 @@ namespace Movement
         
         private void Jump()
         {
-            if (onGround || (coyoteTimeCounter > 0 && coyoteTimeCounter < preset.AirMovementSettings.coyoteTime) ||
-                canJumpAgain)
+            if (onGround || (coyoteTimeCounter > 0 && coyoteTimeCounter < preset.AirMovementSettings.coyoteTime) || canJumpAgain)
             {
                 desiredJump = false;
                 currentJump = true;
@@ -211,7 +210,7 @@ namespace Movement
                 && (!pressingJump || !currentJump)
             ) multiplier = preset.AirMovementSettings.jumpCutOff;
             else if (onSlope && !desiredJump) multiplier = SLOPE_GRAVITY_MULTIPLIER;
-            else if (onGround) multiplier = DEFAULT_GRAVITY_MULTIPLIER;
+            else if (onGround && !desiredJump) multiplier = DEFAULT_GRAVITY_MULTIPLIER;
             else multiplier = velocity.y < 0 && !desiredJump ? preset.AirMovementSettings.downwardGravityMultiplier : preset.AirMovementSettings.upwardGravityMultiplier;
             return GetJumpGravity() / Physics2D.gravity.y * multiplier;
         }
