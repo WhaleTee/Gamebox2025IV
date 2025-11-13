@@ -53,9 +53,9 @@ namespace Movement
             onSlope = groundChecker.IsOnSlope(preset.GroundMovementSettings.maxSlopeAngle);
             CheckMovement();
             UpdateVelocity();
+            UpdateJumpState();
             UpdateJumpBuffer();
             UpdateCoyoteTime();
-            UpdateJumpState();
             if (inputX != 0) transform.localScale = new Vector3(inputX > 0 ? 1 : -1, 1, 1);
         }
 
@@ -86,10 +86,8 @@ namespace Movement
                 ? preset.GroundMovementSettings.maxSpeed
                 : preset.AirMovementSettings.maxSpeed;
             var friction = onGround ? preset.GroundMovementSettings.friction : 0;
-            var groundVelocity = groundChecker.GetGroundVelocity();
             desiredVelocity = onSlope ? groundChecker.SlopePerpendicular * -inputX : new Vector2(inputX, 0f);
             desiredVelocity *= Mathf.Max(maxSpeed - friction, 0f);
-            if (desiredVelocity.magnitude < groundVelocity.magnitude) desiredVelocity = groundVelocity;
         }
 
         private void UpdateJumpBuffer()
@@ -197,7 +195,8 @@ namespace Movement
             velocity.y += jumpVelocity;
         }
 
-        private void ApplyVelocity() => body.linearVelocity = velocity;
+        private void ApplyVelocity() => body.linearVelocity = velocity + groundChecker.GetGroundVelocity();
+        
 
         private float GetGravity()
         {

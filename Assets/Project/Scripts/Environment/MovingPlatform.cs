@@ -33,7 +33,6 @@ public class MovingPlatform : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
 
         startPosition = rb.position;
         targetPosition = startPosition + moveOffset;
@@ -43,24 +42,24 @@ public class MovingPlatform : MonoBehaviour
     private void FixedUpdate()
     {
         Velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         if (waitTimer > 0f)
         {
-            waitTimer -= Time.fixedDeltaTime;
+            waitTimer -= Time.deltaTime;
             return;
         }
 
         float normalizedTime = Mathf.Clamp01(timer / cycleDuration);
         float curveValue = movementCurve.Evaluate(normalizedTime);
-
+        
         // Определяем текущую позицию
         Vector2 currentPosition = Vector2.Lerp(startPosition, targetPosition, movingForward ? curveValue : 1f - curveValue);
 
         // Перемещаем платформу
-        rb.MovePosition(currentPosition);
-
-        Velocity = (currentPosition - previousPosition) / Time.fixedDeltaTime;
+        rb.linearVelocity = (currentPosition - previousPosition) / Time.fixedDeltaTime;
+        Velocity = rb.linearVelocity;
         previousPosition = currentPosition;
-        timer += Time.fixedDeltaTime;
+        timer += Time.deltaTime;
 
         // Проверяем, завершён ли проход кривой
         if (timer >= cycleDuration)
