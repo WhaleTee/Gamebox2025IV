@@ -10,7 +10,7 @@ namespace Movement
         private readonly UserInput userInput;
         private readonly PresetObject preset;
         private readonly Rigidbody2D body;
-        private readonly GroundChecker groundChecker;
+        private readonly EnvironmentSensor environmentSensor;
 
         // ground movement
         private Vector2 desiredVelocity;
@@ -26,24 +26,24 @@ namespace Movement
         private float coyoteTimeCounter;
         private int jumpCount;
 
-        public AirMovement(UserInput userInput, PresetObject preset, Rigidbody2D body, GroundChecker groundChecker)
+        public AirMovement(UserInput userInput, PresetObject preset, Rigidbody2D body, EnvironmentSensor environmentSensor)
         {
             this.userInput = userInput;
             this.preset = preset;
             this.body = body;
-            this.groundChecker = groundChecker;
+            this.environmentSensor = environmentSensor;
             userInput.SubscribeJumpPerformed(OnJumpPerformed);
             userInput.SubscribeJumpCanceled(OnJumpCanceled);
         }
 
-        public void Update()
+        public override void Update()
         {
             CheckMovement();
             UpdateJumpBuffer();
             UpdateCoyoteTime();
         }
 
-        public void FixedUpdate()
+        public override void FixedUpdate()
         {
             UpdateState();
             UpdateVelocity();
@@ -51,7 +51,7 @@ namespace Movement
             ApplyVelocity();
         }
 
-        public void Exit() => ResetJumpState();
+        public override void Exit() => ResetJumpState();
 
         public void Dispose()
         {
@@ -86,7 +86,7 @@ namespace Movement
 
         private void UpdateCoyoteTime()
         {
-            if (!groundChecker.IsOnGround && !currentJump) coyoteTimeCounter += Time.deltaTime;
+            if (!environmentSensor.IsOnGround && !currentJump) coyoteTimeCounter += Time.deltaTime;
             else coyoteTimeCounter = 0;
         }
 
@@ -140,7 +140,7 @@ namespace Movement
 
         private void Jump()
         {
-            if (groundChecker.IsOnGround || (coyoteTimeCounter > 0 && coyoteTimeCounter < preset.AirMovementSettings.coyoteTime) || canJumpAgain)
+            if (environmentSensor.IsOnGround || (coyoteTimeCounter > 0 && coyoteTimeCounter < preset.AirMovementSettings.coyoteTime) || canJumpAgain)
             {
                 desiredJump = false;
                 currentJump = true;
@@ -157,7 +157,7 @@ namespace Movement
         {
             var jumpVelocity = GetJumpInitialVelocity();
             if (velocity.y > 0f)
-                jumpVelocity = Mathf.Max(jumpVelocity - velocity.y + groundChecker.GetGroundVelocity().y, 0f);
+                jumpVelocity = Mathf.Max(jumpVelocity - velocity.y + environmentSensor.GetGroundVelocity().y, 0f);
             else if (velocity.y < 0f) jumpVelocity += Mathf.Abs(body.linearVelocity.y);
 
             velocity.y += jumpVelocity;

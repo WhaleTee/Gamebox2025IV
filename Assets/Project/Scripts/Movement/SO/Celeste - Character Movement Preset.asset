@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e1deea3aa44d91b54bd4c2b97250e7, type: 3}
   m_Name: Celeste - Character Movement Preset
   m_EditorClassIdentifier: 
+  <StairsMovementSettings>k__BackingField:
+    friction: 0
+    maxSpeed: 5.33
+    maxTurnSpeed: 44.4
+    maxAcceleration: 61.7
+    maxDeceleration: 57.5
+    useAcceleration: 1
   <GroundMovementSettings>k__BackingField:
     friction: 0
     maxSpeed: 9.01
@@ -29,10 +36,9 @@ MonoBehaviour:
     downwardGravityMultiplier: 5.23
     speedLimit: 50
     coyoteTime: 0.15
-    jumpBuffer: 0.08
-    jumpHeight: 2.53
+    jumpBuffer: 0.105
+    jumpHeight: 3.13
     timeToJumpApex: 0.38
     jumpCutOff: 5.23
     maxAirJumps: 1
     variableJumpHeight: 0
-  <PresetName>k__BackingField: Celeste

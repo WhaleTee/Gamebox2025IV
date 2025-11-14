@@ -10,33 +10,37 @@ namespace Movement
         [SerializeField] private PresetObject preset;
         [Inject] private UserInput userInput;
         private Rigidbody2D body;
-        private GroundChecker groundChecker;
+        private EnvironmentSensor environmentSensor;
 
         private GroundMovement groundMovement;
         private AirMovement airMovement;
+        private StairsMovement stairsMovement;
         private IMovementState currentState;
 
         private bool desiredJump;
+        private float inputY;
 
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();
-            groundChecker = GetComponent<GroundChecker>();
+            environmentSensor = GetComponent<EnvironmentSensor>();
         }
 
         private void Start()
         {
-            groundMovement = new GroundMovement(userInput, preset, body, groundChecker);
-            airMovement = new AirMovement(userInput, preset, body, groundChecker);
+            groundMovement = new GroundMovement(userInput, preset, body, environmentSensor);
+            airMovement = new AirMovement(userInput, preset, body, environmentSensor);
+            stairsMovement = new StairsMovement(userInput, preset, body, environmentSensor);
             ChangeState(groundMovement);
             userInput.SubscribeJumpPerformed(OnJumpPerformed);
         }
-        
+
         private void Update()
         {
             if (userInput.Movement.x != 0) transform.localScale = new Vector3(userInput.Movement.x > 0 ? 1 : -1, 1, 1);
             groundMovement.Update();
             airMovement.Update();
+            stairsMovement.Update();
         }
 
         private void FixedUpdate()
@@ -54,10 +58,31 @@ namespace Movement
 
         private void CheckForStateTransition()
         {
-            if ((!groundChecker.IsOnGround || (groundChecker.SlopeAngle < preset.GroundMovementSettings.maxSlopeAngle && desiredJump) || (groundChecker.SlopeAngle == 0 && body.linearVelocityY != 0)) && currentState is GroundMovement)
+            var stairs = environmentSensor.CheckForStairs();
+            if (stairs && userInput.Movement != Vector2.zero)
+            {
+                Debug.Log(Vector2.Dot(stairs.transform.up, userInput.Movement));
+                if (Vector2.Dot(stairs.transform.up, userInput.Movement) > 0 || Vector2.Dot(stairs.transform.right, userInput.Movement) > 0)
+                {
+                    ChangeState(stairsMovement);
+                }
+            }
+            else if (currentState is StairsMovement)
+            {
+                if (environmentSensor.IsOnGround && userInput.Movement == Vector2.zero) ChangeState(groundMovement);
+                if (stairs == null && !environmentSensor.IsOnGround) ChangeState(groundMovement);
+            }
+            else if (
+                (!environmentSensor.IsOnGround ||
+                 (environmentSensor.SlopeAngle < preset.GroundMovementSettings.maxSlopeAngle && desiredJump) ||
+                 (environmentSensor.SlopeAngle == 0 && body.linearVelocityY != 0)) && currentState is GroundMovement)
             {
                 ChangeState(airMovement);
-            } else if (groundChecker.IsOnGround && currentState is AirMovement && !airMovement.IsJumpBofferActive()) ChangeState(groundMovement);
+            }
+            else if (environmentSensor.IsOnGround && currentState is AirMovement && !airMovement.IsJumpBofferActive())
+            {
+                ChangeState(groundMovement);
+            }
         }
 
         private void ChangeState(IMovementState state)

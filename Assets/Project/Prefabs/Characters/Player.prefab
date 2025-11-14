@@ -152,6 +152,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  stairsLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &6860888381101666695
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,29 +1,8 @@
 ﻿using Input;
-using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Movement
 {
-    public interface IUpdatable
-    {
-        void Update();
-    }
-
-    public interface IFixedUpdatable
-    {
-        void FixedUpdate();
-    }
-
-    public interface IExitable
-    {
-        void Exit();
-    }
-
-    public interface IMovementState : IUpdatable, IFixedUpdatable, IExitable
-    {
-    }
-
     public class GroundMovement : IMovementState
     {
         private const float SLOPE_GRAVITY_MULTIPLIER = 0;
@@ -32,7 +11,7 @@ namespace Movement
         private readonly UserInput userInput;
         private readonly PresetObject preset;
         private readonly Rigidbody2D body;
-        private readonly GroundChecker groundChecker;
+        private readonly EnvironmentSensor environmentSensor;
 
         private Vector2 desiredVelocity;
         private Vector2 velocity;
@@ -40,17 +19,17 @@ namespace Movement
         private bool onGround;
         private bool onSlope;
 
-        public GroundMovement(UserInput userInput, PresetObject preset, Rigidbody2D body, GroundChecker groundChecker)
+        public GroundMovement(UserInput userInput, PresetObject preset, Rigidbody2D body, EnvironmentSensor environmentSensor)
         {
             this.userInput = userInput;
             this.preset = preset;
             this.body = body;
-            this.groundChecker = groundChecker;
+            this.environmentSensor = environmentSensor;
         }
 
-        public void Update() => CheckMovement();
+        public override void Update() => CheckMovement();
 
-        public void FixedUpdate()
+        public override void FixedUpdate()
         {
             UpdateState();
             UpdateVelocity();
@@ -58,26 +37,21 @@ namespace Movement
             ApplyVelocity();
         }
 
-        public void Exit()
-        {
-            // nothing here
-        }
-
         private void UpdateState()
         {
-            onGround = groundChecker.IsOnGround;
-            onSlope = groundChecker.IsOnSlope(preset.GroundMovementSettings.maxSlopeAngle);
+            onGround = environmentSensor.IsOnGround;
+            onSlope = environmentSensor.IsOnSlope(preset.GroundMovementSettings.maxSlopeAngle);
             body.gravityScale = GetGravity();
         }
 
         private void UpdateVelocity()
         {
-            if (groundChecker.SlopeAngle > 0.1)
+            if (environmentSensor.SlopeAngle > 0.1)
             {
-                desiredVelocity = groundChecker.SlopePerpendicular * (groundChecker.SlopeAngle > preset.GroundMovementSettings.maxSlopeAngle ? inputX : -inputX);
+                desiredVelocity = environmentSensor.SlopePerpendicular * (environmentSensor.SlopeAngle > preset.GroundMovementSettings.maxSlopeAngle ? inputX : -inputX);
             } else desiredVelocity = new Vector2(inputX, 0f);
             desiredVelocity *= Mathf.Max(preset.GroundMovementSettings.maxSpeed - preset.GroundMovementSettings.friction, 0f);
-            velocity = body.linearVelocity - groundChecker.GetGroundVelocity();
+            velocity = body.linearVelocity - environmentSensor.GetGroundVelocity();
         }
 
         private void HorizontalMovement()
@@ -109,14 +83,14 @@ namespace Movement
             else velocity.x = desiredVelocity.x;
         }
 
-        private void ApplyVelocity() => body.linearVelocity = velocity + groundChecker.GetGroundVelocity();
+        private void ApplyVelocity() => body.linearVelocity = velocity + environmentSensor.GetGroundVelocity();
 
         private float GetGravity()
         {
             var multiplier = DEFAULT_GRAVITY_MULTIPLIER;
 
             if (onSlope) multiplier = SLOPE_GRAVITY_MULTIPLIER;
-            else if (onGround && groundChecker.SlopeAngle > preset.GroundMovementSettings.maxSlopeAngle)
+            else if (onGround && environmentSensor.SlopeAngle > preset.GroundMovementSettings.maxSlopeAngle)
             {
                 multiplier = preset.AirMovementSettings.downwardGravityMultiplier;
             }
