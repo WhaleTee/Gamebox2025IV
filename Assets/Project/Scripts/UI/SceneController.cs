@@ -2,134 +2,97 @@
 using Input;
 using Misc;
 using Reflex.Attributes;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : Singleton<SceneController>
+namespace SceneManagement
 {
-    [Header("UI Загрузки")]
-    [SerializeField] private LoadingScreen loadingScreenPrefab;
-
-    private LoadingScreen _loadingScreenInstance;
-    private bool _isLoading;
-
-    [Inject] private UserInput userInput;
-
-    public void OpenScene(string sceneName)
+    public class SceneController : Singleton<SceneController>
     {
-        if (userInput != null)
-            userInput.Enabled = true;
+        [Header("UI Загрузки")]
+        [SerializeField] private LoadingScreen loadingScreenPrefab;
 
-        Time.timeScale = 1f;
+        private LoadingScreen _loadingScreenInstance;
+        private bool _isLoading;
 
-        if (!SceneExists(sceneName))
+        [Inject] private UserInput userInput;
+
+        public void OpenScene(string sceneName)
         {
-            Debug.LogError($"Сцена '{sceneName}' не найдена в Build Settings!");
-            return;
+            if (userInput != null)
+                userInput.Enabled = true;
+
+            Time.timeScale = 1f;
+
+            if (!SceneExists(sceneName))
+            {
+                Debug.LogError($"Сцена '{sceneName}' не найдена в Build Settings!");
+                return;
+            }
+
+            _ = LoadSceneWithScreenAsync(sceneName);
         }
 
-        _ = LoadSceneWithScreenAsync(sceneName);
-    }
+        public void RestartScene()
+        {
+            OpenScene(SceneManager.GetActiveScene().name);
+        }
 
-    public void RestartScene() => OpenScene(SceneManager.GetActiveScene().name);
-
-    public void ExitGame()
-    {
-        Application.Quit();
+        public void ExitGame()
+        {
+            Application.Quit();
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #endif
-    }
-
-    private bool SceneExists(string sceneName)
-    {
-        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-        {
-            if (System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)) == sceneName)
-                return true;
-        }
-        return false;
-    }
-
-    private async UniTask LoadSceneWithScreenAsync(string sceneName)
-    {
-        if (_isLoading) return;
-        _isLoading = true;
-
-        if (_loadingScreenInstance == null)
-        {
-            _loadingScreenInstance = Instantiate(loadingScreenPrefab);
-            DontDestroyOnLoad(_loadingScreenInstance.gameObject);
         }
 
-        await _loadingScreenInstance.FadeInAsync();
-
-        var loadOperation = SceneManager.LoadSceneAsync(sceneName);
-        loadOperation.allowSceneActivation = false;
-
-        while (loadOperation.progress < 0.9f)
+        private bool SceneExists(string sceneName)
         {
-            _loadingScreenInstance.SetProgress(loadOperation.progress / 0.9f);
-            await UniTask.Yield();
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+            {
+                string name = System.IO.Path.GetFileNameWithoutExtension(
+                    SceneUtility.GetScenePathByBuildIndex(i));
+
+                if (name == sceneName)
+                    return true;
+            }
+
+            return false;
         }
 
-        _loadingScreenInstance.SetProgress(1f);
-        await UniTask.Delay(300);
+        private async UniTask LoadSceneWithScreenAsync(string sceneName)
+        {
+            if (_isLoading)
+                return;
 
-        loadOperation.allowSceneActivation = true;
-        await UniTask.WaitUntil(() => loadOperation.isDone);
+            _isLoading = true;
 
-        await _loadingScreenInstance.FadeOutAsync();
-        _isLoading = false;
+            if (_loadingScreenInstance == null)
+            {
+                _loadingScreenInstance = Instantiate(loadingScreenPrefab);
+                DontDestroyOnLoad(_loadingScreenInstance.gameObject);
+            }
+
+            await _loadingScreenInstance.FadeInAsync();
+
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName);
+            loadOperation.allowSceneActivation = false;
+
+            while (loadOperation.progress < 0.9f)
+            {
+                _loadingScreenInstance.SetProgress(loadOperation.progress / 0.9f);
+                await UniTask.Yield();
+            }
+
+            _loadingScreenInstance.SetProgress(1f);
+            await UniTask.Delay(300);
+
+            loadOperation.allowSceneActivation = true;
+            await UniTask.WaitUntil(() => loadOperation.isDone);
+
+            await _loadingScreenInstance.FadeOutAsync();
+            _isLoading = false;
+        }
     }
-
-    /// <summary>
-    /// Метод для имитации загрузки сцены с задержкой.
-    /// </summary>
-
-    //private async UniTask LoadSceneWithScreenAsync(string sceneName)
-    //{
-    //    if (_isLoading)
-    //        return;
-
-    //    _isLoading = true;
-
-    //    // Создаем или находим экран загрузки
-    //    if (_loadingScreenInstance == null)
-    //    {
-    //        _loadingScreenInstance = Instantiate(loadingScreenPrefab);
-    //        DontDestroyOnLoad(_loadingScreenInstance.gameObject);
-    //    }
-
-    //    await _loadingScreenInstance.FadeInAsync();
-
-    //    AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName);
-    //    loadOperation.allowSceneActivation = false;
-
-    //    float fakeProgress = 0f;              // искусственный прогресс
-    //    float duration = 5f;                  // длительность загрузки в секундах
-    //    float timer = 0f;
-
-    //    // Цикл искусственной загрузки
-    //    while (fakeProgress < 1f)
-    //    {
-    //        timer += Time.deltaTime;
-    //        fakeProgress = Mathf.Clamp01(timer / duration);
-
-    //        _loadingScreenInstance.SetProgress(fakeProgress);
-
-
-    //        await UniTask.Yield();
-    //    }
-
-    //    // Завершаем загрузку
-    //    await UniTask.Delay(300);
-    //    loadOperation.allowSceneActivation = true;
-    //    await UniTask.WaitUntil(() => loadOperation.isDone);
-
-    //    await _loadingScreenInstance.FadeOutAsync();
-
-    //    _isLoading = false;
-    //}
-
 }
