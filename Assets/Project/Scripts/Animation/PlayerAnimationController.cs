@@ -39,7 +39,7 @@ namespace Animation
             }
             else if (currentState is GroundMovement)
             {
-                if (body.linearVelocityX != 0) animator.Play(walkHash);
+                if (body.linearVelocityX - movementController.GroundVelocity.x != 0) animator.Play(walkHash);
                 else animator.Play(idleHash);
             }
         }

@@ -19,6 +19,8 @@ namespace Movement
         private MovementState currentState;
         private bool desiredJump;
 
+        public Vector2 GroundVelocity { get; private set; }
+
         public event Action<MovementState> StateChange;
 
         private void Awake()
@@ -46,6 +48,7 @@ namespace Movement
 
         private void FixedUpdate()
         {
+            GroundVelocity = environmentSensor.GetGroundVelocity();
             CheckForStateTransition();
             currentState.FixedUpdate();
             desiredJump = false;

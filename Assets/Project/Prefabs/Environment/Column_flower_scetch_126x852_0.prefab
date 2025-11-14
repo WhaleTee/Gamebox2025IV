@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3309528150124984673}
   - component: {fileID: 5941735012188151257}
   - component: {fileID: 983206461263936565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Column_flower_scetch_126x852_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

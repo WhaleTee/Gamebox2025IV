@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1520463755802585413}
   - component: {fileID: 6027600699220899769}
   - component: {fileID: 2853621386008800831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform_scetch_432x260_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
