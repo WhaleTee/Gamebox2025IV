@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Movement
 {
-    public class StairsMovement : IMovementState
+    public class StairsMovement : MovementState
     {
         private const float STAIRS_GRAVITY_MULTIPLIER = 0;
         

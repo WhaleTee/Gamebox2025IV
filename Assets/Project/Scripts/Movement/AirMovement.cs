@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Movement
 {
-    public class AirMovement : IMovementState, IDisposable
+    public class AirMovement : MovementState, IDisposable
     {
         private readonly UserInput userInput;
         private readonly PresetObject preset;

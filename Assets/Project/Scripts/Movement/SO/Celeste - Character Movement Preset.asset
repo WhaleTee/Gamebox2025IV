@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <StairsMovementSettings>k__BackingField:
     friction: 0
-    maxSpeed: 5.33
+    maxSpeed: 2.8
     maxTurnSpeed: 44.4
     maxAcceleration: 61.7
     maxDeceleration: 57.5
     useAcceleration: 1
   <GroundMovementSettings>k__BackingField:
     friction: 0
-    maxSpeed: 9.01
+    maxSpeed: 2.99
     maxTurnSpeed: 80
     maxAcceleration: 80
     maxDeceleration: 80

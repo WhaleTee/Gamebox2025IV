@@ -1,4 +1,5 @@
-﻿using Input;
+﻿using System;
+using Input;
 using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,10 +16,10 @@ namespace Movement
         private GroundMovement groundMovement;
         private AirMovement airMovement;
         private StairsMovement stairsMovement;
-        private IMovementState currentState;
-
+        private MovementState currentState;
         private bool desiredJump;
-        private float inputY;
+
+        public event Action<MovementState> StateChange;
 
         private void Awake()
         {
@@ -61,7 +62,6 @@ namespace Movement
             var stairs = environmentSensor.CheckForStairs();
             if (stairs && userInput.Movement != Vector2.zero)
             {
-                Debug.Log(Vector2.Dot(stairs.transform.up, userInput.Movement));
                 if (Vector2.Dot(stairs.transform.up, userInput.Movement) > 0 || Vector2.Dot(stairs.transform.right, userInput.Movement) > 0)
                 {
                     ChangeState(stairsMovement);
@@ -85,10 +85,11 @@ namespace Movement
             }
         }
 
-        private void ChangeState(IMovementState state)
+        private void ChangeState(MovementState state)
         {
             currentState?.Exit();
             currentState = state;
+            StateChange?.Invoke(currentState);
         }
 
         private void OnJumpPerformed(InputAction.CallbackContext ctx) => desiredJump = true;

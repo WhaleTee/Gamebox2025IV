@@ -1,6 +1,6 @@
 ﻿namespace Movement
 {
-    public abstract class IMovementState : IUpdatable, IFixedUpdatable, IExitable
+    public abstract class MovementState : IUpdatable, IFixedUpdatable, IExitable
     {
         public abstract void Update();
 

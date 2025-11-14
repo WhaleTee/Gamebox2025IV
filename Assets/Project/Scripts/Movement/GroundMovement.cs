@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Movement
 {
-    public class GroundMovement : IMovementState
+    public class GroundMovement : MovementState
     {
         private const float SLOPE_GRAVITY_MULTIPLIER = 0;
         private const float DEFAULT_GRAVITY_MULTIPLIER = 1;
