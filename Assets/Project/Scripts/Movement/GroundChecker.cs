@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Environment;
 
@@ -46,7 +45,6 @@ namespace Movement
             var angleTwo = Vector2.Angle(rayTwo.normal, Vector2.up);
             SlopeAngle = Mathf.Max(angleOne, angleTwo);
             if (SlopeAngle == 0) return;
-
             if (angleOne > angleTwo)
             {
                 SlopeNormal = rayOne.normal;

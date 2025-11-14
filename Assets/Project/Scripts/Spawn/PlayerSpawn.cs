@@ -1,7 +1,7 @@
 ﻿using Characters;
 using Reflex.Attributes;
 using UnityEngine;
-using WhaleTee.Reflex.Extensions;
+using Extensions;
 
 namespace Spawn
 {
