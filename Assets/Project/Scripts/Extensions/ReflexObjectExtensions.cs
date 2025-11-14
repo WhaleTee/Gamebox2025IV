@@ -3,7 +3,7 @@ using Reflex.Injectors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace WhaleTee.Reflex.Extensions
+namespace Extensions
 {
     public static class ReflexObjectExtensions
     {
