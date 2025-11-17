@@ -8,7 +8,7 @@ public class DamageableObject : MonoBehaviour, IDamageable
     [SerializeField] private DamageType takesDamageType;
     [SerializeField] private int health;
 
-    [HideInInspector] public event Action OnDeath;
+    public event Action OnDeath;
 
     private void OnValidate()
     {
