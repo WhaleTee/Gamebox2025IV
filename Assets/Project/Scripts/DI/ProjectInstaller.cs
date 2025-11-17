@@ -10,6 +10,7 @@ namespace DI
     public class ProjectInstaller : MonoBehaviour, IInstaller
     {
         private const string ROOT_CONTAINER_NAME = "Root Container";
+        private Container rootContainer;
 
         private static void InstallMessagePipe(ContainerBuilder rootContainerBuilder)
         {
@@ -17,10 +18,17 @@ namespace DI
 
         private void InstallServices(ContainerBuilder containerBuilder)
         {
+            containerBuilder.OnContainerBuilt += container =>
+            {
+                foreach (var initializable in container.All<IInitializable>())
+                {
+                    initializable.Initialize();
+                }
+            };
             containerBuilder.AddSingleton(typeof(UserInput));
             containerBuilder.AddSingleton(typeof(SceneService));
             containerBuilder.AddSingleton(typeof(GameObjectFactory), typeof(DeactivatedGameObjectFactory));
-            containerBuilder.AddSingleton(typeof(ObjectPoolManager));
+            containerBuilder.AddSingleton(typeof(ObjectPoolManager), typeof(ObjectPoolManager), typeof(IInitializable));
         }
 
         public void InstallBindings(ContainerBuilder containerBuilder)

@@ -10,7 +10,7 @@ namespace Pooling {
     ParticleSystems, GameObjects, SoundFX
   }
 
-  public class ObjectPoolManager {
+  public class ObjectPoolManager : IInitializable {
     private readonly DeactivatedGameObjectFactory factory;
     private GameObject emptyHolder;
     private GameObject particleSystemsEmpty;
