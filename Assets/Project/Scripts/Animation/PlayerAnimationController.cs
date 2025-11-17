@@ -27,7 +27,7 @@ namespace Animation
 
         private void Start()
         {
-            movementController.StateChange += OnMovementChange;
+            movementController.StateChange += OnMovementStateChange;
         }
 
         private void Update()
@@ -41,10 +41,13 @@ namespace Animation
             {
                 if (body.linearVelocityX - movementController.GroundVelocity.x != 0) animator.Play(walkHash);
                 else animator.Play(idleHash);
+            } else if (currentState is StairsMovement)
+            {
+                animator.Play(idleHash);
             }
         }
 
-        private void OnMovementChange(MovementState state)
+        private void OnMovementStateChange(MovementState state)
         {
             if (currentState is AirMovement && state is GroundMovement) animator.Play(landingHash);
             currentState = state;

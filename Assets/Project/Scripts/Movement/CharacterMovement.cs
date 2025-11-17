@@ -63,7 +63,7 @@ namespace Movement
         private void CheckForStateTransition()
         {
             var stairs = environmentSensor.CheckForStairs();
-            if (stairs && userInput.Movement != Vector2.zero)
+            if (currentState is not StairsMovement && stairs && userInput.Movement != Vector2.zero)
             {
                 if (Vector2.Dot(stairs.transform.up, userInput.Movement) > 0 || Vector2.Dot(stairs.transform.right, userInput.Movement) > 0)
                 {
@@ -72,8 +72,8 @@ namespace Movement
             }
             else if (currentState is StairsMovement)
             {
-                if (environmentSensor.IsOnGround && userInput.Movement == Vector2.zero) ChangeState(groundMovement);
-                if (stairs == null && !environmentSensor.IsOnGround) ChangeState(groundMovement);
+                if (environmentSensor.IsOnGround && stairs == null) ChangeState(groundMovement);
+                else if (!environmentSensor.IsOnGround && stairs == null) ChangeState(airMovement);
             }
             else if (
                 (!environmentSensor.IsOnGround ||
@@ -93,6 +93,7 @@ namespace Movement
             currentState?.Exit();
             currentState = state;
             StateChange?.Invoke(currentState);
+            Debug.Log(state.GetType());
         }
 
         private void OnJumpPerformed(InputAction.CallbackContext ctx) => desiredJump = true;
