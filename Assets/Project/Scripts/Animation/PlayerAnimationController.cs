@@ -34,8 +34,9 @@ namespace Animation
         {
             if (currentState is AirMovement)
             {
-                if (body.linearVelocityY < 0) animator.Play(fallingHash);
-                else if (body.linearVelocityY > 0) animator.Play(jumpRisingHash);
+                var linearVelocityY = body.linearVelocityY - movementController.GroundVelocity.y;
+                if (linearVelocityY < 0.1f) animator.Play(fallingHash);
+                else if (linearVelocityY > 0.1f) animator.Play(jumpRisingHash);
             }
             else if (currentState is GroundMovement)
             {
@@ -49,7 +50,7 @@ namespace Animation
 
         private void OnMovementStateChange(MovementState state)
         {
-            if (currentState is AirMovement && state is GroundMovement) animator.Play(landingHash);
+            // if (currentState is AirMovement && state is GroundMovement) animator.Play(landingHash);
             currentState = state;
         }
     }

@@ -59,7 +59,7 @@ namespace Movement
             userInput.UnsubscribeJumpCanceled(OnJumpCanceled);
         }
 
-        public bool IsJumpBofferActive() => jumpBufferCounter > 0;
+        public bool IsJumpBufferActive() => jumpBufferCounter > 0;
 
         private void UpdateState()
         {

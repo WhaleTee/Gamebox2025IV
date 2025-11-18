@@ -7,10 +7,7 @@ namespace DI
     {
         private string containerName = "GamePlay Scene Container";
         private GamePlaySceneDependencies dependencies;
-
-        private void InstallMessagePipe(ContainerBuilder containerBuilder)
-        {
-        }
+        private Container container;
 
         private void InstallDependencies(ContainerBuilder containerBuilder)
         {
@@ -31,8 +28,21 @@ namespace DI
                 return;
             }
 
-            InstallMessagePipe(containerBuilder);
             InstallDependencies(containerBuilder);
+            
+            containerBuilder.OnContainerBuilt += OnContainerBuilt;
+        }
+        
+        private void Awake() => Initialize();
+        
+        private void OnContainerBuilt(Container container) => this.container = container;
+
+        private void Initialize()
+        {
+            foreach (var initializable in container.All<IInitializable>())
+            {
+                initializable.Initialize();
+            }
         }
     }
 }

@@ -78,11 +78,11 @@ namespace Movement
             else if (
                 (!environmentSensor.IsOnGround ||
                  (environmentSensor.SlopeAngle < preset.GroundMovementSettings.maxSlopeAngle && desiredJump) ||
-                 (environmentSensor.SlopeAngle == 0 && body.linearVelocityY != 0)) && currentState is GroundMovement)
+                 (!environmentSensor.IsOnGround && environmentSensor.SlopeAngle == 0 && body.linearVelocityY != 0)) && currentState is GroundMovement)
             {
                 ChangeState(airMovement);
             }
-            else if (environmentSensor.IsOnGround && currentState is AirMovement && !airMovement.IsJumpBofferActive())
+            else if (environmentSensor.IsOnGround && currentState is AirMovement && !airMovement.IsJumpBufferActive())
             {
                 ChangeState(groundMovement);
             }
@@ -93,7 +93,6 @@ namespace Movement
             currentState?.Exit();
             currentState = state;
             StateChange?.Invoke(currentState);
-            Debug.Log(state.GetType());
         }
 
         private void OnJumpPerformed(InputAction.CallbackContext ctx) => desiredJump = true;

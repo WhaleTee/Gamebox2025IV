@@ -36,7 +36,8 @@ namespace Input
             inputActions?.UI.Disable();
             inputActions?.Disable();
         }
-        
+
+        public void SubscribeNumKeyPerformed(Action<InputAction.CallbackContext> callback) => inputActions.Player.NumKeys.performed += callback;
         public void SubscribeJumpPerformed(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.performed += callback;
         public void UnsubscribeJumpPerformed(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.performed -= callback;
         public void SubscribeJumpCanceled(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.canceled += callback;
