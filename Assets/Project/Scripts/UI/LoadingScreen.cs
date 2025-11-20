@@ -38,7 +38,7 @@ namespace UI
         {
             progressBar.value = value;
             if (progressText)
-                progressText.text = $"Загрузка... {Mathf.RoundToInt(value * 100)}%";
+                progressText.text = $"loading... {Mathf.RoundToInt(value * 100)}%";
         }
 
         private async UniTask Fade(float from, float to)

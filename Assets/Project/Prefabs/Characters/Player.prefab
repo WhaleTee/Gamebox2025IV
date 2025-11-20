@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1764033581468479020}
   - component: {fileID: 1715165497362137123}
   - component: {fileID: 5051484333933034595}
+  - component: {fileID: 1968885154703206857}
   m_Layer: 15
   m_Name: Player
   m_TagString: Player
@@ -155,6 +156,31 @@ MonoBehaviour:
   stairsLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1968885154703206857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172057357043963255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91496cb15340b6469330d8c28ba883c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelProgression: {fileID: 11400000, guid: 5c964480304a6ae429c84207ebeb35a0, type: 2}
+  modifiers:
+  - {fileID: 11400000, guid: a72c88db2c943d94da92015b7d10e78c, type: 2}
+  - {fileID: 11400000, guid: b95767fde4421554b8423f14fc7a9f3a, type: 2}
+  - {fileID: 11400000, guid: d5c2c68ceb159d644871dcdc417bdfd5, type: 2}
+  enableSave: 0
+  saveKey: 
+  logEnabled: 1
+  currentExp: 55
+  currentLevel: 4
+  onLevelUpUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6860888381101666695
 GameObject:
   m_ObjectHideFlags: 0
