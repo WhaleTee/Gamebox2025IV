@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4e439f1d8f4e74fa1f12cd268a3a9d, type: 3}
   m_Name: LevelProgression
   m_EditorClassIdentifier: 
-  experiencePerLevel: 0a000000140000001e00000028000000
+  experiencePerLevel: 0f0000001e000000
