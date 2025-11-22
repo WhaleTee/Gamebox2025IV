@@ -174,13 +174,31 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""NumKeys"",
+                    ""name"": ""Scroll"",
                     ""type"": ""Value"",
-                    ""id"": ""367f0672-410d-478f-aa2f-1e0f4035b595"",
-                    ""expectedControlType"": """",
+                    ""id"": ""53ae6f4b-ff6f-4a97-b8b3-396094598660"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""type"": ""Button"",
+                    ""id"": ""c904ff7c-2132-4f20-ba4b-ebd713502254"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Digits"",
+                    ""type"": ""Button"",
+                    ""id"": ""3f31a6a7-44a9-4a7c-9403-da369dbcb678"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -571,45 +589,144 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e3c3dedb-4f5a-4b44-b4b9-2de7c19afc7b"",
+                    ""id"": ""2e3e52fe-c998-4d59-bc17-edfed51b1e39"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a71f423-308f-4cab-9449-993509cbe767"",
+                    ""path"": ""<Keyboard>/comma"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Arrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30aa249d-4179-45a5-b9c9-510bf901a6cd"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Arrows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5ac890c-4481-4882-95df-736b95c1aacd"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
-                    ""processors"": ""Scale"",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""NumKeys"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""63724a29-b3e2-4065-8a77-a980b01b8005"",
+                    ""id"": ""15fd0412-7dd0-4d6b-9070-e31a4aa61046"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
-                    ""processors"": ""Scale(factor=2)"",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""NumKeys"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ad4b38c4-e13a-4646-9286-af500446521a"",
+                    ""id"": ""ddbc924a-ca65-4bcb-ad4d-f8e3bf4372d8"",
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
-                    ""processors"": ""Scale(factor=3)"",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""NumKeys"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""46bf0ad1-42ba-4e7a-a610-c559a2966240"",
+                    ""id"": ""19c87a42-7e04-4b3e-90ce-dcbf5d87d85d"",
                     ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
-                    ""processors"": ""Scale(factor=4)"",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""NumKeys"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f68653b1-5b1d-4cf8-b4e8-2e4b18551933"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""871129b1-d1ef-4754-9db0-8e286a0c5a05"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Digits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2129db68-4d66-4c15-bbbd-14051ba7ec8a"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9262426d-f358-481c-af18-64c2840f6812"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e788a133-19c8-4a26-a994-cf04aa8affd2"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dba6f9fd-63a2-405a-8f22-458387a29828"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Digits"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1206,7 +1323,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
-        m_Player_NumKeys = m_Player.FindAction("NumKeys", throwIfNotFound: true);
+        m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
+        m_Player_Arrows = m_Player.FindAction("Arrows", throwIfNotFound: true);
+        m_Player_Digits = m_Player.FindAction("Digits", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1309,7 +1428,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Previous;
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Sprint;
-    private readonly InputAction m_Player_NumKeys;
+    private readonly InputAction m_Player_Scroll;
+    private readonly InputAction m_Player_Arrows;
+    private readonly InputAction m_Player_Digits;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1358,9 +1479,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         /// <summary>
-        /// Provides access to the underlying input action "Player/NumKeys".
+        /// Provides access to the underlying input action "Player/Scroll".
         /// </summary>
-        public InputAction @NumKeys => m_Wrapper.m_Player_NumKeys;
+        public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Arrows".
+        /// </summary>
+        public InputAction @Arrows => m_Wrapper.m_Player_Arrows;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Digits".
+        /// </summary>
+        public InputAction @Digits => m_Wrapper.m_Player_Digits;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1414,9 +1543,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @NumKeys.started += instance.OnNumKeys;
-            @NumKeys.performed += instance.OnNumKeys;
-            @NumKeys.canceled += instance.OnNumKeys;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
+            @Arrows.started += instance.OnArrows;
+            @Arrows.performed += instance.OnArrows;
+            @Arrows.canceled += instance.OnArrows;
+            @Digits.started += instance.OnDigits;
+            @Digits.performed += instance.OnDigits;
+            @Digits.canceled += instance.OnDigits;
         }
 
         /// <summary>
@@ -1455,9 +1590,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @NumKeys.started -= instance.OnNumKeys;
-            @NumKeys.performed -= instance.OnNumKeys;
-            @NumKeys.canceled -= instance.OnNumKeys;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
+            @Arrows.started -= instance.OnArrows;
+            @Arrows.performed -= instance.OnArrows;
+            @Arrows.canceled -= instance.OnArrows;
+            @Digits.started -= instance.OnDigits;
+            @Digits.performed -= instance.OnDigits;
+            @Digits.canceled -= instance.OnDigits;
         }
 
         /// <summary>
@@ -1822,12 +1963,26 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "NumKeys" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Scroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNumKeys(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Arrows" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnArrows(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Digits" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDigits(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

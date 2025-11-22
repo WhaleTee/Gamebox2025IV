@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38287a08683f824f947bb1e685be880, type: 3}
+  m_Name: Spiritual
+  m_EditorClassIdentifier: 
+  <PolyphonyLimit>k__BackingField: 5
+  <Shot>k__BackingField: {fileID: 8300000, guid: a34b98b4e35a1fd45b8c93b104d34de1, type: 3}
+  <Exhausted>k__BackingField: {fileID: 8300000, guid: d041996841de9794482840cfcf7b7072, type: 3}
+  <Cancel>k__BackingField: {fileID: 8300000, guid: 96fa6465058d6374ea5e9880a005a401, type: 3}
+  <Start>k__BackingField: {fileID: 0}
+  <Finish>k__BackingField: {fileID: 0}

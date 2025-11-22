@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 284984983890855430}
   - component: {fileID: 3594774863720650785}
   - component: {fileID: 7103766040602916919}
+  - component: {fileID: 411052222612721989}
   m_Layer: 0
   m_Name: SceneScope
   m_TagString: Untagged
@@ -79,6 +80,14 @@ MonoBehaviour:
     <Trigger>k__BackingField: {fileID: 0}
     <Dialog>k__BackingField: {fileID: 0}
     <ButtonNext>k__BackingField: {fileID: 0}
+  <AudioData>k__BackingField:
+    <RandomizationConfig>k__BackingField: {fileID: 11400000, guid: 28570862d970ed9439f41d8566e03a4c, type: 2}
+    audioSourcePrefab: {fileID: 6282137706235025767, guid: be5e526d57881b84cbd15fecbca59646, type: 3}
+  <CameraInjectionData>k__BackingField:
+    <CameraVirtual>k__BackingField: {fileID: 0}
+    <Camera>k__BackingField: {fileID: 0}
+  <UpdatesInjectionData>k__BackingField:
+    <UpdateRunner>k__BackingField: {fileID: 411052222612721989}
 --- !u!114 &3594774863720650785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,5 +111,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d938d91a1e47c604f8d0ac90d5c7b8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &411052222612721989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857444815289455497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e1915d1afcefc1499b0c6aaa488ee21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

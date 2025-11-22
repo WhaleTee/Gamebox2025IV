@@ -1,5 +1,10 @@
-using Reflex.Core;
 using UnityEngine;
+using Reflex.Core;
+using Misc;
+using Extensions;
+using Audio;
+using Combat.Projectiles.Behaviours;
+using VisualEffects;
 
 namespace DI
 {
@@ -9,10 +14,20 @@ namespace DI
         private GamePlaySceneDependencies dependencies;
         private Container container;
 
+        private void InstallMessagePipe(ContainerBuilder containerBuilder)
+        {
+        }
+
         private void InstallDependencies(ContainerBuilder containerBuilder)
         {
+            containerBuilder.AddSingleton(dependencies.UpdatesInjectionData.UpdateRunner, typeof(IUpdateRunner));
+            BehavioursSystem behaviourSystem = new();
+            containerBuilder.AddSingleton(behaviourSystem, typeof(BehavioursSystem), typeof(IInjectable), typeof(IInitializable));
             containerBuilder.AddSingleton(dependencies.PlayerData);
             containerBuilder.AddSingleton(dependencies.VictoryData);
+            containerBuilder.AddSingleton(dependencies.CameraInjectionData);
+            containerBuilder.AddSingleton(dependencies.AudioData, typeof(AudioInjectionData), typeof(IInjectable));
+            containerBuilder.AddSingleton(dependencies.ParticlesData, typeof(ParticlesInjectionData), typeof(IInjectable));
         }
 
         public void InstallBindings(ContainerBuilder containerBuilder)
@@ -28,21 +43,35 @@ namespace DI
                 return;
             }
 
+            InstallMessagePipe(containerBuilder);
             InstallDependencies(containerBuilder);
-            
+
             containerBuilder.OnContainerBuilt += OnContainerBuilt;
         }
-        
-        private void Awake() => Initialize();
-        
-        private void OnContainerBuilt(Container container) => this.container = container;
+
+        private void OnContainerBuilt(Container container)
+        {
+            this.container = container;
+        }
+
+        private void Awake()
+        {
+            Inject();
+            Initialize();
+        }
+
+        private void Inject()
+        {
+            var postInjectables = container.All<IInjectable>();
+            foreach (var injectable in postInjectables)
+                injectable.InjectAttributes();
+        }
 
         private void Initialize()
         {
-            foreach (var initializable in container.All<IInitializable>())
-            {
+            var initializables = container.All<IInitializable>();
+            foreach (var initializable in initializables)
                 initializable.Initialize();
-            }
         }
     }
 }
