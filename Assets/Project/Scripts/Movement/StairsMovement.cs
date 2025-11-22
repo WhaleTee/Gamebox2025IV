@@ -36,16 +36,23 @@ namespace Movement
             UpdateVelocity();
             HorizontalMovement();
             ApplyVelocity();
+            UpdatePosition();
+        }
+
+        private void UpdatePosition()
+        {
+            if (stairs) body.position = new Vector2(stairs.transform.position.x, body.position.y);
         }
 
         private void UpdateState()
         {
+            stairs = environmentSensor.CheckForStairs();
             body.gravityScale = GetGravity();
         }
 
         private void UpdateVelocity()
         {
-            desiredVelocity = input;
+            desiredVelocity.y = input.y;
             desiredVelocity *= Mathf.Max(preset.StairsMovementSettings.maxSpeed - preset.StairsMovementSettings.friction, 0f);
             velocity = body.linearVelocity;
         }
@@ -60,7 +67,7 @@ namespace Movement
         {
             float speed;
             if (input != Vector2.zero)
-                speed = Mathf.Sign(input.x) != Mathf.Sign(velocity.x) || Mathf.Sign(input.y) != Mathf.Sign(velocity.y)
+                speed = Mathf.Sign(input.y) != Mathf.Sign(velocity.y)
                     ? preset.StairsMovementSettings.maxTurnSpeed
                     : preset.StairsMovementSettings.maxAcceleration;
             else speed = preset.StairsMovementSettings.maxDeceleration;

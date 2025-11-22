@@ -9,9 +9,6 @@ namespace Extensions
     {
         public static T InjectAttributes<T>(this T obj) where T : class
         {
-            var go = new GameObject();
-
-            GameObjectInjector.InjectSingle(go, SceneManager.GetActiveScene().GetSceneContainer());
             AttributeInjector.Inject(obj, SceneManager.GetActiveScene().GetSceneContainer());
             return obj;
         }

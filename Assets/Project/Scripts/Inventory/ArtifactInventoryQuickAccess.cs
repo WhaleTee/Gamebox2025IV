@@ -12,7 +12,7 @@ namespace Artifacts
         
         public void Initialize()
         {
-            userInput.SubscribeNumKeyPerformed(OnNumKeyPerformed);
+            // userInput.SubscribeNumKeyPerformed(OnNumKeyPerformed);
             AddFirstArtifact();
         }
 

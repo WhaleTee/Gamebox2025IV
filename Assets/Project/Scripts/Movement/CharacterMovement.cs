@@ -11,6 +11,7 @@ namespace Movement
         [SerializeField] private PresetObject preset;
         [Inject] private UserInput userInput;
         private Rigidbody2D body;
+        private Collider2D mainCollider;
         private EnvironmentSensor environmentSensor;
 
         private GroundMovement groundMovement;
@@ -20,12 +21,14 @@ namespace Movement
         private bool desiredJump;
 
         public Vector2 GroundVelocity { get; private set; }
+        public Vector2 Direction { get; private set; }
 
         public event Action<MovementState> StateChange;
 
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();
+            mainCollider = GetComponent<Collider2D>();
             environmentSensor = GetComponent<EnvironmentSensor>();
         }
 
@@ -40,7 +43,12 @@ namespace Movement
 
         private void Update()
         {
-            if (userInput.Movement.x != 0) transform.localScale = new Vector3(userInput.Movement.x > 0 ? 1 : -1, 1, 1);
+            if (userInput.Movement.x != 0)
+            {
+                Direction = userInput.Movement;
+                if (Direction.y == 0) Direction = new Vector2(Direction.x, 1);
+                transform.localScale = new Vector3(Direction.x > 0 ? 1 : -1, 1, 1);
+            }
             groundMovement.Update();
             airMovement.Update();
             stairsMovement.Update();
@@ -52,6 +60,7 @@ namespace Movement
             CheckForStateTransition();
             currentState.FixedUpdate();
             desiredJump = false;
+            mainCollider.enabled = currentState is not StairsMovement;
         }
 
         private void OnDestroy()
@@ -63,16 +72,23 @@ namespace Movement
         private void CheckForStateTransition()
         {
             var stairs = environmentSensor.CheckForStairs();
-            if (currentState is not StairsMovement && stairs && userInput.Movement != Vector2.zero)
+            if (currentState is not StairsMovement && stairs && userInput.Movement.y != 0)
             {
-                if (Vector2.Dot(stairs.transform.up, userInput.Movement) > 0 || Vector2.Dot(stairs.transform.right, userInput.Movement) > 0)
+                if (userInput.Movement.y > 0 && environmentSensor.IsStairsOver)
                 {
+                    transform.position += Vector3.up;
+                    ChangeState(stairsMovement);
+                }
+                else if (userInput.Movement.y < 0 && environmentSensor.IsStairsUnder)
+                {
+                    transform.position += Vector3.down;
                     ChangeState(stairsMovement);
                 }
             }
             else if (currentState is StairsMovement)
             {
-                if (environmentSensor.IsOnGround && stairs == null) ChangeState(groundMovement);
+                if (environmentSensor.IsOnGround && desiredJump) ChangeState(airMovement);
+                else if (environmentSensor.IsOnGround && (userInput.Movement.x != 0 || stairs == null)) ChangeState(groundMovement);
                 else if (!environmentSensor.IsOnGround && stairs == null) ChangeState(airMovement);
             }
             else if (

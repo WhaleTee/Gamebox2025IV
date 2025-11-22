@@ -40,7 +40,7 @@ namespace Animation
             }
             else if (currentState is GroundMovement)
             {
-                if (body.linearVelocityX - movementController.GroundVelocity.x != 0) animator.Play(walkHash);
+                if (Mathf.Abs(body.linearVelocityX - movementController.GroundVelocity.x) > .1f) animator.Play(walkHash);
                 else animator.Play(idleHash);
             } else if (currentState is StairsMovement)
             {

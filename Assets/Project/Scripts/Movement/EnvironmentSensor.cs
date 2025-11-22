@@ -20,12 +20,15 @@ namespace Movement
 
         [SerializeField] [Tooltip("Which layers are read as the stairs")]
         private LayerMask stairsLayer;
-        
+
+        [SerializeField] private float stairsCheckYOffsetMultiplier;
         
         private readonly List<GameObject> groundObjects = new List<GameObject>(2);
         private BoxCollider2D sensorCollider;
 
         public bool IsOnGround { get; private set; }
+        public bool IsStairsOver { get; private set; }
+        public bool IsStairsUnder { get; private set; }
         public float SlopeAngle { get; private set; }
         public Vector2 SlopePerpendicular { get; private set; }
         public Vector2 SlopeNormal { get; private set; }
@@ -39,8 +42,12 @@ namespace Movement
         private void Update()
         {
             groundObjects.Clear();
-            var rayOnePosition = transform.position + colliderOffset;
-            var rayTwoPosition = transform.position - colliderOffset;
+            var rayOnePosition = transform.position;
+            rayOnePosition.x += colliderOffset.x;
+            rayOnePosition.y += colliderOffset.y;
+            var rayTwoPosition = transform.position;
+            rayTwoPosition.x -= colliderOffset.x;
+            rayTwoPosition.y += colliderOffset.y;
             var rayOne = Physics2D.Raycast(rayOnePosition, Vector2.down, groundLength, groundLayer);
             var rayTwo = Physics2D.Raycast(rayTwoPosition, Vector2.down, groundLength, groundLayer);
             IsOnGround = rayOne || rayTwo;
@@ -75,15 +82,30 @@ namespace Movement
             var results = new Collider2D[1];
             var filter = new ContactFilter2D();
             filter.SetLayerMask(stairsLayer);
-            Physics2D.OverlapBox(transform.position - (Vector3)sensorCollider.offset, sensorCollider.size, 0, filter, results);
+            var sensorColliderSize = sensorCollider.size / 2;
+            Physics2D.OverlapBox(transform.position + (Vector3)sensorCollider.offset + Vector3.up * sensorColliderSize.y / stairsCheckYOffsetMultiplier, sensorColliderSize, 0, filter, results);
+            IsStairsOver = results[0] != null;
+            Physics2D.OverlapBox(transform.position + (Vector3)sensorCollider.offset + Vector3.down * sensorColliderSize.y / stairsCheckYOffsetMultiplier, sensorColliderSize, 0, filter, results);
+            IsStairsUnder = results[0] != null;
+            
             return results[0] != null ? results[0].gameObject : null;
         }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = IsOnGround ? Color.green : Color.red;
-            Gizmos.DrawLine(transform.position + colliderOffset, transform.position + colliderOffset + Vector3.down * groundLength);
-            Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLength);
+            var rayOnePosition = transform.position;
+            rayOnePosition.x += colliderOffset.x;
+            rayOnePosition.y += colliderOffset.y;
+            var rayTwoPosition = transform.position;
+            rayTwoPosition.x -= colliderOffset.x;
+            rayTwoPosition.y += colliderOffset.y;
+            Gizmos.DrawLine(rayOnePosition, rayOnePosition + Vector3.down * groundLength);
+            Gizmos.DrawLine(rayTwoPosition, rayTwoPosition + Vector3.down * groundLength);
+            Gizmos.color = IsStairsOver || IsStairsUnder ? Color.green : Color.red;
+            var sensorColliderSize = sensorCollider.size / 2;
+            Gizmos.DrawWireCube(transform.position + (Vector3)sensorCollider.offset + Vector3.up * sensorColliderSize.y / stairsCheckYOffsetMultiplier, sensorColliderSize);
+            Gizmos.DrawWireCube(transform.position + (Vector3)sensorCollider.offset + Vector3.down * sensorColliderSize.y / stairsCheckYOffsetMultiplier, sensorColliderSize);
         }
 
         public bool IsOnSlope(float angle) => IsOnGround && SlopeAngle > 0.1f && SlopeAngle < angle;

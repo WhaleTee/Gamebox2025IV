@@ -276,14 +276,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd3c2c067fceca459f20a75a1debf45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLength: 1.05
-  colliderOffset: {x: 0.25, y: 0, z: 0}
+  groundLength: 0.25
+  colliderOffset: {x: 0.25, y: -0.3, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   stairsLayer:
     serializedVersion: 2
     m_Bits: 128
+  stairsCheckYOffsetMultiplier: 1.8
 --- !u!114 &1968885154703206857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +392,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -184531505
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 2aa0d9058d1c45c4c91e93165a4bcddc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -523,18 +524,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7916667830849476094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1800766179589583756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,3 +580,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5706681134671957998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7916667830849476094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
