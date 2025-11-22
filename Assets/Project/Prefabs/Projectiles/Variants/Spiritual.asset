@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d113437d6bf4cec46a99b8483b9d222a, type: 3}
+  m_Name: Spiritual
+  m_EditorClassIdentifier: 
+  <DefaultConfig>k__BackingField: {fileID: 11400000, guid: a7a11b2c368ac5346a80f212d74f79a5, type: 2}
+  BehavioursContainer:
+    Behaviours: 36
+    Configs:
+    - {fileID: 11400000, guid: ed0572772a5473444800be394b1dd7c9, type: 2}
+    - {fileID: 11400000, guid: 453b48b1db1575c44ac6bd67f8795559, type: 2}

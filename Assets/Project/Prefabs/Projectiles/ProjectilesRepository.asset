@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7792f7dbccdfc4bb3a0626fc4c3a9a, type: 3}
+  m_Name: ProjectilesRepository
+  m_EditorClassIdentifier: 
+  m_datas:
+  - <Key>k__BackingField: 0
+    <Config>k__BackingField: {fileID: 11400000, guid: 50d371a6853a18c428eccd4db5cca426, type: 2}
+    Prefab: {fileID: 8516558918088135211, guid: 240b3f271b1c5714d89c8c6e0169da17, type: 3}
+  - <Key>k__BackingField: 1
+    <Config>k__BackingField: {fileID: 11400000, guid: d812e210a77be844c94e6be30ecdf17f, type: 2}
+    Prefab: {fileID: 6074161324756638387, guid: 8e04c89a478de8247bf27e1bcc8f79dc, type: 3}
+  - <Key>k__BackingField: 2
+    <Config>k__BackingField: {fileID: 11400000, guid: 79018be1140928f4c970f33035350b62, type: 2}
+    Prefab: {fileID: 2649164205228309381, guid: 03ca7bd7ef4039b4ca2dd30fd4f4f32d, type: 3}
+  - <Key>k__BackingField: 4
+    <Config>k__BackingField: {fileID: 11400000, guid: 95326b0d84de4ee44811a3b4d3194842, type: 2}
+    Prefab: {fileID: 5264208193312834986, guid: 3e0f67a9ea8bba340baae821d81121e7, type: 3}
+  - <Key>k__BackingField: 3
+    <Config>k__BackingField: {fileID: 11400000, guid: 039e3e4d7ac1e374988c89fb49110512, type: 2}
+    Prefab: {fileID: 549368632880659280, guid: e701135039f452f409bd306356ad3cdd, type: 3}

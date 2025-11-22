@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11330695e7a135243878a6a56ce0ee2a, type: 3}
+  m_Name: Lumen
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 0}
+  <Stats>k__BackingField:
+    <StrikeType>k__BackingField: 0
+    <Mode>k__BackingField: 1
+    <Damage>k__BackingField:
+      amount: 10
+      Type: 13
+    <FireRate>k__BackingField: 4
+    <Range>k__BackingField: 30
+    <SpreadAngle>k__BackingField: 70
+    <SpreadOffset>k__BackingField: 139.7
+    <Variant>k__BackingField: 4
+    <ProjectileSpeed>k__BackingField: 8
+    <LifeTime>k__BackingField: 3
+  <Name>k__BackingField: 
+  <Audio>k__BackingField: {fileID: 11400000, guid: 8a19d44176f561b4eb69a4725793795f, type: 2}
+  <VisualEffects>k__BackingField: {fileID: 11400000, guid: bbb17f056c43ff24a8fca018cdfba84b, type: 2}

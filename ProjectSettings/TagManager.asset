@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Ground
   - Stairs
   - Damagable
-  - 
+  - Projectile
   - 
   - 
   - 
@@ -40,6 +41,27 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FarBackground
+    uniqueID: 366897435
+    locked: 0
+  - name: NearBackground
+    uniqueID: 2452066179
+    locked: 0
+  - name: UnderGround
+    uniqueID: 2750797999
+    locked: 0
+  - name: AfterBackground
+    uniqueID: 1356837591
+    locked: 0
+  - name: MiddleGround
+    uniqueID: 3929413487
+    locked: 0
+  - name: Characters
+    uniqueID: 4110435791
+    locked: 0
+  - name: ForeGround
+    uniqueID: 4033223521
     locked: 0
   m_RenderingLayers:
   - Default

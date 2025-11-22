@@ -11,6 +11,7 @@ namespace Pooling {
   }
 
   public class ObjectPoolManager : IInitializable {
+        public bool Initialized => objectPools != null;
     private readonly DeactivatedGameObjectFactory factory;
     private GameObject emptyHolder;
     private GameObject particleSystemsEmpty;
@@ -189,6 +190,10 @@ namespace Pooling {
         if (objectPools.TryGetValue(prefab, out var pool)) pool.Release(go);
       } else Debug.LogWarning("Trying to return an object that is not pooled: " + go.name);
     }
+
+    public void ReturnObjectToPool<T>(T comp)
+            where T : Component
+        => ReturnObjectToPool(comp.gameObject, PoolType.GameObjects);
   
     public void ReturnObjectsToPool(GameObject prefab, PoolType poolType = PoolType.GameObjects) {
       var gos = cloneToPrefabMap

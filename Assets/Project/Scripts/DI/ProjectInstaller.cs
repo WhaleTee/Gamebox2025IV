@@ -1,9 +1,8 @@
-using Factory;
-using Input;
-using Misc.Dummy;
-using Pooling;
-using Reflex.Core;
 using UnityEngine;
+using Reflex.Core;
+using Factory;
+using Pooling;
+using Input;
 
 namespace DI
 {
@@ -18,22 +17,20 @@ namespace DI
 
         private void InstallServices(ContainerBuilder containerBuilder)
         {
-            containerBuilder.OnContainerBuilt += container =>
-            {
-                foreach (var initializable in container.All<IInitializable>())
-                {
-                    initializable.Initialize();
-                }
-            };
             containerBuilder.AddSingleton(typeof(UserInput));
-            containerBuilder.AddSingleton(typeof(SceneService));
             containerBuilder.AddSingleton(typeof(GameObjectFactory), typeof(DeactivatedGameObjectFactory));
             containerBuilder.AddSingleton(typeof(ObjectPoolManager), typeof(ObjectPoolManager), typeof(IInitializable));
+        }
+
+        private void OnContainerBuilt(Container container)
+        {
+            this.rootContainer = container;
         }
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             containerBuilder.SetName(ROOT_CONTAINER_NAME);
+            containerBuilder.OnContainerBuilt += OnContainerBuilt;
             InstallMessagePipe(containerBuilder);
             InstallServices(containerBuilder);
         }
