@@ -1,19 +1,32 @@
 ﻿using UnityEngine;
 
-public enum DestructibleSize { Small, Large }
-
+/// <summary>
+/// Способности игрока: какие типы урона он может наносить
+/// </summary>
 public class PlayerAbilities : MonoBehaviour
 {
-    [HideInInspector] public bool canDestroySmall = false;
-    [HideInInspector] public bool canDestroyLarge = false;
+    [Header("Типы урона игрока")]
+    public DamageType damageType;
 
-    public bool CanDestroy(DestructibleSize size)
+    public bool CanDestroy(DestructibleType type)
     {
-        switch (size)
+        switch (type)
         {
-            case DestructibleSize.Small: return canDestroySmall;
-            case DestructibleSize.Large: return canDestroyLarge;
+            case DestructibleType.Plant: return damageType.Has(DamageType.Plant);
+            case DestructibleType.Stone: return damageType.Has(DamageType.Stone);
             default: return false;
         }
+    }
+
+    public void AddDamage(DamageType type)
+    {
+        damageType.Add(type);
+        Debug.Log($"Добавлен тип урона: {type}");
+    }
+
+    public void RemoveDamage(DamageType type)
+    {
+        damageType.Remove(type);
+        Debug.Log($"Удалён тип урона: {type}");
     }
 }

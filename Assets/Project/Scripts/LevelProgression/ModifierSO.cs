@@ -2,49 +2,47 @@
 
 public enum ModifierType
 {
-    DestroySmall,
-    DestroyLarge,
-    // другие типы модификаторов...
+    DestroyPlant,
+    DestroyStone
 }
 
 [CreateAssetMenu(fileName = "ModifierSO", menuName = "Modifier")]
 public class ModifierSO : ScriptableObject
 {
     public string modifierName;
-    [TextArea] public string description;
     public ModifierType modifierType;
 
-    // Применить модификатор
     public virtual void ApplyTo(PlayerAbilities target)
     {
         if (target == null) return;
 
         switch (modifierType)
         {
-            case ModifierType.DestroySmall:
-                target.canDestroySmall = true;
+            case ModifierType.DestroyPlant:
+                target.AddDamage(DamageType.Plant);
                 break;
-            case ModifierType.DestroyLarge:
-                target.canDestroyLarge = true;
+            case ModifierType.DestroyStone:
+                target.AddDamage(DamageType.Stone);
                 break;
         }
 
         Debug.Log($"Модификатор применён: {modifierName} -> {modifierType}");
     }
 
-    // удаление эффекта
     public virtual void RemoveFrom(PlayerAbilities target)
     {
         if (target == null) return;
 
         switch (modifierType)
         {
-            case ModifierType.DestroySmall:
-                target.canDestroySmall = false;
+            case ModifierType.DestroyPlant:
+                target.RemoveDamage(DamageType.Plant);
                 break;
-            case ModifierType.DestroyLarge:
-                target.canDestroyLarge = false;
+            case ModifierType.DestroyStone:
+                target.RemoveDamage(DamageType.Stone);
                 break;
         }
+
+        Debug.Log($"Модификатор удалён: {modifierName} -> {modifierType}");
     }
 }

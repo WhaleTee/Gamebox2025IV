@@ -7,7 +7,7 @@ public class PlayerLevel : MonoBehaviour
     public LevelProgressionSO levelProgression;
 
     [Header("Модификаторы по уровням")]
-    public ModifierSO[] modifiers; // индекс 0 -> уровень 1
+    public ModifierSO[] modifiers; // индекс 0 = уровень 1
 
     public int CurrentExp { get; private set; } = 0;
     public int CurrentLevel { get; private set; } = 0;
@@ -21,11 +21,9 @@ public class PlayerLevel : MonoBehaviour
         abilities = GetComponent<PlayerAbilities>();
         CurrentLevel = levelProgression != null ? levelProgression.GetLevel(CurrentExp) : 0;
 
-        // Применяем модификаторы для стартового уровня
+        // Применяем модификаторы для начального уровня
         for (int lvl = 1; lvl <= CurrentLevel; lvl++)
-        {
             ApplyModifierForLevel(lvl);
-        }
     }
 
     public void AddExperience(int amount)
@@ -36,9 +34,9 @@ public class PlayerLevel : MonoBehaviour
         Debug.Log($"Получено опыта: {amount}, всего: {CurrentExp}");
 
         int newLevel = levelProgression.GetLevel(CurrentExp);
+
         if (newLevel > CurrentLevel)
         {
-            // Применяем модификаторы
             for (int lvl = CurrentLevel + 1; lvl <= newLevel; lvl++)
             {
                 CurrentLevel = lvl;
@@ -51,31 +49,49 @@ public class PlayerLevel : MonoBehaviour
 
     private void ApplyModifierForLevel(int level)
     {
-        int index = level - 1;
-
         if (abilities == null)
             abilities = GetComponent<PlayerAbilities>();
 
-        if (modifiers != null && index >= 0 && index < modifiers.Length && modifiers[index] != null)
+        if (modifiers == null)
         {
-            if (abilities != null)
-                modifiers[index].ApplyTo(abilities);
-            else
-                Debug.LogError("PlayerAbilities не найден! Модификатор не применён.");
+            Debug.LogWarning("Массив модификаторов пуст!");
+            return;
         }
+
+        int index = level - 1;
+
+        if (index < 0 || index >= modifiers.Length)
+        {
+            Debug.LogWarning($"Нет модификатора для уровня {level} (индекс {index})");
+            return;
+        }
+
+        if (modifiers[index] == null)
+        {
+            Debug.LogWarning($"Модификатор null для уровня {level}");
+            return;
+        }
+
+        modifiers[index].ApplyTo(abilities);
     }
 
     public void ResetProgress()
     {
+        CurrentExp = 0;
+        CurrentLevel = 0;
+
+        if (abilities == null)
+            abilities = GetComponent<PlayerAbilities>();
+
         if (modifiers != null)
         {
             foreach (var mod in modifiers)
             {
-                mod?.RemoveFrom(abilities);
+                if (mod != null)
+                    mod.RemoveFrom(abilities);
             }
         }
-        Debug.Log($"Прогресс обнулен");
-        CurrentExp = 0;
-        CurrentLevel = 0;
+
+        Debug.Log($"Прогресс обнулен. CurrentExp={CurrentExp}, CurrentLevel={CurrentLevel}");
     }
 }

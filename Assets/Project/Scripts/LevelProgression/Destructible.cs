@@ -1,21 +1,26 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Разрушаемый объект
+/// </summary>
 public class Destructible : MonoBehaviour
 {
-    public DestructibleSize size = DestructibleSize.Small;
+    public DestructibleType type = DestructibleType.Plant;
 
-    // Вызывается, когда игрок пытается разрушить объект
+    /// <summary>
+    /// Игрок пытается разрушить объект
+    /// </summary>
     public bool TryDestroyBy(GameObject instigator)
     {
         var abilities = instigator.GetComponent<PlayerAbilities>();
-        if (abilities != null && abilities.CanDestroy(size))
+        if (abilities != null && abilities.CanDestroy(type))
         {
             Destroy(gameObject);
-            Debug.Log($"Разрушен объект {name} (size={size})");
+            Debug.Log($"Разрушен объект {name} (size={type})");
             return true;
         }
 
-        Debug.Log($"Нельзя разрушить {name} (size={size}) — нет способности");
+        Debug.Log($"Нельзя разрушить {name} (size={type}) — нет способности");
         return false;
     }
 }

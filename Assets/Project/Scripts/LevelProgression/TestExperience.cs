@@ -4,7 +4,7 @@ public class TestExperience : MonoBehaviour
 {
     public PlayerLevel player;
 
-    private void Awake()
+    private void Start()
     {
         if (player == null)
         {
@@ -13,13 +13,16 @@ public class TestExperience : MonoBehaviour
         }
 
         player.ResetProgress();
-
-        // Добавляем опыт по 5 очков каждые 2 секунды
-        InvokeRepeating(nameof(GainExp), 1f, 2f);
     }
 
-    void GainExp()
+    private void Update()
     {
-        player.AddExperience(5);
+        if (player == null) return;
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.F))
+        {
+            player.AddExperience(5);
+            Debug.Log("Начислено 5 опыта по нажатию F");
+        }
     }
 }

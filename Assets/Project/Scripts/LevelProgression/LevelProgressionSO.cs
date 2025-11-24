@@ -29,6 +29,6 @@ public class LevelProgressionSO : ScriptableObject
     {
         if (currentLevel < experiencePerLevel.Length)
             return experiencePerLevel[currentLevel];
-        return -1; // максимальный уровень
+        return -1;
     }
 }

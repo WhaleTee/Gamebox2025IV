@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35cae006dd115114087ee593c315e341, type: 3}
-  m_Name: EasyDamageModifier
+  m_Name: StoneDamageModifier
   m_EditorClassIdentifier: 
-  modifierName: "\u0420\u0430\u0437\u0440\u0443\u0448\u0435\u043D\u0438\u0435+"
-  description: "\u0420\u0430\u0437\u0440\u0443\u0448\u0435\u043D\u0438\u0435 \u043B\u0438\u0430\u043D"
+  modifierName: "\u0420\u0430\u0437\u0440\u0443\u0448\u0435\u043D\u0438\u0435 \u043A\u0430\u043C\u043D\u0435\u0439"
+  modifierType: 1
