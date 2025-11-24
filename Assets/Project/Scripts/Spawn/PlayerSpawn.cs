@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Reflex.Attributes;
 using Characters;
 using Extensions;
@@ -12,9 +13,9 @@ namespace Spawn
         private void Start()
         {
             playerData.PlayerStart.GetComponent<SpriteRenderer>().enabled = false;
-            var playerCharacter = GameObject.Instantiate(playerData.Prefab).InjectGameObject();
+            var playerCharacter = Instantiate(playerData.Prefab);
             playerCharacter.transform.SetPositionAndRotation(playerData.PlayerStart.position, playerData.PlayerStart.rotation);
-            playerCharacter.Init();
+            // playerCharacter.Init();
         }
     }
 }

@@ -14,31 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <StairsMovementSettings>k__BackingField:
     friction: 0
-    maxSpeed: 2.8
-    maxTurnSpeed: 44.4
-    maxAcceleration: 61.7
-    maxDeceleration: 57.5
+    maxSpeed: 6
+    maxTurnSpeed: 80
+    maxAcceleration: 80
+    maxDeceleration: 80
     useAcceleration: 1
   <GroundMovementSettings>k__BackingField:
     friction: 0
-    maxSpeed: 2.99
+    maxSpeed: 6
     maxTurnSpeed: 80
     maxAcceleration: 80
     maxDeceleration: 80
     useAcceleration: 1
     maxSlopeAngle: 45
   <AirMovementSettings>k__BackingField:
-    maxSpeed: 9.01
+    maxSpeed: 6
     maxTurnSpeed: 80
     maxAcceleration: 80
     maxDeceleration: 80
     upwardGravityMultiplier: 1
     downwardGravityMultiplier: 5.23
-    speedLimit: 50
+    speedLimit: 25
     coyoteTime: 0.15
     jumpBuffer: 0.105
-    jumpHeight: 3.13
+    jumpHeight: 2
     timeToJumpApex: 0.38
-    jumpCutOff: 5.23
-    maxAirJumps: 1
-    variableJumpHeight: 0
+    jumpCutOff: 2.23
+    maxAirJumps: 0
+    variableJumpHeight: 1

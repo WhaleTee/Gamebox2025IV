@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: -365553809
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6136943020771521308, guid: 25d9da47eb087de49bd92f39789ee0a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4772cf4322d3db745ad8a444c91d5c25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -123,8 +123,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: -0.040245056, y: -0.104156494, z: 0}
-      m_Extent: {x: 2.1447525, y: 2.005844, z: 0}
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 2.1900024, y: 2.1900024, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0.31
     m_FlipX: 1
@@ -202,8 +202,8 @@ MonoBehaviour:
     m_impactPrefab: {fileID: 9153646125815562345, guid: f2f1dc441df19c74bb7d283c9c758246, type: 3}
     m_maxImpacts: 3
     m_deathPrefab: {fileID: 1433757871781966747, guid: 5e615d917c9f9f440880b64ee20aeeed, type: 3}
-    PunchPositionStrength: -0.3
-    PunchScaleStrength: -0.06
+    m_punchPositionStrength: -0.3
+    m_punchScaleStrength: -0.06
     m_audioPrefab: {fileID: 6282137706235025767, guid: be5e526d57881b84cbd15fecbca59646, type: 3}
     polyphonyLimit: 4
     impactSound:

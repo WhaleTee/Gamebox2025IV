@@ -76,12 +76,10 @@ namespace Movement
             {
                 if (userInput.Movement.y > 0 && environmentSensor.IsStairsOver)
                 {
-                    transform.position += Vector3.up;
                     ChangeState(stairsMovement);
                 }
                 else if (userInput.Movement.y < 0 && environmentSensor.IsStairsUnder)
                 {
-                    transform.position += Vector3.down;
                     ChangeState(stairsMovement);
                 }
             }
@@ -89,7 +87,10 @@ namespace Movement
             {
                 if (environmentSensor.IsOnGround && desiredJump) ChangeState(airMovement);
                 else if (environmentSensor.IsOnGround && (userInput.Movement.x != 0 || stairs == null)) ChangeState(groundMovement);
-                else if (!environmentSensor.IsOnGround && stairs == null) ChangeState(airMovement);
+                else if (!environmentSensor.IsOnGround)
+                {
+                    if (stairs == null || (desiredJump && userInput.Movement.x != 0)) ChangeState(airMovement);
+                }
             }
             else if (
                 (!environmentSensor.IsOnGround ||

@@ -14,6 +14,7 @@ namespace Animation
         private readonly int jumpRisingHash = Animator.StringToHash("JumpRising");
         private readonly int fallingHash = Animator.StringToHash("Falling");
         private readonly int landingHash = Animator.StringToHash("Landing");
+        private readonly int climbingHash = Animator.StringToHash("Climbing");
 
         private MovementState previousState;
         private MovementState currentState;
@@ -32,6 +33,7 @@ namespace Animation
 
         private void Update()
         {
+            animator.speed = 1;
             if (currentState is AirMovement)
             {
                 var linearVelocityY = body.linearVelocityY - movementController.GroundVelocity.y;
@@ -44,7 +46,8 @@ namespace Animation
                 else animator.Play(idleHash);
             } else if (currentState is StairsMovement)
             {
-                animator.Play(idleHash);
+                if (body.linearVelocityY != 0) animator.Play(climbingHash);
+                else animator.speed = 0;
             }
         }
 

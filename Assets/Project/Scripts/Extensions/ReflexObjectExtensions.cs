@@ -24,5 +24,11 @@ namespace Extensions
             GameObjectInjector.InjectObject(obj.gameObject, SceneManager.GetActiveScene().GetSceneContainer());
             return obj;
         }
+
+        public static T InjectRecursive<T>(this T obj) where T : Component
+        {
+            GameObjectInjector.InjectRecursive(obj.gameObject, SceneManager.GetActiveScene().GetSceneContainer());
+            return obj;
+        }
     }
 }
