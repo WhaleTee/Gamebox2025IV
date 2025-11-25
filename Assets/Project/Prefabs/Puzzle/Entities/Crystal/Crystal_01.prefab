@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4997066031159232080}
@@ -80,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: -365553809
   m_SortingLayer: 5
   m_SortingOrder: 3
-  m_Sprite: {fileID: 7308664677214642820, guid: c043d7f070271d3469d14d3a569a98a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6fdaa9ae0c62b5347abf94ebb230acee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.97, y: 4.97}
+  m_Size: {x: 1, y: 1.1842105}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,14 +103,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1d64cba56aaef44aee839df1e29e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_takesDamageType: -1
-  m_mySprite: {fileID: 4561020602225946249}
-  m_activated: {fileID: 0}
-  m_activatedDamaged: {fileID: 0}
-  m_intact: {fileID: 0}
-  m_damaged: {fileID: 0}
-  m_broken: {fileID: 0}
-  m_light: {fileID: 3137367391691113667}
+  <InitialState>k__BackingField: 0
+  m_takesDamageType: 4
+  m_effects:
+    m_pieceAnimation:
+      m_mySprite: {fileID: 4561020602225946249}
+      m_activated: {fileID: 0}
+      m_activatedDamaged: {fileID: 0}
+      m_intact: {fileID: 0}
+      m_damaged: {fileID: 0}
+      m_broken: {fileID: 0}
+      m_punchPositionStrength: 0.1
+      m_punchScaleStrength: -0.06
+    m_pieceAudio:
+      m_polyphonyLimit: 4
+      m_impactSound: []
+      m_deathSound: {fileID: 0}
+      m_activationSound: {fileID: 0}
+    m_pieceParticles:
+      m_impactPrefab: {fileID: 0}
+      m_maxImpacts: 2
+      m_chargePrefab: {fileID: 0}
+      m_deathPrefab: {fileID: 0}
+    m_light: {fileID: 3137367391691113667}
 --- !u!58 &2485120136650512248
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,7 +169,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8402718996193104570}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
