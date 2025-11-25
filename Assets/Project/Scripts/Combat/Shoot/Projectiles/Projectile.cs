@@ -1,4 +1,6 @@
-﻿using Combat.Weapon;
+﻿using Characters;
+using Combat.Weapon;
+using Reflex.Attributes;
 using System;
 using UnityEngine;
 
@@ -62,7 +64,7 @@ namespace Combat.Projectiles
         private void DealDamage(Collision2D target)
         {
             if (target.gameObject.TryGetComponent<IDamageable>(out var damageable))
-                damageable.InflictDamage(WeaponProjectileStats.Damage);
+                damageable.InflictDamage(_damage);
         }
 
         private void ProjectileHit(Collision2D target)
@@ -77,5 +79,13 @@ namespace Combat.Projectiles
 
             OnDisable?.Invoke(this);
         }
+
+        private Damage _damage;
+        [Inject]
+        private void Inject(PlayerInjectionData di)
+        {
+            _damage = di.PlayerAbilities.damage;
+        }
+
     }
 }
