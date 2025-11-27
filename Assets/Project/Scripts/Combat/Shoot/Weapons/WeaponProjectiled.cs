@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Reflex.Attributes;
 using Characters;
 using Characters.Equipment;
@@ -14,6 +15,12 @@ namespace Combat.Weapon
         [Inject] private BehavioursSystem behaviour;
         [Inject] private CameraInjectionData cameraData;
         [SerializeField] private ProjectilesRepository repository;
+        public Func<DamageBundle> GetDamage;
+
+        public void SetDamage(Func<DamageBundle> getDamage)
+        {
+            GetDamage = getDamage;
+        }
 
         protected override void Shot(Vector2 origin)
         {
@@ -22,7 +29,7 @@ namespace Combat.Weapon
             behaviour.Register(projectile);
             PrepareProjectileData(projectile, ray.direction);
             projectile.OnDisable += OnProjectileDisable;
-            projectile.Enable(FirePoint.position, Config.Stats, Events);
+            projectile.Enable(FirePoint.position, Events, this);
         }
 
         private Projectile GetProjectile(Vector2 origin) =>

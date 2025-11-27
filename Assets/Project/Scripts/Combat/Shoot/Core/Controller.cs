@@ -1,10 +1,10 @@
-﻿using Characters;
-using Characters.Equipment;
-using Extensions;
-using Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Input;
+using Extensions;
+using Characters;
+using Characters.Equipment;
 using IEquipment = Characters.Equipment.IEquipment;
 using Key = UnityEngine.InputSystem.Key;
 using Phase = UnityEngine.InputSystem.InputActionPhase;

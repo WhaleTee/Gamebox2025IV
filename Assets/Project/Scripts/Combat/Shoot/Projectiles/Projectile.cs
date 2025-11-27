@@ -1,8 +1,7 @@
-﻿using Characters;
-using Combat.Weapon;
-using Reflex.Attributes;
-using System;
+﻿using System;
 using UnityEngine;
+using Combat.Weapon;
+using Characters;
 
 namespace Combat.Projectiles
 {
@@ -14,7 +13,7 @@ namespace Combat.Projectiles
         public event Action<Collision2D> OnCollideExit;
         public event Action<Projectile> OnDisable;
         public ProjectileConfig Config { get; private set; }
-        public WeaponStatsProjectile WeaponProjectileStats { get; private set; }
+        public WeaponProjectiled Weapon { get; private set; }
         [SerializeField] private Collider2D m_collider;
         [SerializeField] private Variant m_variant;
         [SerializeField] private ProjectilesRepository m_dataRepository;
@@ -28,15 +27,15 @@ namespace Combat.Projectiles
 
         public void Awake() => m_effects.Init(this);
 
-        public void Enable(Vector3 spawnPoint, WeaponStatsProjectile weaponStatsProjectile, Events events)
+        public void Enable(Vector3 spawnPoint, Events events, WeaponProjectiled weapon)
         {
             transform.position = spawnPoint;
 
             isEnabled = true;
             m_collider.enabled = true;
 
+            this.Weapon = weapon;
             this.weaponEvents = events;
-            this.WeaponProjectileStats = weaponStatsProjectile;
             OnCollide += _ => Debug.Log($"On Collide {gameObject.name}", gameObject);
             OnCollide += DealDamage;
             OnCollide += ProjectileHit;
@@ -64,7 +63,11 @@ namespace Combat.Projectiles
         private void DealDamage(Collision2D target)
         {
             if (target.gameObject.TryGetComponent<IDamageable>(out var damageable))
-                damageable.InflictDamage(_damage);
+            {
+                var damage = Weapon.GetDamage();
+                damageable.SetDamageSource(Weapon);
+                damageable.InflictDamage(Weapon.GetDamage());
+            }
         }
 
         private void ProjectileHit(Collision2D target)
@@ -79,13 +82,5 @@ namespace Combat.Projectiles
 
             OnDisable?.Invoke(this);
         }
-
-        private Damage _damage;
-        [Inject]
-        private void Inject(PlayerInjectionData di)
-        {
-            _damage = di.PlayerAbilities.damage;
-        }
-
     }
 }

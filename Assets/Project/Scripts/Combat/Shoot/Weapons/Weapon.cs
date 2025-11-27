@@ -3,28 +3,29 @@ using Characters.Equipment;
 using Extensions;
 using Random = UnityEngine.Random;
 using WeaponStateMachine = Combat.Weapon.State.StateMachine;
-using Audio;
+using Characters;
 
 namespace Combat.Weapon
 {
-    public partial class Weapon<TStats> : Equipment<WeaponConfig<TStats>, TStats>, IUsableEquipment where TStats : WeaponStats
+    public partial class Weapon<TStats> : Equipment<WeaponConfig<TStats>, TStats>, IUsableEquipment, IDamageSource where TStats : WeaponStats
     {
         [field: SerializeField] public Transform FirePoint { get; protected set; }
         public Events Events { get; protected set; }
+        public CharacterBase Owner { get; protected set; }
         protected WeaponStateMachine stateMachine;
         protected Blackboard blackboard;
         protected Effects effects;
 
-        public virtual void Install()
+        public virtual void Install(CharacterBase owner)
         {
             Events = new(FirePoint);
             stateMachine = new();
             effects = new();
-            blackboard = new();
-            blackboard.Mana = 1;
+            blackboard = new() { Mana = 1 };
             stateMachine.Install(Config.Stats, blackboard, Events);
             effects.Install(transform, Events, FirePoint, Config.Audio, Config.VisualEffects);
             gameObject.InjectGameObject();
+            this.Owner = owner;
         }
 
         public virtual void Init()

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Combat;
 using Combat.Projectiles;
@@ -40,11 +39,6 @@ namespace Puzzle
             OnStateChanged?.Invoke(state);
         }
 
-        public void InflictDamage(Damage damage)
-        {
-
-        }
-
         private void ResetState() => SetState(InitialState);
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -53,7 +47,7 @@ namespace Puzzle
             if (!hit)
                 return;
 
-            bool canDealDamage = collision.gameObject.GetComponent<Projectile>().WeaponProjectileStats.Damage.Type.Has(m_takesDamageType);
+            bool canDealDamage = collision.gameObject.GetComponent<Projectile>().Weapon.GetDamage().Has(m_takesDamageType);
             if (!canDealDamage)
                 return;
 
@@ -61,5 +55,8 @@ namespace Puzzle
             OnImpact?.Invoke(contact.point, contact.normal);
             Activate();
         }
+
+        public void InflictDamage(DamageBundle damage){}
+        public void SetDamageSource(IDamageSource damageSource){}
     }
 }

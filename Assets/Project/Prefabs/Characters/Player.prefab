@@ -419,8 +419,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelProgression: {fileID: 11400000, guid: 5c964480304a6ae429c84207ebeb35a0, type: 2}
   modifiers:
-  - {fileID: 11400000, guid: a72c88db2c943d94da92015b7d10e78c, type: 2}
-  - {fileID: 11400000, guid: b95767fde4421554b8423f14fc7a9f3a, type: 2}
+  - Modifiers:
+    - {fileID: 11400000, guid: b6a6bb099fee60244aa01eb3eec0f3e0, type: 2}
+  - Modifiers:
+    - {fileID: 11400000, guid: 95c46c195412bb6409b0d0bda16cec4a, type: 2}
+    - {fileID: 11400000, guid: 224b3ff25fed11144bc8231773b0f998, type: 2}
+  - Modifiers:
+    - {fileID: 11400000, guid: 95c46c195412bb6409b0d0bda16cec4a, type: 2}
+    - {fileID: 11400000, guid: 6dc1fcf3f04790e489c66b192d43d74f, type: 2}
+    - {fileID: 11400000, guid: 6d3dea992c7657c44af59a1e6bae525e, type: 2}
+  - Modifiers:
+    - {fileID: 11400000, guid: 95c46c195412bb6409b0d0bda16cec4a, type: 2}
+    - {fileID: 11400000, guid: 6dc1fcf3f04790e489c66b192d43d74f, type: 2}
+    - {fileID: 11400000, guid: e0763865877f1e848b089bddbc13df68, type: 2}
+    - {fileID: 11400000, guid: 98f6d3a7f8aa095488d59b960c4e3b89, type: 2}
+  - Modifiers:
+    - {fileID: 11400000, guid: d026e6c0a7de91f4498689d92ae8f09d, type: 2}
+  - Modifiers:
+    - {fileID: 11400000, guid: 7a7b11fdf77a8c042bed297352d18e66, type: 2}
 --- !u!114 &4924654797050086728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0753e68daef7a1f439009e2e8428d94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: -1
+  movementConfig: {fileID: 11400000, guid: 789e562fb0f89924493217d1abd9c1f7, type: 2}
 --- !u!114 &-999474267849435468
 MonoBehaviour:
   m_ObjectHideFlags: 0
