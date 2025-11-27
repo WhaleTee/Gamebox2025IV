@@ -32,6 +32,7 @@ namespace SceneManagement
             }
 
             _ = LoadSceneWithScreenAsync(sceneName);
+            _loadingScreenInstance.SetProgress(0f);
         }
 
         public void RestartScene()
@@ -68,10 +69,30 @@ namespace SceneManagement
 
             _isLoading = true;
 
+            if (userInput != null)
+                userInput.Enabled = true;
+            Time.timeScale = 1f;
+
+            if (!SceneExists(sceneName))
+            {
+                Debug.LogError($"Сцена '{sceneName}' не найдена!");
+                _isLoading = false;
+                return;
+            }
+
             if (_loadingScreenInstance == null)
             {
                 _loadingScreenInstance = Instantiate(loadingScreenPrefab);
                 DontDestroyOnLoad(_loadingScreenInstance.gameObject);
+
+                if (_loadingScreenInstance.TryGetComponent<Canvas>(out var canvas))
+                {
+                    canvas.overrideSorting = true;
+                    canvas.sortingOrder = 9999;
+                }
+
+                if (_loadingScreenInstance.TryGetComponent<CanvasGroup>(out var cg))
+                    cg.alpha = 1f;
             }
 
             await _loadingScreenInstance.FadeInAsync();
@@ -81,7 +102,8 @@ namespace SceneManagement
 
             while (loadOperation.progress < 0.9f)
             {
-                _loadingScreenInstance.SetProgress(loadOperation.progress / 0.9f);
+                float progress = Mathf.Clamp01(loadOperation.progress / 0.9f);
+                _loadingScreenInstance.SetProgress(progress);
                 await UniTask.Yield();
             }
 
@@ -92,7 +114,9 @@ namespace SceneManagement
             await UniTask.WaitUntil(() => loadOperation.isDone);
 
             await _loadingScreenInstance.FadeOutAsync();
+
             _isLoading = false;
         }
+
     }
 }
