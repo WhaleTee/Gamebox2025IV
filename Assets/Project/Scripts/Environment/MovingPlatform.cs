@@ -32,6 +32,8 @@ namespace Environment
 
         public Vector2 Velocity { get; private set; }
 
+        public void SetActive(bool value) => isActive = value;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
