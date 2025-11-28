@@ -15,12 +15,12 @@ namespace Misc.Trigger.Collisions
         [SerializeField] private UnityEvent<Collider2D> onTriggerStay;
         [SerializeField] private UnityEvent<Collider2D> onTriggerExit;
         
-        private Collider2D collider;
+        private Collider2D _collider;
 
         private void Awake()
         {
-            collider = GetComponent<Collider2D>();
-            collider.isTrigger = true;
+            _collider = GetComponent<Collider2D>();
+            _collider.isTrigger = true;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
