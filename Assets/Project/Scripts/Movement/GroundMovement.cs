@@ -16,6 +16,7 @@ namespace Movement
         private Vector2 desiredVelocity;
         private Vector2 velocity;
         private float inputX;
+        private int directionX;
         private bool onGround;
         private bool onSlope;
 
@@ -48,7 +49,8 @@ namespace Movement
         {
             if (environmentSensor.SlopeAngle > 0.1)
             {
-                desiredVelocity = environmentSensor.SlopePerpendicular * (environmentSensor.SlopeAngle > preset.GroundMovementSettings.maxSlopeAngle ? inputX : -inputX);
+                desiredVelocity = environmentSensor.SlopePerpendicular * (environmentSensor.SlopeAngle > preset.GroundMovementSettings.maxSlopeAngle ? 
+                    (environmentSensor.SlopePerpendicular.x / environmentSensor.SlopePerpendicular.x) : -inputX);
             } else desiredVelocity = new Vector2(inputX, 0f);
             desiredVelocity *= Mathf.Max(preset.GroundMovementSettings.maxSpeed - preset.GroundMovementSettings.friction, 0f);
             velocity = body.linearVelocity - environmentSensor.GetGroundVelocity();
@@ -60,7 +62,11 @@ namespace Movement
             else MoveWithoutAcceleration();
         }
 
-        private void CheckMovement() => inputX = userInput.Enabled ? userInput.Movement.x : 0;
+        private void CheckMovement()
+        {
+            inputX = userInput.Enabled ? userInput.Movement.x : 0;
+            if (inputX != 0) directionX = inputX > 0 ? 1 : -1;
+        }
 
         private void MoveWithAcceleration()
         {

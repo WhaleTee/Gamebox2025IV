@@ -18,7 +18,7 @@ namespace Movement
         private AirMovement airMovement;
         private StairsMovement stairsMovement;
         private MovementState currentState;
-        private bool desiredJump;
+        [HideInInspector] public bool desiredJump;
 
         public Vector2 GroundVelocity { get; private set; }
         public Vector2 Direction { get; private set; }
@@ -60,7 +60,8 @@ namespace Movement
             CheckForStateTransition();
             currentState.FixedUpdate();
             desiredJump = false;
-            mainCollider.enabled = currentState is not StairsMovement;
+            // mainCollider.enabled = currentState is not StairsMovement;
+            mainCollider.isTrigger = currentState is StairsMovement;
         }
 
         private void OnDestroy()
@@ -99,7 +100,7 @@ namespace Movement
             {
                 ChangeState(airMovement);
             }
-            else if (environmentSensor.IsOnGround && currentState is AirMovement && !airMovement.IsJumpBufferActive())
+            else if (environmentSensor.IsOnGround && currentState is AirMovement && !airMovement.IsJumpBufferActive() && body.linearVelocityY <= 0)
             {
                 ChangeState(groundMovement);
             }
