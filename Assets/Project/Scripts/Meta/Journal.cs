@@ -7,7 +7,6 @@ public class Journal : Singleton<Journal>
 {
     [SerializeField] private NarrativeNotes narrativeData;
 
-    // Словарь записок по категориям (чтение снаружи)
     public IReadOnlyDictionary<NoteCategory, List<string>> Notes => notesByCategory;
 
     private readonly Dictionary<NoteCategory, List<string>> notesByCategory = new();
@@ -19,7 +18,6 @@ public class Journal : Singleton<Journal>
     {
         base.Awake();
 
-        // Инициализация словарей
         foreach (NoteCategory cat in Enum.GetValues(typeof(NoteCategory)))
         {
             notesByCategory[cat] = new List<string>();
@@ -27,21 +25,19 @@ public class Journal : Singleton<Journal>
         }
     }
 
-    // Добавление следующей записи категории
     public void AddNote(NoteCategory category)
     {
         if (narrativeData == null || narrativeData.notes.Length == 0) return;
 
         int index = nextIndexPerCategory[category];
 
-        // Находим первую непрочитанную запись категории
         for (; index < narrativeData.notes.Length; index++)
         {
             var note = narrativeData.notes[index];
             if (note.category == category)
             {
                 notesByCategory[category].Add(note.text);
-                nextIndexPerCategory[category] = index + 1; // сохраняем индекс
+                nextIndexPerCategory[category] = index + 1;
                 onNoteAdded?.Invoke(category, note.text);
                 NotePopupUI.Instance.Show(note.text);
                 return;

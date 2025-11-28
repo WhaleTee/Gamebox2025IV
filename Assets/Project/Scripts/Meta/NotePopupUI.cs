@@ -2,6 +2,7 @@
 using TMPro;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 
 public class NotePopupUI : MonoBehaviour
 {
@@ -17,7 +18,9 @@ public class NotePopupUI : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.02f;
     [SerializeField] private float holdTime = 2f;
 
-    private string fullText;
+    private readonly Queue<string> queue = new();
+    private bool isPlaying = false;
+
     private Tween currentTween;
 
     private void Awake()
@@ -28,32 +31,38 @@ public class NotePopupUI : MonoBehaviour
         root.anchoredPosition = new Vector2(0, -150);
         gameObject.SetActive(false);
     }
-
     public void Show(string text)
     {
-        fullText = text;
-        _ = ShowAsync();   // fire & forget
-    }
+        queue.Enqueue(text);
 
-    private async UniTaskVoid ShowAsync()
+        if (!isPlaying)
+            _ = PlayQueueAsync();
+    }
+    private async UniTaskVoid PlayQueueAsync()
+    {
+        isPlaying = true;
+
+        while (queue.Count > 0)
+        {
+            string text = queue.Dequeue();
+            await PlaySingleNoteAsync(text);
+        }
+
+        isPlaying = false;
+    }
+    private async UniTask PlaySingleNoteAsync(string text)
     {
         gameObject.SetActive(true);
         textField.text = "";
 
-        // На всякий случай убиваем старую анимацию
         currentTween?.Kill();
 
-        // Появление панели
         root.DOAnchorPosY(0, 0.35f).SetEase(Ease.OutCubic);
         panel.DOFade(1f, fadeDuration);
 
-        // Печать
-        await Typewriter(fullText);
-
-        // Ждем перед скрытием
+        await Typewriter(text);
         await UniTask.Delay((int)(holdTime * 1000));
 
-        // Скрытие
         currentTween = panel.DOFade(0f, fadeDuration);
         root.DOAnchorPosY(-150, 0.3f).SetEase(Ease.InCubic);
 
