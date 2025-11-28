@@ -43,7 +43,7 @@ public class Journal : Singleton<Journal>
                 notesByCategory[category].Add(note.text);
                 nextIndexPerCategory[category] = index + 1; // сохраняем индекс
                 onNoteAdded?.Invoke(category, note.text);
-                NotePopupUI.Instance.Show(note.text);   // ← вот это всё
+                NotePopupUI.Instance.Show(note.text);
                 return;
 
             }
