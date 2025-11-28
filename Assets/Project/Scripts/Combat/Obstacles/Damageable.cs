@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Misc;
 using Combat.Projectiles;
 
@@ -19,6 +18,9 @@ namespace Combat
         public event Action<int, int> OnTakeDamage;
         public event Action<Vector2, Vector3> OnImpact;
         public event Action OnDeath;
+        public event Action<IDamageSource> Killed;
+
+        private IDamageSource lastDamageSource;
 
         private void OnValidate()
         {
@@ -32,16 +34,25 @@ namespace Combat
             m_effects.Install(this);
         }
 
-        public void InflictDamage(Damage damage)
+        public void SetDamageSource(IDamageSource damageSource)
+        {
+            lastDamageSource = damageSource;
+        }
+
+        public void InflictDamage(DamageBundle attack)
         {
             if (Health <= 0) return;
-            if (damage.Type.Has(m_takesDamageType))
+            if (attack.Has(m_takesDamageType))
             {
-                Health -= damage.amount;
-                OnTakeDamage?.Invoke(damage.amount, Health);
+                int amount = attack.Damage[m_takesDamageType];
+                Health -= amount;
+                OnTakeDamage?.Invoke(amount, Health);
             }
             if (Health <= 0)
+            {
                 OnDeath?.Invoke();
+                Killed?.Invoke(lastDamageSource);
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -50,12 +61,14 @@ namespace Combat
             if (!hit)
                 return;
 
-            bool canDealDamage = collision.gameObject.GetComponent<Projectile>().WeaponProjectileStats.Damage.Type.Has(m_takesDamageType);
+            var projectile = collision.gameObject.GetComponent<Projectile>();
+            bool canDealDamage = projectile.Weapon.GetDamage().Has(m_takesDamageType);
             if (!canDealDamage)
                 return;
 
             var contact = collision.GetContact(0);
             OnImpact?.Invoke(contact.point, contact.normal);
         }
+
     }
 }

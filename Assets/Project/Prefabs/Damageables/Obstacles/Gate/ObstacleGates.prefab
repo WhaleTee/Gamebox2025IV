@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2728919558486776545
@@ -171,7 +171,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3835611146486396060
@@ -263,7 +263,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &9023261198778849639
@@ -403,7 +403,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5269095529512618083
@@ -658,7 +658,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8177265627466682832
@@ -839,6 +839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6808507912381483672}
   - component: {fileID: 3924566488077865605}
+  - component: {fileID: -4528554831691827701}
   - component: {fileID: 4675258020709528424}
   m_Layer: 8
   m_Name: ObstacleGates
@@ -880,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d107e7c8085245f8ac8672510076cce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 60
+  <MaxHealth>k__BackingField: 90
   m_takesDamageType: 8
   m_fadeable:
     m_visual: {fileID: 3835611146486396060}
@@ -902,14 +903,27 @@ MonoBehaviour:
     m_impactPrefab: {fileID: 8959501916705772239, guid: 08030d4da29603d458f00e6e475f6ede, type: 3}
     m_maxImpacts: 5
     m_deathPrefab: {fileID: 3808239909359728339, guid: 484d32f033686774e9cacaccce27dadd, type: 3}
-    PunchPositionStrength: -0.3
-    PunchScaleStrength: -0.06
+    m_punchPositionStrength: -0.3
+    m_punchScaleStrength: -0.06
     m_audioPrefab: {fileID: 6282137706235025767, guid: be5e526d57881b84cbd15fecbca59646, type: 3}
     polyphonyLimit: 4
     impactSound:
     - {fileID: 8300000, guid: 16079c8f1fd19424185721f1d3b21b16, type: 3}
     - {fileID: 8300000, guid: 20fc767ca10382f42baf9e96c755acbe, type: 3}
     deathSound: {fileID: 8300000, guid: 205cedd96b64af74da157ecfc53e94f3, type: 3}
+--- !u!114 &-4528554831691827701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8311779245775897485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e83d6080af97bd49a2950feb9bbc55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 12
 --- !u!61 &4675258020709528424
 BoxCollider2D:
   m_ObjectHideFlags: 0

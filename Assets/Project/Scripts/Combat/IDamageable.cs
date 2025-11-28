@@ -2,6 +2,7 @@
 {
     public interface IDamageable
     {
-        public void InflictDamage(Damage damage);
+        public void SetDamageSource(IDamageSource damageSource);
+        public void InflictDamage(DamageBundle damage);
     }
 }

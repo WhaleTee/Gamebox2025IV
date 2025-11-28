@@ -17,8 +17,8 @@ MonoBehaviour:
     <StrikeType>k__BackingField: 0
     <Mode>k__BackingField: 0
     <Damage>k__BackingField:
-      amount: 10
-      Type: 8
+      Amount: 10
+      Type: 0
     <FireRate>k__BackingField: 1.2
     <Range>k__BackingField: 30
     <SpreadAngle>k__BackingField: 5

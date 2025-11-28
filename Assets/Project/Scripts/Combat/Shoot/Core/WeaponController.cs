@@ -12,23 +12,27 @@ namespace Combat.Weapon
     [Serializable]
     public class WeaponController
     {
+        public event Action<WeaponProjectiled, WeaponProjectiled> WeaponChanged;
         private UserInput userInput;
         public int Current { get; private set; }
         private WeaponProjectiled current;
         private CharacterBase owner;
+        private bool subscribed;
 
         public void Install(CharacterBase owner, UserInput userInput)
         {
             this.owner = owner;
             this.userInput = userInput;
-            SubAll();
         }
 
         public void OnEnable()
         {
             SubAll();
         }
-        public void OnDisable() => UnsubAll();
+        public void OnDisable()
+        {
+            UnsubAll();
+        }
 
         private void UseStart()
         {
@@ -67,6 +71,8 @@ namespace Combat.Weapon
 
             WeaponProjectiled old = current;
             WeaponProjectiled newy = weapons[desired];
+
+            WeaponChanged?.Invoke(newy, old);
 
             Disable(old);
             Enable(newy);
@@ -126,9 +132,10 @@ namespace Combat.Weapon
 
         private void SubAll()
         {
-            if (userInput == null)
+            if (userInput == null || subscribed)
                 return;
 
+            subscribed = true;
             userInput.Attack[Phase.Started] += UseStart;
             userInput.Attack[Phase.Canceled] += UseCancel;
             userInput.Scroll += OnScroll;
@@ -138,6 +145,7 @@ namespace Combat.Weapon
 
         private void UnsubAll()
         {
+            subscribed = false;
             userInput.Attack[Phase.Started] -= UseStart;
             userInput.Attack[Phase.Canceled] -= UseCancel;
             userInput.Scroll -= OnScroll;

@@ -151,6 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4173685080988206568}
   - component: {fileID: 5743931199053438949}
+  - component: {fileID: 4001608358075261737}
   - component: {fileID: 967375366185842662}
   m_Layer: 8
   m_Name: ObstacleStone
@@ -187,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d107e7c8085245f8ac8672510076cce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 30
+  <MaxHealth>k__BackingField: 40
   m_takesDamageType: 2
   m_fadeable:
     m_visual: {fileID: 5684245040737826950}
@@ -217,6 +218,19 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8616bd610a698e84e9dadaacc81b9ce7, type: 3}
     - {fileID: 8300000, guid: c560834791658c3478399d6d7287bb29, type: 3}
     deathSound: {fileID: 8300000, guid: 459d09273b02c75409ff12b0f142fd02, type: 3}
+--- !u!114 &4001608358075261737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684245040737826950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e83d6080af97bd49a2950feb9bbc55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 6
 --- !u!68 &967375366185842662
 EdgeCollider2D:
   m_ObjectHideFlags: 0

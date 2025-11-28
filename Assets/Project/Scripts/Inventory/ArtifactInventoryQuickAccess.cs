@@ -1,7 +1,8 @@
-﻿using Input;
-using Reflex.Attributes;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using Reflex.Attributes;
+using Input;
+using Combat;
 
 namespace Artifacts
 {

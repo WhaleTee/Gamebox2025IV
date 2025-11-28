@@ -131,8 +131,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2428862677824511531}
-  - component: {fileID: 1728398469924419413}
   - component: {fileID: 3998428740756704067}
+  - component: {fileID: 5306121227317327391}
+  - component: {fileID: 1728398469924419413}
   m_Layer: 8
   m_Name: SpiderWeb_01
   m_TagString: Untagged
@@ -156,6 +157,54 @@ Transform:
   - {fileID: 2541202466061087509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3998428740756704067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487791077888767463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d107e7c8085245f8ac8672510076cce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 11
+  m_takesDamageType: 1
+  m_fadeable:
+    m_visual: {fileID: 2558456437026728808}
+    m_renderers:
+    - {fileID: 1210701465813856574}
+    - {fileID: 333119726300417010}
+    - {fileID: 7791725038940769164}
+    - {fileID: 5235640089137546790}
+    m_collider: {fileID: 1728398469924419413}
+    m_particles: []
+    m_lights: []
+    m_shadows: []
+  m_effects:
+    m_impactPrefab: {fileID: 1315464418105269541, guid: 1b9bf09752879dd40b9774a3ca6723b2, type: 3}
+    m_maxImpacts: 3
+    m_deathPrefab: {fileID: 7910013999262903649, guid: 6162c24aac46ea243bf965f38ffcfa84, type: 3}
+    m_punchPositionStrength: 0.1
+    m_punchScaleStrength: -0.06
+    m_audioPrefab: {fileID: 6282137706235025767, guid: be5e526d57881b84cbd15fecbca59646, type: 3}
+    polyphonyLimit: 4
+    impactSound: []
+    deathSound: {fileID: 0}
+--- !u!114 &5306121227317327391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487791077888767463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e83d6080af97bd49a2950feb9bbc55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 4
 --- !u!61 &1728398469924419413
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -202,41 +251,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9, y: 3.63}
   m_EdgeRadius: 0
---- !u!114 &3998428740756704067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3487791077888767463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d107e7c8085245f8ac8672510076cce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 5
-  m_takesDamageType: 1
-  m_fadeable:
-    m_visual: {fileID: 2558456437026728808}
-    m_renderers:
-    - {fileID: 1210701465813856574}
-    - {fileID: 333119726300417010}
-    - {fileID: 7791725038940769164}
-    - {fileID: 5235640089137546790}
-    m_collider: {fileID: 1728398469924419413}
-    m_particles: []
-    m_lights: []
-    m_shadows: []
-  m_effects:
-    m_impactPrefab: {fileID: 1315464418105269541, guid: 1b9bf09752879dd40b9774a3ca6723b2, type: 3}
-    m_maxImpacts: 3
-    m_deathPrefab: {fileID: 7910013999262903649, guid: 6162c24aac46ea243bf965f38ffcfa84, type: 3}
-    m_punchPositionStrength: 0.1
-    m_punchScaleStrength: -0.06
-    m_audioPrefab: {fileID: 6282137706235025767, guid: be5e526d57881b84cbd15fecbca59646, type: 3}
-    polyphonyLimit: 4
-    impactSound: []
-    deathSound: {fileID: 0}
 --- !u!1 &4249111630789156671
 GameObject:
   m_ObjectHideFlags: 0

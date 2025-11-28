@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5309973730593021386}
   - component: {fileID: 1878751833343598259}
+  - component: {fileID: 3132490321326951519}
   - component: {fileID: 5069713824532576626}
   m_Layer: 8
   m_Name: ObstacleVein
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d107e7c8085245f8ac8672510076cce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 35
+  <MaxHealth>k__BackingField: 48
   m_takesDamageType: 4
   m_fadeable:
     m_visual: {fileID: 8203652487267330700}
@@ -70,6 +71,19 @@ MonoBehaviour:
     - {fileID: 8300000, guid: de816b90ef33dce46a3832ac7f2cf088, type: 3}
     - {fileID: 8300000, guid: 0a020cdd0a4a54a4d86938d23778683f, type: 3}
     deathSound: {fileID: 8300000, guid: d727bb27626b79c44bcb123c7cedbe58, type: 3}
+--- !u!114 &3132490321326951519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215122910147571592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e83d6080af97bd49a2950feb9bbc55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 6
 --- !u!68 &5069713824532576626
 EdgeCollider2D:
   m_ObjectHideFlags: 0
