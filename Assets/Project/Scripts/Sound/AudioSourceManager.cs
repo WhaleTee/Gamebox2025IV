@@ -9,17 +9,6 @@ using Random = UnityEngine.Random;
 namespace Sound
 {
     [RequireComponent(typeof(AudioSource))]
-    public abstract class FootstepAudioPlayer : MonoBehaviour
-    {
-        [SerializeField] private AudioClip[] sounds;
-
-        public void PlayOneShot()
-        {
-            
-        }
-    }
-    
-    [RequireComponent(typeof(AudioSource))]
     public abstract class AudioSourceManager<T> : MonoBehaviour where T : Enum
     {
         [SerializeField] private AudioWithType<T>[] sounds;
