@@ -17,14 +17,14 @@ MonoBehaviour:
     <StrikeType>k__BackingField: 0
     <Mode>k__BackingField: 0
     <Damage>k__BackingField:
-      amount: 5
-      Type: 1
+      amount: 50
+      Type: 2
     <FireRate>k__BackingField: 1.3
     <Range>k__BackingField: 30
     <SpreadAngle>k__BackingField: 4
     <SpreadOffset>k__BackingField: 0.02
     <Variant>k__BackingField: 1
-    <ProjectileSpeed>k__BackingField: 3
+    <ProjectileSpeed>k__BackingField: 5
     <LifeTime>k__BackingField: 3
   <Name>k__BackingField: 
   <Audio>k__BackingField: {fileID: 11400000, guid: 838bff9866b535f429a348bc19e3576d, type: 2}

@@ -40,7 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2616097417698949287}
-  - component: {fileID: 2653400455833427209}
+  - component: {fileID: 7843813480618591613}
+  - component: {fileID: 2718354881893450824}
+  - component: {fileID: 3822819650391725281}
   m_Layer: 15
   m_Name: CameraFollowTarget
   m_TagString: Untagged
@@ -57,13 +59,50 @@ Transform:
   m_GameObject: {fileID: 1835873166367508081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 2.3, z: 0}
+  m_LocalPosition: {x: 2, y: 2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5706681134671957998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2653400455833427209
+--- !u!70 &7843813480618591613
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835873166367508081}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -2.1, y: -2}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
+--- !u!114 &2718354881893450824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,9 +111,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 1835873166367508081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d903b55821d850f498c379aad509dcba, type: 3}
+  m_Script: {fileID: 11500000, guid: d303abfec5364d9690a784484322c0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layers:
+    serializedVersion: 2
+    m_Bits: 65536
+  triggerEnter: 1
+  triggerStay: 0
+  triggerExit: 1
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3822819650391725281}
+        m_TargetAssemblyTypeName: Camera.CharacterCameraController, Assembly-CSharp
+        m_MethodName: SetNearGodZoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3822819650391725281}
+        m_TargetAssemblyTypeName: Camera.CharacterCameraController, Assembly-CSharp
+        m_MethodName: SetDefaultZoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3822819650391725281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835873166367508081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7dc2a2eaf04f86b3de3663be9d413a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomNearGods: 6.5
+  zoomDuration: 1
 --- !u!1 &1961380660328792692
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +307,7 @@ SpriteRenderer:
   m_SortingLayerID: -184531505
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2ec6c90bbfd22ad44980531f663e15dc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: edec826c20f115a40a5bfc87e98cd1e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -356,7 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_attaches:
   - <Slot>k__BackingField: 0
-    <Transform>k__BackingField: {fileID: 5301847286038166047}
+    <Transform>k__BackingField: {fileID: 2428517933314882835}
   - <Slot>k__BackingField: 1
     <Transform>k__BackingField: {fileID: 4660019971029792886}
   - <Slot>k__BackingField: 2
@@ -365,12 +457,7 @@ MonoBehaviour:
     <Transform>k__BackingField: {fileID: 3170151263231468817}
   - <Slot>k__BackingField: 4
     <Transform>k__BackingField: {fileID: 3170151263231468817}
-  mockWeapons:
-  - {fileID: 3556726174688872844, guid: 300edf2e19b338a42ad8063a7b847a8f, type: 3}
-  - {fileID: 3556726174688872844, guid: c5ef1ae5d090d1249933253298e4cd4f, type: 3}
-  - {fileID: 3556726174688872844, guid: 8df68cae579c0a242b4b082189c1ca89, type: 3}
-  - {fileID: 3556726174688872844, guid: 3abae1aecb452c143b304501236afbb9, type: 3}
-  - {fileID: 3556726174688872844, guid: ee76f9a0c37d063448e96718b3e4dbff, type: 3}
+  mockWeapons: []
 --- !u!114 &1715165497362137123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 11400000, guid: 789e562fb0f89924493217d1abd9c1f7, type: 2}
+  desiredJump: 0
 --- !u!114 &5051484333933034595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +488,7 @@ MonoBehaviour:
   colliderOffset: {x: 0.3, y: -1.25, z: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   stairsLayer:
     serializedVersion: 2
     m_Bits: 128

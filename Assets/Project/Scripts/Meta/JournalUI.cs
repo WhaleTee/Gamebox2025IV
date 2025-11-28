@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Pooling;
+using Reflex.Attributes;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -8,6 +10,8 @@ public class JournalUI : MonoBehaviour
     [SerializeField] private GameObject notePrefab;
     [SerializeField] private TextMeshProUGUI selectedNoteText;
 
+    [Inject] private ObjectPoolManager poolManager;
+    
     private void OnEnable()
     {
         Journal.Instance.onNoteAdded += AddNoteToUI;
@@ -23,7 +27,7 @@ public class JournalUI : MonoBehaviour
     private void PopulateNotes()
     {
         foreach (Transform child in notesContainer)
-            Destroy(child.gameObject);
+            poolManager.ReturnObjectToPool(child.gameObject);
 
         foreach (var note in Journal.Instance.Notes)
             AddNoteToUI(note);
@@ -31,7 +35,7 @@ public class JournalUI : MonoBehaviour
 
     private void AddNoteToUI(Note note)
     {
-        GameObject noteGO = Instantiate(notePrefab, notesContainer);
+        GameObject noteGO = poolManager.SpawnObject(notePrefab, notesContainer, Quaternion.identity);
         TMP_Text tmpText = noteGO.GetComponentInChildren<TMP_Text>();
         tmpText.text = note.Title;
 

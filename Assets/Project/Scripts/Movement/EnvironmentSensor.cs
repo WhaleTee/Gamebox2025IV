@@ -103,9 +103,9 @@ namespace Movement
             Gizmos.DrawLine(rayOnePosition, rayOnePosition + Vector3.down * groundLength);
             Gizmos.DrawLine(rayTwoPosition, rayTwoPosition + Vector3.down * groundLength);
             Gizmos.color = IsStairsOver || IsStairsUnder ? Color.green : Color.red;
-            var sensorColliderSize = sensorCollider.size / 2;
-            Gizmos.DrawWireCube(transform.position + (Vector3)sensorCollider.offset + Vector3.up * sensorColliderSize.y / stairsCheckYOffsetMultiplier, sensorColliderSize);
-            Gizmos.DrawWireCube(transform.position + (Vector3)sensorCollider.offset + Vector3.down * sensorColliderSize.y / stairsCheckYOffsetMultiplier, sensorColliderSize);
+            // var sensorColliderSize = sensorCollider.size / 2;
+            // Gizmos.DrawWireCube(transform.position + (Vector3)sensorCollider.offset + Vector3.up * sensorColliderSize.y / stairsCheckYOffsetMultiplier, sensorColliderSize);
+            // Gizmos.DrawWireCube(transform.position + (Vector3)sensorCollider.offset + Vector3.down * sensorColliderSize.y / stairsCheckYOffsetMultiplier, sensorColliderSize);
         }
 
         public bool IsOnSlope(float angle) => IsOnGround && SlopeAngle > 0.1f && SlopeAngle < angle;

@@ -50,7 +50,7 @@ namespace Combat.Weapon
             {
                 var slot = Slot.Weapon;
                 var eq = owner.Inventory.Equipment[slot];
-                if (eq[i] is WeaponProjectiled weapon)
+                if (i < eq.Count && eq[i] is WeaponProjectiled weapon)
                     weapons.Add(weapon);
             }
 
@@ -62,7 +62,7 @@ namespace Combat.Weapon
             if (desired < 0)
                 desired = 0;
 
-            if (Current == desired)
+            if (Current == desired && current != null)
                 return;
 
             WeaponProjectiled old = current;

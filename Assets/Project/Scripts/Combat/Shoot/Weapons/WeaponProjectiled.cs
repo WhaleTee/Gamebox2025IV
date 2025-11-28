@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using Reflex.Attributes;
-using Characters;
+﻿using Characters;
 using Characters.Equipment;
 using Combat.Projectiles;
 using Combat.Projectiles.Behaviours;
 using Pooling;
+using Reflex.Attributes;
+using UnityEngine;
 
 namespace Combat.Weapon
 {

@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Misc;
+using UnityEngine;
 
 public class Journal : Singleton<Journal>
 {
-    public List<Note> Notes { get; private set; } = new List<Note>();
-
+    [field: SerializeField] public List<Note> Notes { get; private set; }
     public event Action<Note> onNoteAdded;
 
-    public void AddNote(Note note)
-    {
+    public void AddNote(Note note) {
         Notes.Add(note);
         onNoteAdded?.Invoke(note);
     }

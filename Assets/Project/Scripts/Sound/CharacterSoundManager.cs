@@ -32,12 +32,12 @@ namespace Sound
 
         private void Update()
         {
-            if (currentState is AirMovement && body.linearVelocityY > 0) PlayOneShot(CharacterSoundType.Jump);
         }
 
         private void OnMovementStateChange(MovementState state)
         {
             currentState = state;
+            if (currentState is AirMovement && movementController.desiredJump) PlayOneShot(CharacterSoundType.Jump);
         }
     }
 }
