@@ -12,7 +12,7 @@ namespace Camera
         [SerializeField] private float zoomNearGods;
         [SerializeField] private float zoomDuration;
         
-        private CinemachineCamera camera;
+        private CinemachineCamera _camera;
         private CinemachineFollow cameraFollow;
         private float initZoom;
         private float initFollowOffsetY;
@@ -21,11 +21,11 @@ namespace Camera
         [Inject] 
         public void SetTarget(CameraInjectionData data)
         {
-            camera = data.CameraVirtual;
-            cameraFollow = camera.GetComponent<CinemachineFollow>();
-            initZoom = camera.Lens.OrthographicSize;
+            _camera = data.CameraVirtual;
+            cameraFollow = _camera.GetComponent<CinemachineFollow>();
+            initZoom = _camera.Lens.OrthographicSize;
             initFollowOffsetY = cameraFollow.FollowOffset.y;
-            camera.Target.TrackingTarget = transform;
+            _camera.Target.TrackingTarget = transform;
         }
 
         public void SetNearGodZoom()
@@ -45,18 +45,18 @@ namespace Camera
         private async UniTaskVoid ChangeZoom(float targetZoom, float targetOffsetY, float duration, CancellationToken token)
         {
             var time = 0f;
-            var init = camera.Lens.OrthographicSize;
+            var init = _camera.Lens.OrthographicSize;
             var initOffsetY = cameraFollow.FollowOffset.y;
             
             while (time < duration)
             {
-                camera.Lens.OrthographicSize = Mathf.Lerp(init, targetZoom, time / duration);
+                _camera.Lens.OrthographicSize = Mathf.Lerp(init, targetZoom, time / duration);
                 SetOffsetY(Mathf.Lerp(initOffsetY, targetOffsetY, time / duration));
                 time += Time.deltaTime;
                 await UniTask.Yield(token);
             }
             
-            camera.Lens.OrthographicSize = targetZoom;
+            _camera.Lens.OrthographicSize = targetZoom;
             SetOffsetY(targetOffsetY);
         }
 
