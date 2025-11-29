@@ -8,7 +8,7 @@ namespace Misc
     public class ActivateBase : IActivate
     {
         public bool IsActive { get; private set; }
-        public float Opacity { get; private set; }
+        public float Opacity { get; private set; } = 1;
         [SerializeField] private GameObject m_visual;
         [SerializeField] private List<SpriteRenderer> m_renderers;
         [SerializeField] private Collider2D m_collider;

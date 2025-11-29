@@ -22,8 +22,24 @@ namespace Combat.Projectiles
         private Events weaponEvents;
         private bool isEnabled;
 
-        private void OnCollisionEnter2D(Collision2D collision) { if (isEnabled) { OnCollide?.Invoke(collision); isEnabled = false; } }
-        private void OnCollisionExit2D(Collision2D collision) { if (isEnabled) OnCollideExit?.Invoke(collision); }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (isEnabled)
+            {
+                if (IgnoreTag(collision.gameObject)) return;
+                OnCollide?.Invoke(collision); isEnabled = false;
+            }
+        }
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (isEnabled)
+            {
+                if (IgnoreTag(collision.gameObject)) return;
+                OnCollideExit?.Invoke(collision);
+            }    
+        }
+
+        private bool IgnoreTag(GameObject go) => go.CompareTag("Platform") || go.CompareTag("Projectile");
 
         public void Awake() => m_effects.Init(this);
 

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Projectile
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - Player
   - God
   - 
-  - 
-  - 
+  - InteractableProjectile
+  - Platform
   - 
   - 
   - 

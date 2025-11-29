@@ -76,7 +76,7 @@ namespace Combat
 
         private async void Death(ActivateBase activate)
         {
-            await DOTween.To(() => activate.Opacity, activate.SetOpacity, 0f, 0.3f).AsyncWaitForCompletion();
+            await DOTween.To(() => activate.Opacity, activate.SetOpacity, 0f, 1f).AsyncWaitForCompletion();
             damageable.Activate.SetActive(false);
         }
 

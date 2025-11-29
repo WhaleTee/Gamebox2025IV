@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 8744515077936392279}
   - component: {fileID: 5477603522527425062}
   - component: {fileID: -134618178843283193}
+  - component: {fileID: -1899417836546005278}
   - component: {fileID: 8058074044485914365}
   m_Layer: 8
   m_Name: SpiderWeb_03
@@ -204,7 +205,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e83d6080af97bd49a2950feb9bbc55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 4
+  amount: 2
+--- !u!114 &-1899417836546005278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293390586405618765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6991c22de1155574b8a7da4dbcf2af91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &8058074044485914365
 BoxCollider2D:
   m_ObjectHideFlags: 0

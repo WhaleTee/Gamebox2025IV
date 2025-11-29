@@ -840,6 +840,7 @@ GameObject:
   - component: {fileID: 6808507912381483672}
   - component: {fileID: 3924566488077865605}
   - component: {fileID: -4528554831691827701}
+  - component: {fileID: 8065170234533951353}
   - component: {fileID: 4675258020709528424}
   m_Layer: 8
   m_Name: ObstacleGates
@@ -886,6 +887,7 @@ MonoBehaviour:
   m_fadeable:
     m_visual: {fileID: 3835611146486396060}
     m_renderers:
+    - {fileID: 7864003135207418179}
     - {fileID: 118562660382742920}
     - {fileID: 6933937021783452331}
     - {fileID: 6383175453199318752}
@@ -924,6 +926,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 12
+--- !u!114 &8065170234533951353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8311779245775897485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6991c22de1155574b8a7da4dbcf2af91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &4675258020709528424
 BoxCollider2D:
   m_ObjectHideFlags: 0

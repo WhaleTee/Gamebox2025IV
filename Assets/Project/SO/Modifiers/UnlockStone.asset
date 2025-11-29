@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: UnlockStone
   m_EditorClassIdentifier: 
   <Name>k__BackingField: "\u041B\u043E\u043C\u0430\u0442\u044C\u041A\u0430\u043C\u043D\u0438"
-  <AdditionalDamage>k__BackingField: 5
+  <AdditionalDamage>k__BackingField: 8
   <DamageMultiplier>k__BackingField: 0
   <Type>k__BackingField: 2

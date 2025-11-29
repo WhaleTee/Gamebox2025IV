@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5521292829069236900}
   m_Layer: 6
   m_Name: PlatformMoving1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,3 +222,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  isActive: 1

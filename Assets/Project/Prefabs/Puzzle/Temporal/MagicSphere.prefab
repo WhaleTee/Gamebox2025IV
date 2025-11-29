@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1208508327756793910}
   - component: {fileID: 3109684519659226256}
   - component: {fileID: 8769420245430347085}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: MagicSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
