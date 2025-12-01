@@ -7350,7 +7350,7 @@ MonoBehaviour:
   textField: {fileID: 6754145113758318058}
   fadeDuration: 0.25
   typingSpeed: 0.02
-  holdTime: 4
+  holdTime: 2
 --- !u!1 &6195924174858700942
 GameObject:
   m_ObjectHideFlags: 0

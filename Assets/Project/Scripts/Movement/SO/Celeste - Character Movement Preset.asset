@@ -33,12 +33,12 @@ MonoBehaviour:
     maxAcceleration: 80
     maxDeceleration: 80
     upwardGravityMultiplier: 1
-    downwardGravityMultiplier: 5.23
+    downwardGravityMultiplier: 3
     speedLimit: 25
     coyoteTime: 0.15
     jumpBuffer: 0.105
     jumpHeight: 2
     timeToJumpApex: 0.38
     jumpCutOff: 2.23
-    maxAirJumps: 0
+    maxAirJumps: 1
     variableJumpHeight: 1
