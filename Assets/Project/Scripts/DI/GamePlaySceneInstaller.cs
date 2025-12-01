@@ -2,7 +2,7 @@ using UnityEngine;
 using Reflex.Core;
 using Misc;
 using Extensions;
-using Audio;
+using Sound;
 using Combat.Projectiles.Behaviours;
 using VisualEffects;
 

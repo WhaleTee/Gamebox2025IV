@@ -4,7 +4,7 @@ using Type = Pooling.PoolType;
 using Pool = Pooling.ObjectPoolManager;
 using Reflex.Attributes;
 
-namespace Audio
+namespace Sound
 {
     [Serializable]
     public class AudioInjectionData : IInjectable

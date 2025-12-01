@@ -2,8 +2,14 @@
 {
     public enum SoundType
     {
+        Master,
         Music,
+        UI,
+        Voice,
+        Ambient,
         SFX,
-        Voice
+        Combat,
+        Movement,
+        Environment
     }
 }

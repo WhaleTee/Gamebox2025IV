@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using Reflex.Attributes;
 using Reflex.Extensions;
 using Extensions;
-using Audio;
+using Sound;
 
 namespace Combat.Weapon.Audio
 {

@@ -6136,8 +6136,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - type: 0
-    soundType: 0
-    audio: []
+    soundType: 8
+    audio:
+    - {fileID: 8300000, guid: c531661c6556c1841a973d652ca1a228, type: 3}
+  - type: 1
+    soundType: 8
+    audio:
+    - {fileID: 8300000, guid: c531661c6556c1841a973d652ca1a228, type: 3}
 --- !u!1 &4973945550048645005
 GameObject:
   m_ObjectHideFlags: 0

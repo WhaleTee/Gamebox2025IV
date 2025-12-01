@@ -29,7 +29,7 @@ TagManager:
   - Platform
   - 
   - 
-  - 
+  - Wall
   - 
   - 
   - 
@@ -45,6 +45,9 @@ TagManager:
     locked: 0
   - name: FarBackground
     uniqueID: 366897435
+    locked: 0
+  - name: MiddleBackground
+    uniqueID: 3728398241
     locked: 0
   - name: NearBackground
     uniqueID: 2452066179

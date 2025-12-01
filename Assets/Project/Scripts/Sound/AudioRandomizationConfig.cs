@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Audio
+namespace Sound
 {
     [CreateAssetMenu(menuName = "Scriptables/Combat/Effects/Audio/AudioRandomization")]
     public class AudioRandomizationConfig : ScriptableObject

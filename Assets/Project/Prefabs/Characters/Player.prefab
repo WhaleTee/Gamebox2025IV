@@ -770,15 +770,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - type: 0
-    soundType: 1
+    soundType: 7
     audio:
     - {fileID: 8300000, guid: 7fea3772e43368842a4e53d76a64c50c, type: 3}
   - type: 1
-    soundType: 1
+    soundType: 7
     audio:
     - {fileID: 8300000, guid: ad2c9af73304e5347830886ead0f2414, type: 3}
   - type: 3
-    soundType: 1
+    soundType: 7
     audio:
     - {fileID: 8300000, guid: f2248a8d5504ff04394b160adabf9416, type: 3}
 --- !u!114 &8717651152540278200

@@ -2,7 +2,7 @@
 using UnityEngine;
 using GamePlay;
 using Characters;
-using Audio;
+using Sound;
 using Assets.Project.Scripts.InjectionData;
 using VisualEffects;
 
