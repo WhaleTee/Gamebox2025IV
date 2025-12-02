@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using Extensions;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Puzzle
@@ -7,11 +9,11 @@ namespace Puzzle
     {
         public PuzzleEvents Events { get; private set; }
 
-        [SerializeField] private List<GameObject> m_pieces;
+        [SerializeField] private List<GameObject> m_pieces = new();
         private List<IPuzzlePiece> pieces;
 
         [SerializeField] private PuzzleRuleConfig m_ruleConfig;
-        [SerializeField] private GameObject m_mechanism;
+        [SerializeField] private PuzzleAudio m_audio;
 
         private IPuzzleRule rule;
 
@@ -23,33 +25,40 @@ namespace Puzzle
 
         private void OnValidate()
         {
-            for (int i = m_pieces.Count - 1; i >= 0; i--)
-                if (!m_pieces[i].TryGetComponent(out IPuzzlePiece piece))
-                    m_pieces.RemoveAt(i);
+            m_pieces.RemoveAll(go => go == null || !go.TryGetComponent<IPuzzlePiece>(out _));
         }
 
-        private void Awake() => Init();
+        private void Awake() => Install();
+        private void Start() => Init();
 
-        private void Init()
+        private void Install()
         {
+            Events = new();
             pieces = new();
+            failedAttempts = new();
             foreach (var piece in m_pieces)
             {
                 var ipiece = piece.GetComponent<IPuzzlePiece>();
+                ipiece.Install(this);
                 pieces.Add(ipiece);
                 failedAttempts.Add(ipiece, 0);
             }
+            m_audio.InjectAttributes();
+            m_audio.Install(Events);
         }
 
-        private void Start()
+        private void Init()
         {
+
             rule = m_ruleConfig.CreateRule(pieces);
             rule.Init(pieces);
 
             timer = m_ruleConfig.TimeLimit;
 
             foreach (var piece in pieces)
-                piece.OnActivate += OnPieceActivated;
+                piece.Events.Activated += OnPieceActivated;
+
+            m_audio.Init();
         }
 
         private void Update()
@@ -68,6 +77,14 @@ namespace Puzzle
             if (!isEnabled)
                 return;
 
+            if (!m_ruleConfig.PieceCanBeDeactivated || (piece.State & PieceState.Charged) == 0)
+                ActivatePiece(piece);
+            else
+                DeactivatePiece(piece);
+        }
+
+        private void ActivatePiece(IPuzzlePiece piece)
+        {
             if (rule.OnPieceActivated(piece))
             {
                 Events.OnCharged(piece);
@@ -91,24 +108,44 @@ namespace Puzzle
                 if (m_ruleConfig.ResetOnFail)
                 {
                     Events.OnDestroyed(piece);
-                    Reset();
+                    Fail();
                 }
             }
         }
 
+        private void DeactivatePiece(IPuzzlePiece piece)
+        {
+            rule.OnPieceDeactivated(piece);
+            Events.OnDeactivated(piece);
+        }
+
         private void Success()
         {
-            isEnabled = false;
+            if (m_ruleConfig.DisablesOnSolve)
+                isEnabled = false;
+
             Events.OnSolve();
         }
 
         private void Fail()
         {
-            isEnabled = false;
+            if (m_ruleConfig.DisablesOnSolve)
+                isEnabled = false;
+
             Events.OnFailed();
+            if (m_ruleConfig.ResetInterval <= 0)
+                ResetPuzzle();
+            else
+                UniTask.Action(m_ruleConfig.ResetInterval, ResetDelayed).Invoke();
         }
 
-        private void Reset()
+        private async UniTaskVoid ResetDelayed(float delay)
+        {
+            await UniTask.Delay(Mathf.RoundToInt(delay * 1000));
+            ResetPuzzle();
+        }
+
+        private void ResetPuzzle()
         {
             rule.Reset();
             timer = m_ruleConfig.TimeLimit;

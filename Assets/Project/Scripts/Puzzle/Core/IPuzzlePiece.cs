@@ -4,9 +4,10 @@ namespace Puzzle
 {
     public interface IPuzzlePiece
     {
-        event Action<IPuzzlePiece> OnActivate;
+        PieceEvents Events { get; }
+        PieceState State { get; }
 
-        public void Install(PuzzleController puzzleController);
-        public void Activate();
+        void Install(PuzzleController puzzleController);
+        void Activate();
     }
 }

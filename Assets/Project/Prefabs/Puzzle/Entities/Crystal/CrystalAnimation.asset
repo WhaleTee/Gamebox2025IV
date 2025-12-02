@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b4e070262032a4fbf84c4550e81bcd, type: 3}
+  m_Name: CrystalAnimation
+  m_EditorClassIdentifier: 
+  <Charged>k__BackingField: {fileID: -2467140366469486843, guid: c043d7f070271d3469d14d3a569a98a8, type: 3}
+  <ChargedDamaged>k__BackingField: {fileID: -8602326965400858886, guid: c043d7f070271d3469d14d3a569a98a8, type: 3}
+  <ChargedStronglyDamaged>k__BackingField: {fileID: -3283395716511959148, guid: c043d7f070271d3469d14d3a569a98a8, type: 3}
+  <Intact>k__BackingField: {fileID: 4775630859605534401, guid: c043d7f070271d3469d14d3a569a98a8, type: 3}
+  <Damaged>k__BackingField: {fileID: 7308664677214642820, guid: c043d7f070271d3469d14d3a569a98a8, type: 3}
+  <StronglyDamaged>k__BackingField: {fileID: -8237667901665138252, guid: c043d7f070271d3469d14d3a569a98a8, type: 3}
+  <Broken>k__BackingField: {fileID: -1848479816, guid: c043d7f070271d3469d14d3a569a98a8, type: 3}
+  <PunchPositionStrength>k__BackingField: 0.1
+  <PunchScaleStrength>k__BackingField: -0.06

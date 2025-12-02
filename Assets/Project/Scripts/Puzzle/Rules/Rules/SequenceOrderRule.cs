@@ -12,6 +12,7 @@ namespace Puzzle
         public SequenceOrderRule(List<IPuzzlePiece> sequence)
         {
             this.sequence = sequence;
+            activated = new();
         }
 
         public void Init(List<IPuzzlePiece> pieces)
@@ -27,6 +28,20 @@ namespace Puzzle
                 return true;
             }
             else return false;
+        }
+
+        public IPuzzlePiece[] OnPieceDeactivated(IPuzzlePiece piece)
+        {
+            index = sequence.IndexOf(piece);
+            var removed = new IPuzzlePiece[activated.Count - index];
+
+            for (int i = index; i < activated.Count; i++)
+            {
+                removed[i] = sequence[i];
+                activated.Remove(sequence[i]);
+            }
+            
+            return removed;
         }
 
         public void Reset()

@@ -29,7 +29,6 @@ namespace Combat.Projectiles.Behaviours
 
         private void HandleCollision(Collision2D collision)
         {
-            Debug.Log("Handle Collision");
             Defaults?.Invoke(collision);
             OnCollision?.Invoke(collision);
         }

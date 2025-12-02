@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30abadeee6e6d5543a4edcb84dd7f7c5, type: 3}
+  m_Name: WebParticlesConfig
+  m_EditorClassIdentifier: 
+  <ImpactPrefab>k__BackingField: {fileID: 1315464418105269541, guid: 1b9bf09752879dd40b9774a3ca6723b2, type: 3}
+  <MaxImpacts>k__BackingField: 3
+  <DeathPrefab>k__BackingField: {fileID: 7910013999262903649, guid: 6162c24aac46ea243bf965f38ffcfa84, type: 3}

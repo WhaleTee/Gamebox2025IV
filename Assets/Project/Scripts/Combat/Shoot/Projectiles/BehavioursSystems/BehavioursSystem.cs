@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Reflex.Attributes;
 using Misc;
-using UnityEngine;
 
 namespace Combat.Projectiles.Behaviours
 {
@@ -57,15 +56,14 @@ namespace Combat.Projectiles.Behaviours
             defaultSystem.Register(id, config, new(projectile, projectile.Rigidbody, config.DefaultConfig.Speed));
             defaultSystem.OnDefEvents(id, Unregister);
 
-            //foreach (var system in systems)
-            //    system.Register(id, config);
+            foreach (var system in systems)
+                system.Register(id, config);
         }
 
         public void Unregister(int id)
         {
-            Debug.Log($"Unregister [{id}]");
-            //foreach (var system in systems)
-            //    system.Unregister(id);
+            foreach (var system in systems)
+                system.Unregister(id);
             defaultSystem.Unregister(id);
         }
 
@@ -73,8 +71,8 @@ namespace Combat.Projectiles.Behaviours
         {
             defaultSystem.Tick(deltaTime);
 
-            //foreach(var system in systems)
-            //    system.Tick(deltaTime);
+            foreach (var system in systems)
+                system.Tick(deltaTime);
         }
 
         public void Update(float deltaTime) => Tick(deltaTime);

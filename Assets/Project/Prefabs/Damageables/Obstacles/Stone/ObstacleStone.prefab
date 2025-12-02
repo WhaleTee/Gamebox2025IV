@@ -108,7 +108,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.194
-  m_ApplyToSortingLayers: 838f27926f1736ea
+  m_ApplyToSortingLayers: 838f27926f1736ead7b2df50
   m_ShapePath:
   - {x: -0.5, y: -0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
@@ -190,7 +190,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 30
   m_takesDamageType: 2
   m_fadeable:
-    m_visual: {fileID: 5684245040737826950}
+    m_visual: {fileID: 5092698706080296457}
     m_renderers:
     - {fileID: 3729820589482847687}
     m_collider: {fileID: 967375366185842662}
@@ -199,24 +199,12 @@ MonoBehaviour:
     m_shadows:
     - {fileID: 2277056157164184811}
   m_effects:
-    m_impactPrefab: {fileID: 9153646125815562345, guid: f2f1dc441df19c74bb7d283c9c758246, type: 3}
-    m_maxImpacts: 3
-    m_deathPrefab: {fileID: 1433757871781966747, guid: 5e615d917c9f9f440880b64ee20aeeed, type: 3}
-    PunchPositionStrength: -0.3
-    PunchScaleStrength: -0.06
-    m_audioPrefab: {fileID: 6282137706235025767, guid: be5e526d57881b84cbd15fecbca59646, type: 3}
-    polyphonyLimit: 4
-    impactSound:
-    - {fileID: 8300000, guid: 2bc25e5d35b2e304da308812fdec8599, type: 3}
-    - {fileID: 8300000, guid: 93b4c99421077cb47b9695c617b96dc7, type: 3}
-    - {fileID: 8300000, guid: 54da3cbadc9ce004d8774cb92e56c25b, type: 3}
-    - {fileID: 8300000, guid: 385e69a289622394a9781b7cfa7448da, type: 3}
-    - {fileID: 8300000, guid: 577d7cd9c52ba314f86fbe6a058633e3, type: 3}
-    - {fileID: 8300000, guid: e7484f266eac55244b887611972e4a0a, type: 3}
-    - {fileID: 8300000, guid: e509dd0661885764981bc96418033a3e, type: 3}
-    - {fileID: 8300000, guid: 8616bd610a698e84e9dadaacc81b9ce7, type: 3}
-    - {fileID: 8300000, guid: c560834791658c3478399d6d7287bb29, type: 3}
-    deathSound: {fileID: 8300000, guid: 459d09273b02c75409ff12b0f142fd02, type: 3}
+    m_animation:
+      m_config: {fileID: 11400000, guid: 32bf52037f59d2544b203593ad610aa9, type: 2}
+    m_audio:
+      m_config: {fileID: 11400000, guid: 6090df199bd9ba04a9411d7492cf657c, type: 2}
+    m_particles:
+      m_config: {fileID: 11400000, guid: d5d3c16c33dd2464eb4fba1164d65478, type: 2}
 --- !u!68 &967375366185842662
 EdgeCollider2D:
   m_ObjectHideFlags: 0

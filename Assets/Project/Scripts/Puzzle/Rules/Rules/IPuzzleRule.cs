@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Puzzle
 {
@@ -7,6 +8,7 @@ namespace Puzzle
         bool AllSolved { get; }
         void Init(List<IPuzzlePiece> pieces);
         bool OnPieceActivated(IPuzzlePiece piece);
+        IPuzzlePiece[] OnPieceDeactivated(IPuzzlePiece piece);
         void Reset();
     }
 }

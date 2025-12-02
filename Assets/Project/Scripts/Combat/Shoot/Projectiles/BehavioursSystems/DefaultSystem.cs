@@ -16,7 +16,6 @@ namespace Combat.Projectiles.Behaviours
 
         public override void Unregister(int id)
         {
-            Debug.Log($"Default unregister [{id}]", components[id].Self.gameObject);
             events[id].Dispose();
             base.Unregister(id);
             events.Remove(id);

@@ -1,18 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public static class EnumExtensions
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool Has<T>(this T flags, T flag) where T : Enum
-    => (Convert.ToUInt64(flags) & Convert.ToUInt64(flag)) != 0;
+    => (Unsafe.As<T, ulong>(ref flags) & Unsafe.As<T, ulong>(ref flag)) != 0;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T Add<T>(this T flags, T flag) where T : Enum
-    => (T)Enum.ToObject(typeof(T),
-        Convert.ToUInt64(flags) | Convert.ToUInt64(flag));
+    {
+        var fs = Unsafe.As<T, ulong>(ref flags);
+        var f = Unsafe.As<T, ulong>(ref flag);
 
+        ulong result = fs | f;
+        return Unsafe.As<ulong, T>(ref result);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T Remove<T>(this T flags, T flag) where T : Enum
-    => (T)Enum.ToObject(typeof(T),
-        Convert.ToUInt64(flags) & ~Convert.ToUInt64(flag));
+    {
+        var fs = Unsafe.As<T, ulong>(ref flags);
+        var f = Unsafe.As<T, ulong>(ref flag);
+
+        ulong result = fs & ~f;
+        return Unsafe.As<ulong, T>(ref result);
+    }
 
     public static IEnumerator<T> GetEnumerator<T>(this T flags) where T : Enum
     {
@@ -43,15 +57,12 @@ public static class EnumExtensions
         return index;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T Get<T>(this T flags, int index) where T : Enum
-     => (T)Enum.ToObject(typeof(T), Enum.GetUnderlyingType(typeof(T)) switch
-     {
-         Type t when t == typeof(int) => 1 << index,
-         Type t when t == typeof(uint) => (uint)1 << index,
-         Type t when t == typeof(long) => 1L << index,
-         Type t when t == typeof(ulong) => 1UL << index,
-         _ => throw new NotSupportedException("Enum must be int/uint/long/ulong")
-     });
+    {
+        ulong bit = 1UL << index;
+        return Unsafe.As<ulong, T>(ref bit);
+    }
 
 
     public static string ToNiceString<T>(this T flags) where T: Enum, IEnumerable<int>

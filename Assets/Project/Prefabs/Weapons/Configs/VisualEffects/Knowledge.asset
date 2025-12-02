@@ -19,5 +19,5 @@ MonoBehaviour:
     <Limit>k__BackingField: 2
   - <Type>k__BackingField: 1
     <Prefabs>k__BackingField:
-    - {fileID: 7045828892689375857, guid: 68f36641fa0fb3146906b50bc69f2b31, type: 3}
+    - {fileID: 7045828892689375857, guid: 78d503273b2e6e14295607a1edd24b44, type: 3}
     <Limit>k__BackingField: 8

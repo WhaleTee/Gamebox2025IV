@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17f26deb57d3f644b72ced5d96f88c2, type: 3}
   m_Name: AnyOrderRule Config
   m_EditorClassIdentifier: 
+  <ResetOnFail>k__BackingField: 0
+  <MaxAtempts>k__BackingField: 2
+  <UseTimer>k__BackingField: 0
+  <TimeLimit>k__BackingField: 10
+  IsAttemptsPerPiece: 0
+  <ResetInterval>k__BackingField: 4

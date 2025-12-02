@@ -228,15 +228,12 @@ MonoBehaviour:
     m_lights: []
     m_shadows: []
   m_effects:
-    m_impactPrefab: {fileID: 1315464418105269541, guid: 1b9bf09752879dd40b9774a3ca6723b2, type: 3}
-    m_maxImpacts: 3
-    m_deathPrefab: {fileID: 7910013999262903649, guid: 6162c24aac46ea243bf965f38ffcfa84, type: 3}
-    PunchPositionStrength: 0.1
-    PunchScaleStrength: -0.06
-    m_audioPrefab: {fileID: 6282137706235025767, guid: be5e526d57881b84cbd15fecbca59646, type: 3}
-    polyphonyLimit: 4
-    impactSound: []
-    deathSound: {fileID: 0}
+    m_animation:
+      m_config: {fileID: 11400000, guid: ac2396f35048adc46858b4a78c615761, type: 2}
+    m_audio:
+      m_config: {fileID: 11400000, guid: 161dd36068f40e54da3a0ce73a603d17, type: 2}
+    m_particles:
+      m_config: {fileID: 11400000, guid: a678e970361f6fd4a88c13f564686efe, type: 2}
 --- !u!1 &4249111630789156671
 GameObject:
   m_ObjectHideFlags: 0

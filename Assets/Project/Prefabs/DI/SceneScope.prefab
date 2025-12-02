@@ -82,7 +82,11 @@ MonoBehaviour:
     <ButtonNext>k__BackingField: {fileID: 0}
   <AudioData>k__BackingField:
     <RandomizationConfig>k__BackingField: {fileID: 11400000, guid: 28570862d970ed9439f41d8566e03a4c, type: 2}
-    audioSourcePrefab: {fileID: 6282137706235025767, guid: be5e526d57881b84cbd15fecbca59646, type: 3}
+    <Combat>k__BackingField: {fileID: -4388790084146168219, guid: c2273a5e6d92205428a857bbd57a948c, type: 2}
+    <Environment>k__BackingField: {fileID: 3648388162708468185, guid: c2273a5e6d92205428a857bbd57a948c, type: 2}
+    <Ambient>k__BackingField: {fileID: 6059186450312745122, guid: c2273a5e6d92205428a857bbd57a948c, type: 2}
+    <Music>k__BackingField: {fileID: -5936407778445976357, guid: c2273a5e6d92205428a857bbd57a948c, type: 2}
+    <Voices>k__BackingField: {fileID: -3314856256450459527, guid: c2273a5e6d92205428a857bbd57a948c, type: 2}
   <CameraInjectionData>k__BackingField:
     <CameraVirtual>k__BackingField: {fileID: 0}
     <Camera>k__BackingField: {fileID: 0}

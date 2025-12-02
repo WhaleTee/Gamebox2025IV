@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1003bf1c15a09458ce4ed303ed45b6, type: 3}
+  m_Name: PuzzleAudioConfig
+  m_EditorClassIdentifier: 
+  <Solved>k__BackingField: {fileID: 8300000, guid: cb19d0009c7043d42bcb690589b6ea56, type: 3}
+  <Failed>k__BackingField: {fileID: 8300000, guid: e780fc79434158b4fb27a79c9be2134d, type: 3}
+  <Reset>k__BackingField: {fileID: 8300000, guid: 651c3fa0a0603cd418d821ca788f1c0e, type: 3}

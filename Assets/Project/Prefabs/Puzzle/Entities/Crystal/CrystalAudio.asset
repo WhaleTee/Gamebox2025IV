@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518ec29fb553c56408ac3e37e86be7f0, type: 3}
+  m_Name: CrystalAudio
+  m_EditorClassIdentifier: 
+  <PolyphonyLimit>k__BackingField: 3
+  <Charged>k__BackingField: {fileID: 8300000, guid: 276a4c87946d84f48a439b0064f5964b, type: 3}
+  <Broken>k__BackingField: {fileID: 8300000, guid: 2153ea8337f189c43b39cd7ae73b3f35, type: 3}
+  <Damaged>k__BackingField: {fileID: 8300000, guid: 6bcf3b105ab4b5c41b15df0ba1c978ff, type: 3}
+  <DamagedStrong>k__BackingField: {fileID: 8300000, guid: 4158d3204b85584459cdb29830cb91eb, type: 3}

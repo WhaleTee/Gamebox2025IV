@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Reflex.Attributes;
-using Reflex.Extensions;
 using Extensions;
 using Audio;
 
@@ -20,7 +18,7 @@ namespace Combat.Weapon.Audio
 
         [SerializeField] private WeaponConfigAudio m_config;
         private AudioRandomizationConfig randomiztaionConfig;
-        private Func<AudioSource> getSource;
+        private Func<AudioSource, AudioSource> getSource;
         private Action<AudioSource> release;
         private AudioSource[] channels;
         private int currentSlot;
@@ -39,13 +37,13 @@ namespace Combat.Weapon.Audio
             this.m_config = config;
             this.limit = limit;
             channels = new AudioSource[limit];
-            Inject(SceneManager.GetActiveScene().GetSceneContainer().Resolve<AudioInjectionData>());
+            this.InjectAttributes();
         }
 
         public void Init()
         {
             for (int i = 0; i < limit; i++)
-                channels[i] = getSource();
+                channels[i] = getSource(m_config.SourcePrefab);
         }
 
         public void Play(SoundType soundType, Vector3 at, Transform parent, bool interrupt = true)
@@ -56,7 +54,7 @@ namespace Combat.Weapon.Audio
             var source = channels[currentSlot];
 
             if (source == null)
-                source = getSource?.Invoke();
+                source = getSource?.Invoke(m_config.SourcePrefab);
 
             if (!interrupt && source.isPlaying)
                 return;

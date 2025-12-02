@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Puzzle
 {
@@ -24,6 +25,20 @@ namespace Puzzle
         public void Reset()
         {
             activated.Clear();
+        }
+
+        public IPuzzlePiece[] OnPieceDeactivated(IPuzzlePiece piece)
+        {
+            var index = allPieces.IndexOf(piece);
+            var removed = new IPuzzlePiece[activated.Count - index];
+
+            for (int i = index; i < activated.Count; i++)
+            {
+                removed[i] = allPieces[i];
+                activated.Remove(allPieces[i]);
+            }
+
+            return removed;
         }
     }
 }

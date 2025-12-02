@@ -35,7 +35,6 @@ namespace Combat.Projectiles
 
             this.weaponEvents = events;
             this.WeaponProjectileStats = weaponStatsProjectile;
-            OnCollide += _ => Debug.Log($"On Collide {gameObject.name}", gameObject);
             OnCollide += DealDamage;
             OnCollide += ProjectileHit;
 
