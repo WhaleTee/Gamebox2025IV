@@ -9,54 +9,131 @@ namespace Camera
 {
     public class CharacterCameraController : MonoBehaviour
     {
+        [Header("God Zone Settings")]
         [SerializeField] private float zoomNearGods;
         [SerializeField] private float zoomDuration;
-        
+
+        [Header("FarView Zone Settings")]
+        [SerializeField] private float farViewOffsetY;   // Смещение Y при FarView
+        [SerializeField] private float farViewDuration;  // Плавность смещения Y
+
         private CinemachineCamera _camera;
         private CinemachineFollow cameraFollow;
+
         private float initZoom;
-        private float initFollowOffsetY;
-        private CancellationTokenSource cts;
-        
-        [Inject] 
+        private float initOffsetY;
+
+        private CancellationTokenSource ctsZoom;   // Для зума
+        private CancellationTokenSource ctsOffset; // Для смещения Y
+
+        [Inject]
         public void SetTarget(CameraInjectionData data)
         {
             _camera = data.CameraVirtual;
             cameraFollow = _camera.GetComponent<CinemachineFollow>();
+
             initZoom = _camera.Lens.OrthographicSize;
-            initFollowOffsetY = cameraFollow.FollowOffset.y;
+            initOffsetY = cameraFollow.FollowOffset.y;
+
             _camera.Target.TrackingTarget = transform;
         }
 
-        public void SetNearGodZoom()
+        // ============================================
+        // GOD ZONE METHODS (только зум)
+        // ============================================
+        public void EnterGodZone()
         {
-            cts?.Cancel();
-            cts = new CancellationTokenSource();
-            UniTask.Void(token => ChangeZoom(zoomNearGods, initFollowOffsetY + zoomNearGods - initZoom, zoomDuration, token), cts.Token);
-        }
-        
-        public void SetDefaultZoom()
-        {
-            cts?.Cancel();
-            cts = new CancellationTokenSource();
-            UniTask.Void(token => ChangeZoom(initZoom, initFollowOffsetY, zoomDuration, token), cts.Token);
+            ctsZoom?.Cancel();
+            ctsZoom = new CancellationTokenSource();
+
+            float targetOffsetY = cameraFollow.FollowOffset.y;
+            // Y остаётся текущим, зум только изменяем
+
+            UniTask.Void(token =>
+                ChangeZoom(zoomNearGods, targetOffsetY, zoomDuration, token),
+                ctsZoom.Token
+            );
         }
 
-        private async UniTaskVoid ChangeZoom(float targetZoom, float targetOffsetY, float duration, CancellationToken token)
+        public void ExitGodZone()
         {
-            var time = 0f;
-            var init = _camera.Lens.OrthographicSize;
-            var initOffsetY = cameraFollow.FollowOffset.y;
-            
+            ctsZoom?.Cancel();
+            ctsZoom = new CancellationTokenSource();
+
+            UniTask.Void(token =>
+                ChangeZoom(initZoom, cameraFollow.FollowOffset.y, zoomDuration, token),
+                ctsZoom.Token
+            );
+        }
+
+        // ============================================
+        // FAR VIEW ZONE METHODS (только смещение Y)
+        // ============================================
+        public void EnterFarView()
+        {
+            ctsOffset?.Cancel();
+            ctsOffset = new CancellationTokenSource();
+
+            float targetOffsetY = initOffsetY + farViewOffsetY;
+
+            UniTask.Void(token =>
+                ChangeOffsetY(targetOffsetY, farViewDuration, token),
+                ctsOffset.Token
+            );
+        }
+
+        public void ExitFarView()
+        {
+            ctsOffset?.Cancel();
+            ctsOffset = new CancellationTokenSource();
+
+            UniTask.Void(token =>
+                ChangeOffsetY(initOffsetY, farViewDuration, token),
+                ctsOffset.Token
+            );
+        }
+
+        // ============================================
+        // PRIVATE METHODS
+        // ============================================
+        /// <summary>
+        /// Плавное изменение зума, Y остаётся текущим
+        /// </summary>
+        private async UniTaskVoid ChangeZoom(float targetZoom, float offsetY, float duration, CancellationToken token)
+        {
+            float time = 0f;
+            float startZoom = _camera.Lens.OrthographicSize;
+
             while (time < duration)
             {
-                _camera.Lens.OrthographicSize = Mathf.Lerp(init, targetZoom, time / duration);
-                SetOffsetY(Mathf.Lerp(initOffsetY, targetOffsetY, time / duration));
+                float t = time / duration;
+                _camera.Lens.OrthographicSize = Mathf.Lerp(startZoom, targetZoom, t);
+                SetOffsetY(offsetY); // Y фиксированный
                 time += Time.deltaTime;
                 await UniTask.Yield(token);
             }
-            
+
             _camera.Lens.OrthographicSize = targetZoom;
+            SetOffsetY(offsetY);
+        }
+
+        /// <summary>
+        /// Плавное изменение только смещения Y
+        /// </summary>
+        private async UniTaskVoid ChangeOffsetY(float targetOffsetY, float duration, CancellationToken token)
+        {
+            float time = 0f;
+            float startOffsetY = cameraFollow.FollowOffset.y;
+
+            while (time < duration)
+            {
+                float t = time / duration;
+                SetOffsetY(Mathf.Lerp(startOffsetY, targetOffsetY, t));
+
+                time += Time.deltaTime;
+                await UniTask.Yield(token);
+            }
+
             SetOffsetY(targetOffsetY);
         }
 
