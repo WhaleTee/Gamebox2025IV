@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Sound
 {
     [Serializable]
-    public struct SoundDataContainer
+    public class SoundDataContainer
     {
         public SoundType Type;
         public AudioMixerGroup MixerGroup;

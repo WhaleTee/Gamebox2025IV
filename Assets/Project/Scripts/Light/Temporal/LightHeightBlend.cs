@@ -44,7 +44,9 @@ namespace Light.Temporal
             while (target == null && !cts.IsCancellationRequested)
             {
                 await UniTask.Delay(400);
-                target = FindFirstObjectByType<Characters.Hero>(FindObjectsInactive.Exclude).transform;
+                var found = FindFirstObjectByType<Characters.Hero>(FindObjectsInactive.Exclude);
+                if (found != null)
+                    target = found.transform;
             }
         }
         #endregion

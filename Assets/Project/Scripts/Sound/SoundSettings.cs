@@ -60,6 +60,11 @@ namespace Sound
 
                 if (PlayerPrefs.HasKey(volumeName))
                     data.Slider.value = PlayerPrefs.GetInt(volumeName, 1000) * 0.001f;
+                else
+                {
+                    SetVolume(data.Slider.value, volumeName);
+                    PlayerPrefs.SetFloat(volumeName, Mathf.RoundToInt(data.Slider.value * 1000));
+                }
 
                 if (PlayerPrefs.HasKey(toggleName))
                     data.Toggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt(toggleName) == 1);
@@ -71,8 +76,9 @@ namespace Sound
             SetGroupEnabledIterative(type, flag);
         }
 
-        private void HandleVolumeChange(float vol, string volumeParameter)
+        private void HandleVolumeChange(float vol, SoundType type)
         {
+            var volumeParameter = VolumeParam(type);
             SetVolume(vol, volumeParameter);
             PlayerPrefs.SetInt(volumeParameter, Convert.ToInt32(vol * 1000));
         }
@@ -149,8 +155,20 @@ namespace Sound
             else
                 previousValues.Clear();
 
-            foreach (var pair in soundData)
-                previousValues.Add(pair.Key, pair.Value.Slider.value);
+            if (soundData != null)
+                foreach (var pair in soundData)
+                {
+                    float value = 0f;
+                    if (pair.Value.Slider != null)
+                        value = pair.Value.Slider.value;
+                    previousValues.Add(pair.Key, value);
+                }
+            else
+            {
+                var keys = (SoundType[])Enum.GetValues(typeof(SoundType));
+                foreach (var key in keys)
+                    previousValues.Add(key, 0.2f);
+            }
         }
 
         private string VolumeParam(SoundType type) =>
@@ -158,12 +176,12 @@ namespace Sound
         private string ToggleParam(SoundType type) =>
             $"{soundData[type].MixerGroup.name}Toggle";
 
-        private async UniTaskVoid SaveAsync(FloatWithCancelToken container)
+        private async UniTaskVoid SaveAsync(float interval, CancellationToken token)
         {
-            int interval = Mathf.CeilToInt(container.Value * 1000);
-            while (isSaveEnabled && !container.Token.IsCancellationRequested)
+            int _interval = Mathf.CeilToInt(interval * 1000);
+            while (isSaveEnabled && !token.IsCancellationRequested)
             {
-                await UniTask.Delay(interval, cancellationToken: container.Token);
+                await UniTask.Delay(_interval, cancellationToken: token);
                 PlayerPrefs.Save();
             }
         }
@@ -177,34 +195,23 @@ namespace Sound
                 var group = data.MixerGroup;
                 var groupName = group.name;
                 var groupType = data.Type;
-                data.Slider.onValueChanged.AddListener(value => HandleVolumeChange(value, groupName));
+                data.Slider.onValueChanged.AddListener(value => HandleVolumeChange(value, groupType));
                 data.Toggle.onValueChanged.AddListener(value => HandleSoundToggle(value, groupType));
             }
 
             tokenSource = new();
-            UniTask.Action(new FloatWithCancelToken(0.5f, tokenSource.Token), SaveAsync);
+            SaveAsync(0.5f, tokenSource.Token).Forget();
         }
 
         private void OnDisable()
         {
+            tokenSource?.Dispose();
+            if (soundData == null)
+                return;
             foreach (var data in soundData.Values)
             {
                 data.Slider.onValueChanged.RemoveAllListeners();
                 data.Toggle.onValueChanged.RemoveAllListeners();
-            }
-
-            tokenSource.Dispose();
-        }
-
-        private struct FloatWithCancelToken
-        {
-            public float Value;
-            public CancellationToken Token;
-
-            public FloatWithCancelToken(float value, CancellationToken token)
-            {
-                Value = value;
-                Token = token;
             }
         }
     }
