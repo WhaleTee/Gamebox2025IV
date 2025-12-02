@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Characters;
 using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
@@ -14,134 +15,68 @@ namespace Camera
         [SerializeField] private float zoomDuration;
 
         [Header("FarView Zone Settings")]
-        [SerializeField] private float farViewOffsetY;   // Смещение Y при FarView
-        [SerializeField] private float farViewDuration;  // Плавность смещения Y
+        [SerializeField] private float farViewOffsetY;
+        [SerializeField] private float farViewDuration;
 
         private CinemachineCamera _camera;
-        private CinemachineFollow cameraFollow;
+        private CinemachineFollow _cameraFollow;
 
-        private float initZoom;
-        private float initOffsetY;
+        private float _initZoom;
+        private float _initOffsetY;
 
-        private CancellationTokenSource ctsZoom;   // Для зума
-        private CancellationTokenSource ctsOffset; // Для смещения Y
+        private CancellationTokenSource _ctsZoom;
+        private CancellationTokenSource _ctsOffset;
 
         [Inject]
         public void SetTarget(CameraInjectionData data)
         {
             _camera = data.CameraVirtual;
-            cameraFollow = _camera.GetComponent<CinemachineFollow>();
+            _cameraFollow = _camera.GetComponent<CinemachineFollow>();
 
-            initZoom = _camera.Lens.OrthographicSize;
-            initOffsetY = cameraFollow.FollowOffset.y;
+            _initZoom = _camera.Lens.OrthographicSize;
+            _initOffsetY = _cameraFollow.FollowOffset.y;
 
             _camera.Target.TrackingTarget = transform;
         }
 
-        // ============================================
-        // GOD ZONE METHODS (только зум)
-        // ============================================
-        public void EnterGodZone()
-        {
-            ctsZoom?.Cancel();
-            ctsZoom = new CancellationTokenSource();
-
-            float targetOffsetY = cameraFollow.FollowOffset.y;
-            // Y остаётся текущим, зум только изменяем
-
-            UniTask.Void(token =>
-                ChangeZoom(zoomNearGods, targetOffsetY, zoomDuration, token),
-                ctsZoom.Token
-            );
-        }
-
-        public void ExitGodZone()
-        {
-            ctsZoom?.Cancel();
-            ctsZoom = new CancellationTokenSource();
-
-            UniTask.Void(token =>
-                ChangeZoom(initZoom, cameraFollow.FollowOffset.y, zoomDuration, token),
-                ctsZoom.Token
-            );
-        }
-
-        // ============================================
-        // FAR VIEW ZONE METHODS (только смещение Y)
-        // ============================================
-        public void EnterFarView()
-        {
-            ctsOffset?.Cancel();
-            ctsOffset = new CancellationTokenSource();
-
-            float targetOffsetY = initOffsetY + farViewOffsetY;
-
-            UniTask.Void(token =>
-                ChangeOffsetY(targetOffsetY, farViewDuration, token),
-                ctsOffset.Token
-            );
-        }
-
-        public void ExitFarView()
-        {
-            ctsOffset?.Cancel();
-            ctsOffset = new CancellationTokenSource();
-
-            UniTask.Void(token =>
-                ChangeOffsetY(initOffsetY, farViewDuration, token),
-                ctsOffset.Token
-            );
-        }
-
-        // ============================================
-        // PRIVATE METHODS
-        // ============================================
         /// <summary>
-        /// Плавное изменение зума, Y остаётся текущим
+        /// Публичные методы зон
         /// </summary>
-        private async UniTaskVoid ChangeZoom(float targetZoom, float offsetY, float duration, CancellationToken token)
-        {
-            float time = 0f;
-            float startZoom = _camera.Lens.OrthographicSize;
+        public void EnterGodZone() => AnimateCameraValue(() => _camera.Lens.OrthographicSize, val => _camera.Lens.OrthographicSize = val, zoomNearGods, zoomDuration, ref _ctsZoom);
+        public void ExitGodZone() => AnimateCameraValue(() => _camera.Lens.OrthographicSize, val => _camera.Lens.OrthographicSize = val, _initZoom, zoomDuration, ref _ctsZoom);
 
-            while (time < duration)
-            {
-                float t = time / duration;
-                _camera.Lens.OrthographicSize = Mathf.Lerp(startZoom, targetZoom, t);
-                SetOffsetY(offsetY); // Y фиксированный
-                time += Time.deltaTime;
-                await UniTask.Yield(token);
-            }
-
-            _camera.Lens.OrthographicSize = targetZoom;
-            SetOffsetY(offsetY);
-        }
+        public void EnterFarView() => AnimateCameraValue(() => _cameraFollow.FollowOffset.y, SetOffsetY, _initOffsetY + farViewOffsetY, farViewDuration, ref _ctsOffset);
+        public void ExitFarView() => AnimateCameraValue(() => _cameraFollow.FollowOffset.y, SetOffsetY, _initOffsetY, farViewDuration, ref _ctsOffset);
 
         /// <summary>
-        /// Плавное изменение только смещения Y
+        /// Универсальный метод анимации
         /// </summary>
-        private async UniTaskVoid ChangeOffsetY(float targetOffsetY, float duration, CancellationToken token)
+        private void AnimateCameraValue(Func<float> getter, Action<float> setter, float target, float duration, ref CancellationTokenSource cts)
         {
-            float time = 0f;
-            float startOffsetY = cameraFollow.FollowOffset.y;
+            cts?.Cancel();
+            cts = new CancellationTokenSource();
 
-            while (time < duration)
+            UniTask.Void(async token =>
             {
-                float t = time / duration;
-                SetOffsetY(Mathf.Lerp(startOffsetY, targetOffsetY, t));
+                float start = getter();
+                float time = 0f;
 
-                time += Time.deltaTime;
-                await UniTask.Yield(token);
-            }
+                while (time < duration)
+                {
+                    setter(Mathf.Lerp(start, target, time / duration));
+                    time += Time.deltaTime;
+                    await UniTask.Yield(token);
+                }
 
-            SetOffsetY(targetOffsetY);
+                setter(target);
+            }, cts.Token);
         }
 
         private void SetOffsetY(float offsetY)
         {
-            var offset = cameraFollow.FollowOffset;
+            var offset = _cameraFollow.FollowOffset;
             offset.y = offsetY;
-            cameraFollow.FollowOffset = offset;
+            _cameraFollow.FollowOffset = offset;
         }
     }
 }

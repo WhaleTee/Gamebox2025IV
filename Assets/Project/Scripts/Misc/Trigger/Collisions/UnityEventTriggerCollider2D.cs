@@ -1,5 +1,4 @@
-﻿using Extensions;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace Misc.Trigger.Collisions
@@ -30,39 +29,37 @@ namespace Misc.Trigger.Collisions
         [SerializeField] private LayerTriggerEvent[] layerEvents;
         private Collider2D _collider;
 
+        private void Reset()
+        {
+            var col = GetComponent<Collider2D>();
+            if (col != null)
+                col.isTrigger = true;
+        }
+
         private void Awake()
         {
             _collider = GetComponent<Collider2D>();
             _collider.isTrigger = true;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            foreach (var layerEvent in layerEvents)
-            {
-                if (!layerEvent.triggerEnter) continue;
-                if (layerEvent.layer.Contains(other.gameObject.layer))
-                    layerEvent.onTriggerEnter?.Invoke(other);
-            }
-        }
+        private void OnTriggerEnter2D(Collider2D other) =>
+            InvokeEvents(other, e => e.triggerEnter, e => e.onTriggerEnter);
 
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            foreach (var layerEvent in layerEvents)
-            {
-                if (!layerEvent.triggerStay) continue;
-                if (layerEvent.layer.Contains(other.gameObject.layer))
-                    layerEvent.onTriggerStay?.Invoke(other);
-            }
-        }
+        private void OnTriggerStay2D(Collider2D other) =>
+            InvokeEvents(other, e => e.triggerStay, e => e.onTriggerStay);
 
-        private void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D other) =>
+            InvokeEvents(other, e => e.triggerExit, e => e.onTriggerExit);
+
+        private void InvokeEvents(Collider2D other, System.Func<LayerTriggerEvent, bool> predicate, System.Func<LayerTriggerEvent, UnityEvent<Collider2D>> eventSelector)
         {
+            int otherLayerBit = 1 << other.gameObject.layer;
+
             foreach (var layerEvent in layerEvents)
             {
-                if (!layerEvent.triggerExit) continue;
-                if (layerEvent.layer.Contains(other.gameObject.layer))
-                    layerEvent.onTriggerExit?.Invoke(other);
+                if (!predicate(layerEvent)) continue;
+                if ((layerEvent.layer.value & otherLayerBit) != 0)
+                    eventSelector(layerEvent)?.Invoke(other);
             }
         }
     }
