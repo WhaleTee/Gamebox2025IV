@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ed9a0e60099ff0f49b6b8ddccecdc849
+guid: 43369b0b0c8d85349bc186b869447e4f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8728512130066286113
-    second: Bush_scetch_458x262_0
+      213: -6147933931074275263
+    second: VeinFront_02_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,7 +48,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bush_scetch_458x262_0
+      name: VeinFront_02_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 98
         y: 0
-        width: 458
-        height: 262
+        width: 64
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1260a426987e12970800000000000000
-      internalID: 8728512130066286113
+      spriteID: 1483fbfa9a62eaaa0800000000000000
+      internalID: -6147933931074275263
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bush_scetch_458x262_0: 8728512130066286113
+      VeinFront_02_0: -6147933931074275263
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

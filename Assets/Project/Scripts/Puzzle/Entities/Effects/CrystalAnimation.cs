@@ -5,6 +5,10 @@ namespace Puzzle
 {
     public class CrystalAnimation : PieceAnimation<CrystalAnimationConfig>
     {
+        public void PlayDischarge()
+        {
+        }
+
         public override void PlayImpact(Vector2 point, Vector3 normal, bool strong)
         {
             base.PlayImpact(point, normal, strong);

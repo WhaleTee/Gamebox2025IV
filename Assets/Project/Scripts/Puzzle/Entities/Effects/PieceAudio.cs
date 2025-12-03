@@ -13,6 +13,7 @@ namespace Puzzle.Entities
 
         private AudioSource deactivationAudio;
         private AudioSource chargeAudio;
+        private AudioSource dischargeAudio;
         private AudioSource deathAudio;
 
         private List<AudioSource> impactAudios;
@@ -29,6 +30,7 @@ namespace Puzzle.Entities
             Populate();
         }
         public void PlayCharge() => chargeAudio.Play();
+        public void PlayDischarge() => dischargeAudio.Play();
         public void PlayDeactivate() => deactivationAudio.Play();
         public void PlayDeath() => deathAudio.Play();
 
@@ -57,6 +59,8 @@ namespace Puzzle.Entities
         {
             deactivationAudio = Get();
             deactivationAudio.resource = m_config.Deactivated;
+            dischargeAudio = Get();
+            dischargeAudio.resource = m_config.Discharged;
             deathAudio = Get();
             deathAudio.resource = m_config.Broken;
             chargeAudio = Get();
