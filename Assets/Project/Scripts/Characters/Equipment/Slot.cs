@@ -3,6 +3,7 @@
     public enum Slot
     {
         Weapon,
+        Artefact,
         Auxillary,
         Helmet,
         Chest,

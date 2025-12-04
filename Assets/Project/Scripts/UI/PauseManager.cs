@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Input;
 using Reflex.Attributes;
+using System;
 
 namespace Core
 {
@@ -13,6 +14,19 @@ namespace Core
 
         private bool _isPaused;
         public bool IsPaused => _isPaused;
+
+        // 🔥 Событие для внешних вызовов паузы
+        public static event Action OnPauseRequested;
+
+        private void OnEnable()
+        {
+            OnPauseRequested += PauseGame;
+        }
+
+        private void OnDisable()
+        {
+            OnPauseRequested -= PauseGame;
+        }
 
         /// <summary>
         /// Ставит игру на паузу.
@@ -42,6 +56,14 @@ namespace Core
             // Включаем управление игроком
             if (userInput != null)
                 userInput.Enabled = true;
+        }
+
+        /// <summary>
+        /// Позволяет внешним скриптам запросить паузу через событие
+        /// </summary>
+        public static void RequestPause()
+        {
+            OnPauseRequested?.Invoke();
         }
     }
 }

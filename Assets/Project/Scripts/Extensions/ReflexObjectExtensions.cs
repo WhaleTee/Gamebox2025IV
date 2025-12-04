@@ -9,9 +9,6 @@ namespace Extensions
     {
         public static T InjectAttributes<T>(this T obj) where T : class
         {
-            var go = new GameObject();
-
-            GameObjectInjector.InjectSingle(go, SceneManager.GetActiveScene().GetSceneContainer());
             AttributeInjector.Inject(obj, SceneManager.GetActiveScene().GetSceneContainer());
             return obj;
         }
@@ -25,6 +22,12 @@ namespace Extensions
         public static T InjectGameObject<T>(this T obj) where T : Component
         {
             GameObjectInjector.InjectObject(obj.gameObject, SceneManager.GetActiveScene().GetSceneContainer());
+            return obj;
+        }
+
+        public static T InjectRecursive<T>(this T obj) where T : Component
+        {
+            GameObjectInjector.InjectRecursive(obj.gameObject, SceneManager.GetActiveScene().GetSceneContainer());
             return obj;
         }
     }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a42c87821fdc4c14e98f42205a940f34
+guid: 519e4d96826ab514397046bc7ba2b885
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7421470162259604368
-    second: Wall_scetch_512x512_0
+      213: 6747145616444995548
+    second: Revise_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wall_scetch_512x512_0
+      name: Revise_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 153
+        height: 154
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 093f4acbacb5ef660800000000000000
-      internalID: 7421470162259604368
+      spriteID: cd7b904b03da2ad50800000000000000
+      internalID: 6747145616444995548
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Wall_scetch_512x512_0: 7421470162259604368
+      Revise_0: 6747145616444995548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

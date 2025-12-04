@@ -14,6 +14,7 @@ namespace Animation
         private readonly int jumpRisingHash = Animator.StringToHash("JumpRising");
         private readonly int fallingHash = Animator.StringToHash("Falling");
         private readonly int landingHash = Animator.StringToHash("Landing");
+        private readonly int climbingHash = Animator.StringToHash("Climbing");
 
         private MovementState previousState;
         private MovementState currentState;
@@ -32,24 +33,27 @@ namespace Animation
 
         private void Update()
         {
+            animator.speed = 1;
             if (currentState is AirMovement)
             {
-                if (body.linearVelocityY < 0) animator.Play(fallingHash);
-                else if (body.linearVelocityY > 0) animator.Play(jumpRisingHash);
+                var linearVelocityY = body.linearVelocityY - movementController.GroundVelocity.y;
+                if (linearVelocityY < 0.1f) animator.Play(fallingHash);
+                else if (linearVelocityY > 0.1f) animator.Play(jumpRisingHash);
             }
             else if (currentState is GroundMovement)
             {
-                if (body.linearVelocityX - movementController.GroundVelocity.x != 0) animator.Play(walkHash);
+                if (Mathf.Abs(body.linearVelocityX - movementController.GroundVelocity.x) > .1f) animator.Play(walkHash);
                 else animator.Play(idleHash);
             } else if (currentState is StairsMovement)
             {
-                animator.Play(idleHash);
+                if (body.linearVelocityY != 0) animator.Play(climbingHash);
+                else animator.speed = 0;
             }
         }
 
         private void OnMovementStateChange(MovementState state)
         {
-            if (currentState is AirMovement && state is GroundMovement) animator.Play(landingHash);
+            // if (currentState is AirMovement && state is GroundMovement) animator.Play(landingHash);
             currentState = state;
         }
     }

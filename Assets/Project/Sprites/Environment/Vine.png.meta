@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 489f848a9867cac4bb59609bb5687123
+guid: b78dcf3af98c52a4787a200c0c698f08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 478776366029212125
-    second: Vine_0
+      213: 4435678981600288877
+    second: Liana_500x1111_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -47,8 +47,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vine_0
+      name: Liana_500x1111_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 35
-        height: 324
+        width: 500
+        height: 1111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd906087194f4a600800000000000000
-      internalID: 478776366029212125
+      spriteID: d60a3f35882be8d30800000000000000
+      internalID: 4435678981600288877
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Vine_0: 478776366029212125
+      Liana_500x1111_0: 4435678981600288877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

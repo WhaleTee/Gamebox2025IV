@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: e6aa923a349a7644d9a65a1a3ba64ac5
+guid: 2e4d71ee343e1544d97086def7f58589
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2179673419495629613
-    second: Gates_0
+      213: -1138980179590370813
+    second: Lumen_0
   - first:
-      213: 1046721849985281810
-    second: Gates_1
+      213: 8260216892055928431
+    second: Lumen_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,45 +103,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gates_0
+      name: MetallArrow
       rect:
         serializedVersion: 2
-        x: 1
+        x: 33
         y: 0
-        width: 748
-        height: 911
+        width: 211
+        height: 196
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d23e5673d61cf3e10800000000000000
-      internalID: 2179673419495629613
+      spriteID: 30a2e4daf878130f0800000000000000
+      internalID: -1138980179590370813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gates_1
+      name: MetalGates_0
       rect:
         serializedVersion: 2
-        x: 759
+        x: 0
         y: 0
-        width: 102
-        height: 911
+        width: 756
+        height: 912
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 21f230f0af3b68e00800000000000000
-      internalID: 1046721849985281810
+      spriteID: a857574b372dbff488e624f22dbb0690
+      internalID: 801854819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MetalGates_1
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 0
+        width: 105
+        height: 912
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26a1d769de0caa3428ace883d699259f
+      internalID: 1564709112
       vertices: []
       indices: 
       edges: []
@@ -150,7 +172,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +182,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Gates_0: 2179673419495629613
-      Gates_1: 1046721849985281810
+      Lumen_1: 8260216892055928431
+      MetalGates_0: 801854819
+      MetalGates_1: 1564709112
+      MetallArrow: -1138980179590370813
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

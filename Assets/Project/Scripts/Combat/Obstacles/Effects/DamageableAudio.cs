@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Reflex.Attributes;
-using Audio;
+using Sound;
 
 namespace Combat
 {

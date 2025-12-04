@@ -17,6 +17,13 @@ namespace DI
 
         private void InstallServices(ContainerBuilder containerBuilder)
         {
+            containerBuilder.OnContainerBuilt += container =>
+            {
+                foreach (var initializable in container.All<IInitializable>())
+                {
+                    initializable.Initialize();
+                }
+            };
             containerBuilder.AddSingleton(typeof(UserInput));
             containerBuilder.AddSingleton(typeof(GameObjectFactory), typeof(DeactivatedGameObjectFactory));
             containerBuilder.AddSingleton(typeof(ObjectPoolManager), typeof(ObjectPoolManager), typeof(IInitializable));

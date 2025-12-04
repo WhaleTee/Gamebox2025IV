@@ -1,34 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Characters.Equipment;
 using Characters;
 using Input;
 using Phase = UnityEngine.InputSystem.InputActionPhase;
-using System.Collections.Generic;
 
 namespace Combat.Weapon
 {
     [Serializable]
     public class WeaponController
     {
+        public event Action<WeaponProjectiled, WeaponProjectiled> WeaponChanged;
         private UserInput userInput;
         public int Current { get; private set; }
         private WeaponProjectiled current;
         private CharacterBase owner;
+        private bool subscribed;
 
         public void Install(CharacterBase owner, UserInput userInput)
         {
             this.owner = owner;
             this.userInput = userInput;
-            SubAll();
         }
 
         public void OnEnable()
         {
             SubAll();
         }
-        public void OnDisable() => UnsubAll();
+        public void OnDisable()
+        {
+            UnsubAll();
+        }
+
+        public void SetCurrent(int index) => SetCurrentEquipment(index);
 
         private void UseStart()
         {
@@ -50,7 +56,7 @@ namespace Combat.Weapon
             {
                 var slot = Slot.Weapon;
                 var eq = owner.Inventory.Equipment[slot];
-                if (eq[i] is WeaponProjectiled weapon)
+                if (i < eq.Count && eq[i] is WeaponProjectiled weapon)
                     weapons.Add(weapon);
             }
 
@@ -62,11 +68,13 @@ namespace Combat.Weapon
             if (desired < 0)
                 desired = 0;
 
-            if (Current == desired)
+            if (Current == desired && current != null)
                 return;
 
             WeaponProjectiled old = current;
             WeaponProjectiled newy = weapons[desired];
+
+            WeaponChanged?.Invoke(newy, old);
 
             Disable(old);
             Enable(newy);
@@ -126,9 +134,10 @@ namespace Combat.Weapon
 
         private void SubAll()
         {
-            if (userInput == null)
+            if (userInput == null || subscribed)
                 return;
 
+            subscribed = true;
             userInput.Attack[Phase.Started] += UseStart;
             userInput.Attack[Phase.Canceled] += UseCancel;
             userInput.Scroll += OnScroll;
@@ -138,6 +147,7 @@ namespace Combat.Weapon
 
         private void UnsubAll()
         {
+            subscribed = false;
             userInput.Attack[Phase.Started] -= UseStart;
             userInput.Attack[Phase.Canceled] -= UseCancel;
             userInput.Scroll -= OnScroll;

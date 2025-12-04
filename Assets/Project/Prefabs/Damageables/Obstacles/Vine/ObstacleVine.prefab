@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5309973730593021386}
   - component: {fileID: 1878751833343598259}
+  - component: {fileID: 3132490321326951519}
+  - component: {fileID: 2324324122923434194}
   - component: {fileID: 5069713824532576626}
   m_Layer: 8
   m_Name: ObstacleVine
@@ -47,11 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d107e7c8085245f8ac8672510076cce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 35
+  <MaxHealth>k__BackingField: 42
   m_takesDamageType: 4
   m_fadeable:
     m_visual: {fileID: 8203652487267330700}
-    m_renderers: []
+    m_renderers:
+    - {fileID: 1655618738228903393}
     m_collider: {fileID: 5069713824532576626}
     m_particles: []
     m_lights:
@@ -64,6 +67,31 @@ MonoBehaviour:
       m_config: {fileID: 11400000, guid: 05c2e598f7e70014a9458906aa672255, type: 2}
     m_particles:
       m_config: {fileID: 11400000, guid: ca1a1157355e7b0469c94cfa003971aa, type: 2}
+--- !u!114 &3132490321326951519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215122910147571592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e83d6080af97bd49a2950feb9bbc55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 4
+--- !u!114 &2324324122923434194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215122910147571592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6991c22de1155574b8a7da4dbcf2af91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!68 &5069713824532576626
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -99,35 +127,19 @@ EdgeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.62
   m_Points:
-  - {x: -1.761375, y: -4.6842427}
-  - {x: -2.1487312, y: -4.079084}
-  - {x: -2.2860003, y: -3.296584}
-  - {x: -2.1588464, y: -2.6803496}
-  - {x: -1.8228605, y: -2.122402}
-  - {x: -1.3256663, y: -1.5770795}
-  - {x: -1.1163185, y: -1.1719507}
-  - {x: -1.1703687, y: -0.6965781}
-  - {x: -1.5054566, y: 0.23302457}
-  - {x: -1.2698528, y: 1.1740829}
-  - {x: -1.0650295, y: 1.762428}
-  - {x: -0.9285737, y: 3.0033216}
-  - {x: -0.12852514, y: 3.8328261}
-  - {x: 0.0345726, y: 4.2052803}
-  - {x: 0.6214094, y: 4.6776524}
-  - {x: 1.0227911, y: 4.4922576}
-  - {x: 1.3900914, y: 3.578566}
-  - {x: 1.683743, y: 2.9273574}
-  - {x: 1.9289305, y: 1.7109516}
-  - {x: 2.080496, y: 0.19900236}
-  - {x: 1.9510369, y: -0.39836115}
-  - {x: 1.8493114, y: -1.2951193}
-  - {x: 2.3494475, y: -2.1515791}
-  - {x: 2.241882, y: -2.8353024}
-  - {x: 1.8682547, y: -3.4283621}
-  - {x: 2.2677114, y: -4.0169134}
-  - {x: 2.0788012, y: -4.807591}
+  - {x: -1.0431383, y: -4.6617517}
+  - {x: -1.4566904, y: -3.805541}
+  - {x: -0.9974556, y: -2.8121157}
+  - {x: -0.41553605, y: -2.1091392}
+  - {x: -0.27948236, y: -0.4519384}
+  - {x: 0.16546327, y: 4.176085}
+  - {x: 0.6395763, y: 4.311921}
+  - {x: 0.89011365, y: 0.39620662}
+  - {x: 1.3092148, y: -2.1085403}
+  - {x: 1.3499444, y: -3.4461744}
+  - {x: 1.081813, y: -4.4127207}
   m_AdjacentStartPoint: {x: 0, y: -5.21}
   m_AdjacentEndPoint: {x: 0, y: -5.22}
   m_UseAdjacentStartPoint: 1
@@ -290,14 +302,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -365553809
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dcca775b1c38d184e9bd2efdc5e95137, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b78dcf3af98c52a4787a200c0c698f08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.42, y: 2.5}
+  m_Size: {x: 5, y: 11.11}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

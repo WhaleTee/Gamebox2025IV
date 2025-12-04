@@ -58,6 +58,7 @@ namespace Combat
         private void Populate()
         {
             deathEffect = get(m_config.DeathPrefab);
+            deathEffect.transform.parent = transform;
             deathEffect.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
             impacts = new();

@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: b1ff73a4573ffdb469dfae4bb36738a0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6171880813919632182
+    second: MainMenu_Bacnground_Foreground_0
+  - first:
+      213: -7736001565290877171
+    second: MainMenu_Bacnground_Foreground_1
+  - first:
+      213: 254382053636979098
+    second: MainMenu_Bacnground_Foreground_2
+  - first:
+      213: -1273612918624429016
+    second: MainMenu_Bacnground_Foreground_3
+  - first:
+      213: -8886508819578847032
+    second: MainMenu_Bacnground_Foreground_4
+  - first:
+      213: -7452149332128190452
+    second: MainMenu_Bacnground_Foreground_5
+  - first:
+      213: 5702934219305109681
+    second: MainMenu_Bacnground_Foreground_6
+  - first:
+      213: 6370599143763534523
+    second: MainMenu_Bacnground_Foreground_7
+  - first:
+      213: -8834647668997322039
+    second: MainMenu_Bacnground_Foreground_8
+  - first:
+      213: 7781361996968008832
+    second: MainMenu_Bacnground_Foreground_9
+  - first:
+      213: 2058103177823630618
+    second: MainMenu_Bacnground_Foreground_10
+  - first:
+      213: 4952720938924183320
+    second: MainMenu_Bacnground_Foreground_11
+  - first:
+      213: 2055026391155363946
+    second: MainMenu_Bacnground_Foreground_12
+  - first:
+      213: 6897332341924167846
+    second: MainMenu_Bacnground_Foreground_13
+  - first:
+      213: 5728655737194117386
+    second: MainMenu_Bacnground_Foreground_14
+  - first:
+      213: 5352208401519190026
+    second: MainMenu_Bacnground_Foreground_15
+  - first:
+      213: 6992176506872475848
+    second: MainMenu_Bacnground_Foreground_16
+  - first:
+      213: 1411374190472481842
+    second: MainMenu_Bacnground_Foreground_17
+  - first:
+      213: 8040620858217471964
+    second: MainMenu_Bacnground_Foreground_18
+  - first:
+      213: -1283297548296048604
+    second: MainMenu_Bacnground_Foreground_19
+  - first:
+      213: -3439888737276051988
+    second: MainMenu_Bacnground_Foreground_20
+  - first:
+      213: 1502218939102066891
+    second: MainMenu_Bacnground_Foreground_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 655
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4854a8913195aa0800000000000000
+      internalID: -6171880813919632182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_1
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 665
+        width: 79
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0fa8fe309334a490800000000000000
+      internalID: -7736001565290877171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_2
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 613
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a993448412fb78300800000000000000
+      internalID: 254382053636979098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_3
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 627
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82cda046cc7335ee0800000000000000
+      internalID: -1273612918624429016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_4
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 633
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c080a3bf47cca480800000000000000
+      internalID: -8886508819578847032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_5
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 625
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c00b5556aa5a49890800000000000000
+      internalID: -7452149332128190452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_6
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 594
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b8c91ff474e42f40800000000000000
+      internalID: 5702934219305109681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_7
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 551
+        width: 27
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2ee6a1b2ae86850800000000000000
+      internalID: 6370599143763534523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_8
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 480
+        width: 33
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca8ea5c0c6056580800000000000000
+      internalID: -8834647668997322039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_9
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 517
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08c90024283fcfb60800000000000000
+      internalID: 7781361996968008832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_10
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 508
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a15b7499fe9df8c10800000000000000
+      internalID: 2058103177823630618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_11
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 457
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81f073c04799bb440800000000000000
+      internalID: 4952720938924183320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_12
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 467
+        width: 34
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a605ed06d9be48c10800000000000000
+      internalID: 2055026391155363946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_13
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 472
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a0043aa83f38bf50800000000000000
+      internalID: 6897332341924167846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_14
+      rect:
+        serializedVersion: 2
+        x: 1267
+        y: 456
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0975ff8a06408f40800000000000000
+      internalID: 5728655737194117386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_15
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 479
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a00a9681f2dd64a40800000000000000
+      internalID: 5352208401519190026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_16
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 440
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c037f2ac73390160800000000000000
+      internalID: 6992176506872475848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_17
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 424
+        width: 39
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23c44443955369310800000000000000
+      internalID: 1411374190472481842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_18
+      rect:
+        serializedVersion: 2
+        x: 1259
+        y: 447
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdf16abc116069f60800000000000000
+      internalID: 8040620858217471964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_19
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 386
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4203fa4ddafc03ee0800000000000000
+      internalID: -1283297548296048604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_20
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 0
+        width: 607
+        height: 437
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced3bc33b6f0340d0800000000000000
+      internalID: -3439888737276051988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenu_Bacnground_Foreground_21
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 265
+        width: 10
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc8fa008a24f8d410800000000000000
+      internalID: 1502218939102066891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MainMenu_Bacnground_Foreground_0: -6171880813919632182
+      MainMenu_Bacnground_Foreground_1: -7736001565290877171
+      MainMenu_Bacnground_Foreground_10: 2058103177823630618
+      MainMenu_Bacnground_Foreground_11: 4952720938924183320
+      MainMenu_Bacnground_Foreground_12: 2055026391155363946
+      MainMenu_Bacnground_Foreground_13: 6897332341924167846
+      MainMenu_Bacnground_Foreground_14: 5728655737194117386
+      MainMenu_Bacnground_Foreground_15: 5352208401519190026
+      MainMenu_Bacnground_Foreground_16: 6992176506872475848
+      MainMenu_Bacnground_Foreground_17: 1411374190472481842
+      MainMenu_Bacnground_Foreground_18: 8040620858217471964
+      MainMenu_Bacnground_Foreground_19: -1283297548296048604
+      MainMenu_Bacnground_Foreground_2: 254382053636979098
+      MainMenu_Bacnground_Foreground_20: -3439888737276051988
+      MainMenu_Bacnground_Foreground_21: 1502218939102066891
+      MainMenu_Bacnground_Foreground_3: -1273612918624429016
+      MainMenu_Bacnground_Foreground_4: -8886508819578847032
+      MainMenu_Bacnground_Foreground_5: -7452149332128190452
+      MainMenu_Bacnground_Foreground_6: 5702934219305109681
+      MainMenu_Bacnground_Foreground_7: 6370599143763534523
+      MainMenu_Bacnground_Foreground_8: -8834647668997322039
+      MainMenu_Bacnground_Foreground_9: 7781361996968008832
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

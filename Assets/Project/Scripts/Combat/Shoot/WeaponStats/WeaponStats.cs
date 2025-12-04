@@ -9,7 +9,7 @@ namespace Combat.Weapon
     {
         [field: SerializeField] public StrikeType StrikeType { get; protected set; }
         [field: SerializeField] public FireMode Mode { get; protected set; }
-        [field: SerializeField] public Damage Damage { get; protected set; }
+        [field: SerializeField] public DamageBundle Damage { get; protected set; }
         [field: SerializeField] public float FireRate { get; protected set; } = 5f;
         public float FireInterval => 1f / FireRate;
         [field: SerializeField] public float Range { get; protected set; } = 30f;

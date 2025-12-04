@@ -8,20 +8,24 @@ using Type = Pooling.PoolType;
 using Pool = Pooling.ObjectPoolManager;
 using System.Collections.Generic;
 
-namespace Audio
+namespace Sound
 {
     [Serializable]
     public class AudioInjectionData : IInjectable
     {
         [field: SerializeField] public AudioRandomizationConfig RandomizationConfig { get; private set; }
-        public Dictionary<MixerGroup, AudioMixerGroup> Groups { get { if (groups == null) Init(); return groups; } private set { groups = value; } }
-        [SerializeField] private AudioMixerGroup m_combat;
-        [SerializeField] private AudioMixerGroup m_environment;
-        [SerializeField] private AudioMixerGroup m_ambient;
+        public Dictionary<SoundType, AudioMixerGroup> Groups { get { if (groups == null) Init(); return groups; } private set { groups = value; } }
+        [SerializeField] private AudioMixerGroup m_master;
         [SerializeField] private AudioMixerGroup m_music;
-        [SerializeField] private AudioMixerGroup m_voices;
+        [SerializeField] private AudioMixerGroup m_interface;
+        [SerializeField] private AudioMixerGroup m_voice;
+        [SerializeField] private AudioMixerGroup m_ambient;
+        [SerializeField] private AudioMixerGroup m_sfx;
+        [SerializeField] private AudioMixerGroup m_combat;
+        [SerializeField] private AudioMixerGroup m_movement;
+        [SerializeField] private AudioMixerGroup m_environment;
         [Inject] private Pool pool;
-        private Dictionary<MixerGroup, AudioMixerGroup> groups;
+        private Dictionary<SoundType, AudioMixerGroup> groups;
 
         public AudioSource Get(AudioSource prefab)
         {
@@ -41,11 +45,15 @@ namespace Audio
         {
             Groups = new()
             {
-                { MixerGroup.Combat, m_combat },
-                { MixerGroup.Environment, m_environment },
-                { MixerGroup.Ambient, m_ambient },
-                { MixerGroup.Music, m_music },
-                { MixerGroup.Voices, m_voices }
+                { SoundType.Master, m_master },
+                { SoundType.Music, m_music },
+                { SoundType.UI, m_interface },
+                { SoundType.Voice, m_voice },
+                { SoundType.Ambient, m_ambient },
+                { SoundType.SFX, m_sfx },
+                { SoundType.Combat, m_combat },
+                { SoundType.Movement, m_movement },
+                { SoundType.Environment, m_environment },
             };
         }
     }

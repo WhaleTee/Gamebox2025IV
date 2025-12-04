@@ -13,10 +13,11 @@ namespace Characters
     {
         [field: SerializeField] public Dictionary<EquipmentSlot, Transform> Attaches { get; protected set; }
         public Inventory Inventory { get; protected set; }
+        public WeaponController Controller => controller;
         //public Controller EquipmentController;
         [SerializeField] protected EquipmentAttach[] m_attaches;
         [SerializeField] protected WeaponProjectiled[] mockWeapons;
-        private WeaponController controller;
+        protected WeaponController controller;
         private UserInput userInput;
 
         //private void OnValidate()
@@ -49,7 +50,6 @@ namespace Characters
             controller = new();
             Inventory = new();
             this.userInput = userInput;
-            controller.OnEnable();
         }
 
         public void Init()
@@ -57,6 +57,7 @@ namespace Characters
             //EquipmentController.Install(this, userInput);
             controller.Install(this, userInput);
             AddMockWeapons();
+            controller.OnEnable();
         }
 
         private void AddMockWeapons()
@@ -64,7 +65,7 @@ namespace Characters
             foreach (var prefab in mockWeapons)
             {
                 var weapon = Instantiate(prefab);
-                weapon.Install();
+                weapon.Install(this);
                 weapon.Init();
                 weapon.gameObject.SetActive(false);
                 Inventory.Add(weapon);

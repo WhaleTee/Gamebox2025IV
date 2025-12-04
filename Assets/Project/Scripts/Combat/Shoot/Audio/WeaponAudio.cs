@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Reflex.Attributes;
 using Extensions;
-using Audio;
+using Sound;
 
 namespace Combat.Weapon.Audio
 {

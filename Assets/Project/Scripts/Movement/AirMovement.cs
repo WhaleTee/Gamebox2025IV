@@ -59,12 +59,12 @@ namespace Movement
             userInput.UnsubscribeJumpCanceled(OnJumpCanceled);
         }
 
-        public bool IsJumpBofferActive() => jumpBufferCounter > 0;
+        public bool IsJumpBufferActive() => jumpBufferCounter > 0;
 
         private void UpdateState()
         {
-            body.gravityScale = GetGravity();
             velocity = body.linearVelocity;
+            body.gravityScale = GetGravity();
         }
 
         private void UpdateVelocity() => desiredVelocity = new Vector2(inputX * preset.AirMovementSettings.maxSpeed, 0f);

@@ -13,7 +13,7 @@ namespace Combat
 
         private void OnEnable()
         {
-            mixerGroup = MixerGroup.Combat;
+            mixerGroup = Sound.SoundType.Combat;
         }
 
         protected override void InitPrefab() => InitPrefab("DamageableAudio");

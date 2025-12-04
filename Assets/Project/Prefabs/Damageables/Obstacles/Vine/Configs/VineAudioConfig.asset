@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a659b32b8f77d3f4c8cdad0b1eddb991, type: 3}
+  m_Name: VineAudioConfig
+  m_EditorClassIdentifier: 
+  <PolyphonyLimit>k__BackingField: 4
+  <ImpactSound>k__BackingField:
+  - {fileID: 8300000, guid: 1d5cfb58bfb193840b4c005fa0790d18, type: 3}
+  - {fileID: 8300000, guid: de816b90ef33dce46a3832ac7f2cf088, type: 3}
+  - {fileID: 8300000, guid: 0a020cdd0a4a54a4d86938d23778683f, type: 3}
+  <DeathSound>k__BackingField: {fileID: 8300000, guid: d727bb27626b79c44bcb123c7cedbe58, type: 3}

@@ -17,7 +17,7 @@ namespace Puzzle
 
         private void OnEnable()
         {
-            mixerGroup = MixerGroup.Environment;
+            mixerGroup = Sound.SoundType.Environment;
         }
 
         protected override void InitPrefab() => InitPrefab("PuzzlePieceAudio");

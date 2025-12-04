@@ -45,11 +45,6 @@ namespace Puzzle
             Events.ChangeState(State);
         }
 
-        public void InflictDamage(Damage damage)
-        {
-
-        }
-
         private void ResetState() => SetState(InitialState);
 
         private void CollisionEnter(Collision2D collision)
@@ -58,7 +53,7 @@ namespace Puzzle
             if (!hit)
                 return;
 
-            bool canDealDamage = collision.gameObject.GetComponent<Projectile>().WeaponProjectileStats.Damage.Type.Has(m_takesDamageType);
+            bool canDealDamage = collision.gameObject.GetComponent<Projectile>().Weapon.GetDamage().Can(m_takesDamageType);
             if (!canDealDamage)
                 return;
 
@@ -134,5 +129,8 @@ namespace Puzzle
             SetState(PieceState.Broken);
             m_effects.PlayBroke(piece);
         }
+
+        public void SetDamageSource(IDamageSource damageSource){}
+        public void InflictDamage(DamageBundle damage){}
     }
 }

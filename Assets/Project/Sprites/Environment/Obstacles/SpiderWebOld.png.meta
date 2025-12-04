@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-guid: c67e3e14b695ecd4a8ba2255a6d9fbba
+guid: 6f12b9b6ff879b5449831a0da92ce400
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4783380919058496157
-    second: SpiderWeb_0
+      213: -234500470463602490
+    second: Enlightment_0
   - first:
-      213: -8775846123187708947
-    second: SpiderWeb_1
+      213: -5820373319886210462
+    second: Enlightment_1
   - first:
-      213: 2283331698821738908
-    second: SpiderWeb_2
+      213: 1886526988181032381
+    second: Enlightment_2
   - first:
-      213: 5180375366246494546
-    second: SpiderWeb_3
-  - first:
-      213: -6289831961712645551
-    second: SpiderWeb_4
+      213: -7489871665050495842
+    second: Enlightment_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -112,34 +109,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpiderWeb_1
+      name: Web_01
       rect:
         serializedVersion: 2
-        x: 5
-        y: 4
-        width: 320
-        height: 716
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: deb58e7827ee53680800000000000000
-      internalID: -8775846123187708947
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpiderWeb_2
-      rect:
-        serializedVersion: 2
-        x: 329
+        x: 0
         y: 0
-        width: 241
+        width: 327
         height: 720
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -149,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c91b8ac151600bf10800000000000000
-      internalID: 2283331698821738908
+      spriteID: 6c0ea568013eebcf0800000000000000
+      internalID: -234500470463602490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpiderWeb_3
+      name: Web_02
       rect:
         serializedVersion: 2
-        x: 584
+        x: 327
         y: 0
-        width: 202
+        width: 243
         height: 720
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -171,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2517e44e2f364e740800000000000000
-      internalID: 5180375366246494546
+      spriteID: 26a7500ad41e93fa0800000000000000
+      internalID: -5820373319886210462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpiderWeb_4
+      name: Web_04
       rect:
         serializedVersion: 2
-        x: 1023
-        y: 2
-        width: 1
-        height: 718
+        x: 816
+        y: 0
+        width: 208
+        height: 720
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,30 +168,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 15a2831e72706b8a0800000000000000
-      internalID: -6289831961712645551
+      spriteID: dbdc7bdec4a4e2a10800000000000000
+      internalID: 1886526988181032381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpiderWeb_0
+      name: Web_03
       rect:
         serializedVersion: 2
-        x: 823
+        x: 578
         y: 0
-        width: 201
+        width: 209
         height: 720
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c3f2e83d53042ee4880cf33e1bddf275
-      internalID: 4783380919058496157
+      spriteID: e94d6675761ae0890800000000000000
+      internalID: -7489871665050495842
       vertices: []
       indices: 
       edges: []
@@ -225,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 04ba31159d71fb345a83535f92a2be0a
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SpiderWeb_0: 4783380919058496157
-      SpiderWeb_1: -8775846123187708947
-      SpiderWeb_2: 2283331698821738908
-      SpiderWeb_3: 5180375366246494546
-      SpiderWeb_4: -6289831961712645551
+      Web_01: -234500470463602490
+      Web_02: -5820373319886210462
+      Web_03: -7489871665050495842
+      Web_04: 1886526988181032381
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

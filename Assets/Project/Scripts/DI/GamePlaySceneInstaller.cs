@@ -1,8 +1,8 @@
 using UnityEngine;
 using Reflex.Core;
-using Misc;
 using Extensions;
-using Audio;
+using Misc;
+using Sound;
 using Combat.Projectiles.Behaviours;
 using VisualEffects;
 
@@ -26,6 +26,7 @@ namespace DI
             containerBuilder.AddSingleton(dependencies.PlayerData);
             containerBuilder.AddSingleton(dependencies.VictoryData);
             containerBuilder.AddSingleton(dependencies.CameraInjectionData);
+            containerBuilder.AddSingleton(dependencies.SoundSettingsData);
             containerBuilder.AddSingleton(dependencies.AudioData, typeof(AudioInjectionData), typeof(IInjectable));
             containerBuilder.AddSingleton(dependencies.ParticlesData, typeof(ParticlesInjectionData), typeof(IInjectable));
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Reflex.Attributes;
-using Audio;
+using Sound;
 
 namespace Puzzle
 {

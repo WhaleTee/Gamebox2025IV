@@ -17,7 +17,7 @@ namespace Combat.Weapon
 
         public void OnEnable()
         {
-            mixerGroup = MixerGroup.Combat;
+            mixerGroup = Sound.SoundType.Combat;
             Sounds = new()
             {
                 { SoundType.Shot, Shot },
