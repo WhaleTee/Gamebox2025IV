@@ -23,7 +23,8 @@ namespace Sound
 
         private async UniTaskVoid PlayOneShotAsync(AudioWithType<T> audio)
         {
-            if (audio.audio == null || !playingAudio.Add(audio)) return;
+            // if (audio.audio == null || !playingAudio.Add(audio)) return;
+            if (audio.audio == null) return;
             var clip = audio.audio[Random.Range(0, audio.audio.Length)];
             audioSource.PlayOneShot(clip, SoundSettings.Instance.GetVolume(audio.soundType));
             await UniTask.WaitForSeconds(clip.length, cancelImmediately: true, cancellationToken: cts.Token);

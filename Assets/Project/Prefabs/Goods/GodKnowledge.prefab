@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 371442136801623977}
   - component: {fileID: 3344678331336761226}
   - component: {fileID: 818726994591515752}
+  - component: {fileID: 296493353387338873}
   m_Layer: 0
   m_Name: Voise
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3078724294169255035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -1.33, z: 0}
+  m_LocalPosition: {x: 0.2, y: -5.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,9 +43,9 @@ AudioSource:
   m_GameObject: {fileID: 3078724294169255035}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: c2273a5e6d92205428a857bbd57a948c, type: 2}
+  OutputAudioMixerGroup: {fileID: 6590051274201480630, guid: c2273a5e6d92205428a857bbd57a948c, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: ce15ea05ea59bb44a8005a666f7ee9bb, type: 3}
+  m_Resource: {fileID: 8300000, guid: cf0c49497aa65d84b8a44bfcd50c8d22, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -143,6 +144,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 18
+--- !u!114 &296493353387338873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078724294169255035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae4201903be4ed99df615c307205802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  multiplier: 2.63
 --- !u!1 &7046232227521741554
 GameObject:
   m_ObjectHideFlags: 0

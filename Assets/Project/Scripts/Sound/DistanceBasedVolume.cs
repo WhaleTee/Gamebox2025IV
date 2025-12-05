@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Sound
 {
@@ -18,7 +19,7 @@ namespace Sound
         {
             if (target == null) return;
             var distance = Vector3.Distance(target.position, transform.position);
-            var volume = Mathf.Clamp01(1 - distance / maxDistance);
+            var volume = Mathf.Min(SoundSettings.Instance.GetVolume(SoundType.Voice), Mathf.Clamp01(1 - distance / maxDistance));
             audioSource.volume = volume;
         }
     }
