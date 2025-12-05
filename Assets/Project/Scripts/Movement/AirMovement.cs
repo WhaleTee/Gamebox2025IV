@@ -91,7 +91,7 @@ namespace Movement
 
         private void UpdateCoyoteTime()
         {
-            if (!environmentSensor.IsOnGround && !currentJump) coyoteTimeCounter += Time.deltaTime;
+            if (!environmentSensor.IsOnGround && !currentJump && jumpCount == 0) coyoteTimeCounter += Time.deltaTime;
             else coyoteTimeCounter = 0;
         }
 
