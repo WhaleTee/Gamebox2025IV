@@ -114,7 +114,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d303abfec5364d9690a784484322c0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerEvents: []
+  layerEvents:
+  - layer:
+      serializedVersion: 2
+      m_Bits: 65536
+    triggerEnter: 1
+    triggerStay: 0
+    triggerExit: 1
+    onTriggerEnter:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3822819650391725281}
+          m_TargetAssemblyTypeName: Camera.CharacterCameraController, Assembly-CSharp
+          m_MethodName: EnterGodZone
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onTriggerStay:
+      m_PersistentCalls:
+        m_Calls: []
+    onTriggerExit:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3822819650391725281}
+          m_TargetAssemblyTypeName: Camera.CharacterCameraController, Assembly-CSharp
+          m_MethodName: ExitGodZone
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - layer:
+      serializedVersion: 2
+      m_Bits: 131072
+    triggerEnter: 1
+    triggerStay: 0
+    triggerExit: 1
+    onTriggerEnter:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3822819650391725281}
+          m_TargetAssemblyTypeName: Camera.CharacterCameraController, Assembly-CSharp
+          m_MethodName: EnterFarView
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onTriggerStay:
+      m_PersistentCalls:
+        m_Calls: []
+    onTriggerExit:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3822819650391725281}
+          m_TargetAssemblyTypeName: Camera.CharacterCameraController, Assembly-CSharp
+          m_MethodName: ExitFarView
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &3822819650391725281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,10 +205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7dc2a2eaf04f86b3de3663be9d413a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomNearGods: 6.5
+  zoomNearGods: 8
   zoomDuration: 1
-  farViewOffsetY: 0
-  farViewDuration: 0
+  farViewOffsetY: -2
+  farViewDuration: 1
 --- !u!1 &1961380660328792692
 GameObject:
   m_ObjectHideFlags: 0
