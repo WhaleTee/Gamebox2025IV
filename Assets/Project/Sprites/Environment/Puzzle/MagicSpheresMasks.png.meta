@@ -1,51 +1,12 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
 guid: 4c4fc6afb7be07c40b89af4777e77c51
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -8560857320424918209
-    second: MagicSpheresMasks_0
-  - first:
-      213: -8501207207935120808
-    second: MagicSpheresMasks_1
-  - first:
-      213: -3711912907014747206
-    second: MagicSpheresMasks_2
-  - first:
-      213: -7287997026652578108
-    second: MagicSpheresMasks_3
-  - first:
-      213: 5042697127848337734
-    second: MagicSpheresMasks_4
-  - first:
-      213: 7472358656782324771
-    second: MagicSpheresMasks_5
-========
-guid: b2d4b24972276db4584305493a124a25
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -5406809749328374030
-    second: crystal_2_0
-  - first:
-      213: 7449126513534577653
-    second: crystal_2_1
-  - first:
-      213: -5727563838109297293
-    second: crystal_2_2
-  - first:
-      213: 2995958948471150265
-    second: crystal_2_3
-  - first:
-      213: -8292758228687961847
-    second: crystal_2_4
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -76,30 +37,24 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
-  nPOTScale: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-  spriteMode: 2
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
-========
-  spriteMode: 1
-  spriteExtrude: 0
-  spriteMeshType: 0
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 480
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -108,16 +63,16 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -130,20 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -153,223 +95,12 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      name: MagicSphereBase
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 40
-        width: 40
-        height: 40
-========
-      name: crystal_2_0
-      rect:
-        serializedVersion: 2
-        x: 193
-        y: 391
-        width: 131
-        height: 312
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      spriteID: f33354bdf99b13980800000000000000
-      internalID: -8560857320424918209
-========
-      spriteID: 2f6d923fd2727f4b0800000000000000
-      internalID: -5406809749328374030
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      name: MagicSphereCrackWeak
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 40
-        height: 40
-========
-      name: crystal_2_1
-      rect:
-        serializedVersion: 2
-        x: 244
-        y: 700
-        width: 59
-        height: 57
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      spriteID: 85a6901f515a50a80800000000000000
-      internalID: -8501207207935120808
-========
-      spriteID: 5fb2c2ec81d906760800000000000000
-      internalID: 7449126513534577653
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      name: MagicSphereSpecular
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 40
-        width: 40
-        height: 40
-========
-      name: crystal_2_2
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 617
-        width: 51
-        height: 58
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      spriteID: abbc23ca0e2ac7cc0800000000000000
-      internalID: -3711912907014747206
-========
-      spriteID: 3755f11090b9380b0800000000000000
-      internalID: -5727563838109297293
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      name: MagicSphereCrackStrong
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 0
-        width: 40
-        height: 40
-========
-      name: crystal_2_3
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 597
-        width: 53
-        height: 57
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      spriteID: 4ce15465155dbda90800000000000000
-      internalID: -7287997026652578108
-========
-      spriteID: 9b696455ac8c39920800000000000000
-      internalID: 2995958948471150265
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      name: MagicSphereSpecularBroken
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 40
-        width: 40
-        height: 40
-========
-      name: crystal_2_4
-      rect:
-        serializedVersion: 2
-        x: 153
-        y: 101
-        width: 130
-        height: 213
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      spriteID: 641684702524bf540800000000000000
-      internalID: 5042697127848337734
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MagicSphereBaseBroken
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 40
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 32453dbab9623b760800000000000000
-      internalID: 7472358656782324771
-========
-      spriteID: 9014bd2f3543aec80800000000000000
-      internalID: -8292758228687961847
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-    spriteID: a7b62402f7fce1140a317e4dd0f7263e
-========
-    spriteID: 5e97eb03825dee720800000000000000
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -378,21 +109,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-<<<<<<<< HEAD:Assets/Project/Sprites/Environment/Puzzle/MagicSpheresMasks.png.meta
-      MagicSphereBase: -8560857320424918209
-      MagicSphereBaseBroken: 7472358656782324771
-      MagicSphereCrackStrong: -7287997026652578108
-      MagicSphereCrackWeak: -8501207207935120808
-      MagicSphereSpecular: -3711912907014747206
-      MagicSphereSpecularBroken: 5042697127848337734
-========
-      crystal_2_0: -5406809749328374030
-      crystal_2_1: 7449126513534577653
-      crystal_2_2: -5727563838109297293
-      crystal_2_3: 2995958948471150265
-      crystal_2_4: -8292758228687961847
->>>>>>>> dev:Assets/Project/Sprites/Artefact/Artefact2.png.meta
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
