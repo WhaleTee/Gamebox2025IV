@@ -25,7 +25,7 @@ namespace Sound
         {
             float volume = 0;
             var mixerGroup = soundData[type].MixerGroup;
-            if (mixerGroup.audioMixer.GetFloat(mixerGroup.name, out float db))
+            if (mixerGroup.audioMixer.GetFloat(VolumeParam(type), out float db))
                 return Mathf.Pow(10f, db / m_volumeMultiplier);
             return volume;
         }
@@ -141,7 +141,12 @@ namespace Sound
             SetVolume(
                 enabled ? previousValues[type] : data.Slider.minValue,
                 VolumeParam(type)
-                );
+            );
+        }
+
+        public void SetMixerVolume(SoundType type, float volume)
+        {
+            SetVolume(volume, VolumeParam(type));
         }
 
         private void CacheCurrentVolumes()
