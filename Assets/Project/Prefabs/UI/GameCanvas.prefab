@@ -8308,6 +8308,7 @@ GameObject:
   - component: {fileID: 5514242025601475238}
   - component: {fileID: 8450748787378122510}
   - component: {fileID: 9037901557435271693}
+  - component: {fileID: 6946314115470103914}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -8369,6 +8370,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7a76b9cfcef0f45a4e13a2fb4ce1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6946314115470103914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7866221051332198574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9550b1e25baf92c46be7937b2db1a089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstButton: {fileID: 475207929584246816}
+  secondButton: {fileID: 1584233082734707002}
 --- !u!1 &7920768104304292874
 GameObject:
   m_ObjectHideFlags: 0

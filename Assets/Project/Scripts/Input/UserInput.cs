@@ -15,6 +15,9 @@ namespace Input
         public event Action<Vector2> Scroll;
         public event Action<Key> Arrows;
         public event Action<Key> Digits;
+        public event Action Pause;
+        public event Action Interaction;
+
 
         public bool Enabled { get => enabled; set { enabled = value; OnEnabledChanged(value); } }
         public Vector2 Movement => inputActions.Player.Move.ReadValue<Vector2>();
@@ -35,6 +38,24 @@ namespace Input
         }
 
         ~UserInput() => Enabled = false;
+
+        public void SetPlayerInputActive(bool state)
+        {
+            if (inputActions == null) return;
+
+            if (state)
+                inputActions.Player.Enable();
+            else
+                inputActions.Player.Disable();
+        }
+
+        private void InteractionHandle(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                Interaction?.Invoke();
+        }
+
+
 
         private void ActivateInputActions()
         {
@@ -57,6 +78,12 @@ namespace Input
         public void UnsubscribeJumpPerformed(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.performed -= callback;
         public void SubscribeJumpCanceled(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.canceled += callback;
         public void UnsubscribeJumpCanceled(Action<InputAction.CallbackContext> callback) => inputActions.Player.Jump.canceled -= callback;
+
+        private void PauseHandle(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+                Pause?.Invoke();
+        }
 
         private void AttackHandle(InputAction.CallbackContext context)
         {
@@ -89,6 +116,9 @@ namespace Input
             inputActions.Player.Scroll.performed += ScrollHandle;
             inputActions.Player.Arrows.performed += ArrowsHandle;
             inputActions.Player.Digits.performed += DigitsHandle;
+            inputActions.UI.Pause.performed += PauseHandle;
+            inputActions.Player.Interaction.performed += InteractionHandle;
+
         }
 
         private void UnsubscribeAll()
@@ -98,6 +128,9 @@ namespace Input
             inputActions.Player.Scroll.performed -= ScrollHandle;
             inputActions.Player.Arrows.performed -= ArrowsHandle;
             inputActions.Player.Digits.performed -= DigitsHandle;
+            inputActions.UI.Pause.performed -= PauseHandle;
+            inputActions.Player.Interaction.performed -= InteractionHandle;
+
         }
 
         private void EmmitKeyCode(InputAction.CallbackContext context, Action<Key> callback)
