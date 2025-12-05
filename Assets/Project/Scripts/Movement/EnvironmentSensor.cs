@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Environment;
+using UnityEngine.Pool;
 
 
 namespace Movement
@@ -29,9 +31,11 @@ namespace Movement
         public bool IsOnGround { get; private set; }
         public bool IsStairsOver { get; private set; }
         public bool IsStairsUnder { get; private set; }
+        public bool IsContactProvided { get; private set; }
         public float SlopeAngle { get; private set; }
         public Vector2 SlopePerpendicular { get; private set; }
         public Vector2 SlopeNormal { get; private set; }
+        public Vector2 LastGroundPoint { get; private set; }
 
 
         private void Awake()
@@ -42,6 +46,8 @@ namespace Movement
         private void Update()
         {
             groundObjects.Clear();
+            var contacts = ListPool<Collider2D>.Get();
+            sensorCollider.GetContacts(contacts);
             var rayOnePosition = transform.position;
             rayOnePosition.x += colliderOffset.x;
             rayOnePosition.y += colliderOffset.y;
@@ -50,9 +56,11 @@ namespace Movement
             rayTwoPosition.y += colliderOffset.y;
             var rayOne = Physics2D.Raycast(rayOnePosition, Vector2.down, groundLength, groundLayer);
             var rayTwo = Physics2D.Raycast(rayTwoPosition, Vector2.down, groundLength, groundLayer);
-            IsOnGround = rayOne || rayTwo;
-            groundObjects.Add(rayOne ? rayOne.collider.gameObject : null);
-            groundObjects.Add(rayTwo ? rayTwo.collider.gameObject : null);
+            // IsOnGround = rayOne || rayTwo;
+            // groundObjects.Add(rayOne ? rayOne.collider.gameObject : null);
+            // groundObjects.Add(rayTwo ? rayTwo.collider.gameObject : null);
+            IsOnGround = sensorCollider.IsTouchingLayers(groundLayer);
+            groundObjects.AddRange(contacts.Where(c => (groundLayer & 1 << c.gameObject.layer) != 0).Select(c => c.gameObject));
             if (!IsOnGround)
             {
                 SlopeAngle = 0;
@@ -61,6 +69,7 @@ namespace Movement
                 return;
             }
 
+            LastGroundPoint = transform.position;
             var angleOne = Vector2.Angle(rayOne.normal, Vector2.up);
             var angleTwo = Vector2.Angle(rayTwo.normal, Vector2.up);
             SlopeAngle = Mathf.Max(angleOne, angleTwo);
@@ -118,7 +127,7 @@ namespace Movement
             {
                 result = pOne.Velocity;
             }
-            else if (groundObjects[1] != null && groundObjects[1].TryGetComponent(out MovingPlatform pTwo))
+            else if (groundObjects.Count > 1 && groundObjects[1] != null && groundObjects[1].TryGetComponent(out MovingPlatform pTwo))
             {
                 result = pTwo.Velocity;
             }

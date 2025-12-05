@@ -17,11 +17,13 @@ namespace Movement
         private GroundMovement groundMovement;
         private AirMovement airMovement;
         private StairsMovement stairsMovement;
+        private MovementState previousState;
         private MovementState currentState;
         [HideInInspector] public bool desiredJump;
 
         public Vector2 GroundVelocity { get; private set; }
         public Vector2 Direction { get; private set; }
+        public bool IsSliding => currentState is GroundMovement && environmentSensor.SlopeAngle > preset.GroundMovementSettings.maxSlopeAngle;
 
         public event Action<MovementState> StateChange;
 
@@ -100,7 +102,7 @@ namespace Movement
             {
                 ChangeState(airMovement);
             }
-            else if (environmentSensor.IsOnGround && currentState is AirMovement && !airMovement.IsJumpBufferActive() && body.linearVelocityY <= 0)
+            else if (environmentSensor.IsOnGround && !airMovement.IsJumping() && currentState is AirMovement)
             {
                 ChangeState(groundMovement);
             }
@@ -109,6 +111,7 @@ namespace Movement
         private void ChangeState(MovementState state)
         {
             currentState?.Exit();
+            previousState = currentState;
             currentState = state;
             StateChange?.Invoke(currentState);
         }

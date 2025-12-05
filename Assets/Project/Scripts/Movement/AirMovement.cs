@@ -25,6 +25,7 @@ namespace Movement
         private float jumpBufferCounter;
         private float coyoteTimeCounter;
         private int jumpCount;
+        private Vector2 jumpPosition;
 
         public AirMovement(UserInput userInput, PresetObject preset, Rigidbody2D body, EnvironmentSensor environmentSensor)
         {
@@ -60,11 +61,15 @@ namespace Movement
         }
 
         public bool IsJumpBufferActive() => jumpBufferCounter > 0;
+        
+        public bool IsJumping() => currentJump;
 
         private void UpdateState()
         {
             velocity = body.linearVelocity;
             body.gravityScale = GetGravity();
+            currentJump = (preset.AirMovementSettings.variableJumpHeight && velocity.y > 0 && pressingJump) 
+                          && Vector2.Distance(body.position, jumpPosition + Vector2.up * preset.AirMovementSettings.jumpHeight) != 0;
         }
 
         private void UpdateVelocity() => desiredVelocity = new Vector2(inputX * preset.AirMovementSettings.maxSpeed, 0f);
@@ -140,7 +145,7 @@ namespace Movement
 
         private void Jump()
         {
-            if (environmentSensor.IsOnGround || (coyoteTimeCounter > 0 && coyoteTimeCounter < preset.AirMovementSettings.coyoteTime) || canJumpAgain)
+            if (environmentSensor.IsOnGround || IsCoyoteTime() || canJumpAgain)
             {
                 desiredJump = false;
                 currentJump = true;
@@ -148,11 +153,16 @@ namespace Movement
                 coyoteTimeCounter = 0;
                 canJumpAgain = ++jumpCount <= preset.AirMovementSettings.maxAirJumps && !canJumpAgain;
                 ApplyJumpInitialVelocity();
+                jumpPosition = body.position;
+                // apply half gravity to reach precisely the height
+                body.gravityScale /= 2f;
             }
 
             if (preset.AirMovementSettings.jumpBuffer == 0) desiredJump = false;
         }
 
+        private bool IsCoyoteTime() => coyoteTimeCounter > 0 && coyoteTimeCounter < preset.AirMovementSettings.coyoteTime;
+        
         private void ApplyJumpInitialVelocity()
         {
             var jumpVelocity = GetJumpInitialVelocity();
@@ -180,16 +190,15 @@ namespace Movement
                     : preset.AirMovementSettings.upwardGravityMultiplier;
             }
 
-            return GetJumpGravity() / Physics2D.gravity.y * multiplier;
+            return GetJumpGravity() * multiplier;
         }
 
-        private float GetJumpGravity()
+        public float GetJumpGravity()
         {
-            return -2 * preset.AirMovementSettings.jumpHeight / Mathf.Pow(preset.AirMovementSettings.timeToJumpApex, 2);
+            return -2 * preset.AirMovementSettings.jumpHeight / Mathf.Pow(preset.AirMovementSettings.timeToJumpApex, 2) / Physics2D.gravity.y;
         }
 
-        private float GetJumpInitialVelocity() =>
-            Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * preset.AirMovementSettings.jumpHeight);
+        private float GetJumpInitialVelocity() => Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * preset.AirMovementSettings.jumpHeight);
 
         private void OnJumpPerformed(InputAction.CallbackContext ctx)
         {

@@ -26,7 +26,7 @@ MonoBehaviour:
     maxAcceleration: 80
     maxDeceleration: 80
     useAcceleration: 1
-    maxSlopeAngle: 20.9
+    maxSlopeAngle: 45
   <AirMovementSettings>k__BackingField:
     maxSpeed: 6
     maxTurnSpeed: 80

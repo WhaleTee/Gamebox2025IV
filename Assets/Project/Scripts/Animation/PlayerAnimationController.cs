@@ -1,10 +1,16 @@
 ﻿using Movement;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Animation
 {
+    public enum Gender { Male, Female }
+
     public class PlayerAnimationController : MonoBehaviour
     {
+        [SerializeField] private AnimatorController male;
+        [SerializeField] private AnimatorController female;
+        
         private CharacterMovement movementController;
         private Rigidbody2D body;
         private Animator animator;
@@ -24,6 +30,7 @@ namespace Animation
             movementController = GetComponentInParent<CharacterMovement>();
             body = GetComponentInParent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            animator.runtimeAnimatorController = PlayerGenderSettings.Instance.Gender == Gender.Female ? female : male;
         }
 
         private void Start()
@@ -42,7 +49,8 @@ namespace Animation
             }
             else if (currentState is GroundMovement)
             {
-                if (Mathf.Abs(body.linearVelocityX - movementController.GroundVelocity.x) > .1f) animator.Play(walkHash);
+                if (movementController.IsSliding) animator.Play(fallingHash);
+                else if (Mathf.Abs(body.linearVelocityX - movementController.GroundVelocity.x) > .1f) animator.Play(walkHash);
                 else animator.Play(idleHash);
             } else if (currentState is StairsMovement)
             {
