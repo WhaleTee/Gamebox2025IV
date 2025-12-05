@@ -53,7 +53,7 @@ namespace UI
         {
             progressBar.value = value;
             if (progressText)
-                progressText.text = $"loading... {Mathf.RoundToInt(value * 100)}%";
+                progressText.text = $"Загрузка... {Mathf.RoundToInt(value * 100)}%";
         }
 
         /// <summary>

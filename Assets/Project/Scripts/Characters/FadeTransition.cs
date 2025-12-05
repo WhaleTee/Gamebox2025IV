@@ -29,6 +29,12 @@ namespace Characters
             current = mbp.GetFloat(fadePropertyID);
         }
 
+        private void Start()
+        {
+            current = 0;
+            Apply(0);
+        }
+
         private void Update()
         {
             float target = transitionToVisible ? 1f : 0;

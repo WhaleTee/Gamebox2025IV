@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: fb0df4000623d6c42bf2c89d47f77b8c
+guid: b89e1aeaefd5b5548a03342a0daf7550
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5300246430819214944
-    second: Ball_1_38x38_0
+      213: -9052375330053891418
+    second: Sound_on_150x138_0
+  - first:
+      213: 8525080589937672948
+    second: Sound_on_150x138_1
+  - first:
+      213: -3126580306954241182
+    second: Sound_on_150x138_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,8 +53,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 0
-  spriteMeshType: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -72,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -96,30 +102,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ball_1_38x38_0
+      name: Sound_on_150x138_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 38
-        height: 38
+        width: 89
+        height: 138
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 066e2030c024e8940800000000000000
-      internalID: 5300246430819214944
+      spriteID: 6aad0ae49908f5280800000000000000
+      internalID: -9052375330053891418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sound_on_150x138_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 40
+        width: 25
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f200d4f0ab2f4670800000000000000
+      internalID: 8525080589937672948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sound_on_150x138_2
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 5
+        width: 40
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26bb242b6c72c94d0800000000000000
+      internalID: -3126580306954241182
       vertices: []
       indices: 
       edges: []
@@ -148,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ball_1_38x38_0: 5300246430819214944
+      Sound_on_150x138_0: -9052375330053891418
+      Sound_on_150x138_1: 8525080589937672948
+      Sound_on_150x138_2: -3126580306954241182
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
