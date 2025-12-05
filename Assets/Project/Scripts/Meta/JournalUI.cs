@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class JournalUI : MonoBehaviour
 {
@@ -29,8 +30,13 @@ public class JournalUI : MonoBehaviour
         foreach (Transform child in contentContainer)
             Destroy(child.gameObject);
 
-        foreach (var note in Journal.Instance.Notes[category])
-            AddNoteToUI(note);
+        if (Journal.Instance.Notes != null && Journal.Instance.Notes.Count > 0)
+        {
+            foreach (var note in Journal.Instance.Notes.GetValueOrDefault(category))
+            {
+                if (!string.IsNullOrEmpty(note)) AddNoteToUI(note);
+            }
+        }
     }
 
     private void OnNoteAdded(NoteCategory cat, string text)

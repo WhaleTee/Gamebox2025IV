@@ -1,5 +1,4 @@
 ﻿using Movement;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Animation
@@ -8,8 +7,8 @@ namespace Animation
 
     public class PlayerAnimationController : MonoBehaviour
     {
-        [SerializeField] private AnimatorController male;
-        [SerializeField] private AnimatorController female;
+        [SerializeField] private RuntimeAnimatorController male;
+        [SerializeField] private RuntimeAnimatorController female;
         
         private CharacterMovement movementController;
         private Rigidbody2D body;
